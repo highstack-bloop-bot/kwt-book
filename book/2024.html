@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<base href="/">
+<title>Winston and Eleanor &mdash; 2024</title>
+<style>@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-0.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-1.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-2.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-3.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-4.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-5.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-6.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-7.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-8.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-9.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-10.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-11.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-12.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-13.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-14.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-15.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-16.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-17.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-18.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-19.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@page { size: 11.250in 8.250in; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; background:#8d8d8d; }
+body { font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-weight:300; color:#241f1a; -webkit-font-smoothing:antialiased; }
+
+.page { position:relative; width:11.250in; height:8.250in; background:#faf8f4;
+  overflow:hidden; page-break-after:always; break-after:page; margin:0 auto 14px; }
+.page:last-child { page-break-after:auto; break-after:auto; }
+
+/* Everything below is positioned from the media-box edge, i.e. bleed included. */
+.row { position:absolute; display:flex; gap:0.170in; align-items:flex-start; }
+.grp { display:flex; flex-direction:column; }
+.pics { display:flex; gap:0.170in; }
+/* Cells are sized by the packer; cover absorbs the sub-percent scaling that squares a
+   justified row off against the page height. */
+.row img { display:block; width:100%; height:100%; object-fit:cover; background:#efe9e0; }
+figure { margin:0; position:relative; height:100%; overflow:hidden; }
+.vtag { position:absolute; right:.07in; bottom:.07in; width:.17in; height:.17in;
+  border-radius:50%; background:rgba(20,16,12,.5); }
+.vtag:after { content:""; position:absolute; left:.066in; top:.048in; border-style:solid;
+  border-width:.037in 0 .037in .058in; border-color:transparent transparent transparent #fff; }
+
+.gcap { margin-top:0.055in; font-size:7.4pt; line-height:1.42; color:#5f574e; }
+.gdate { display:block; font-size:6.2pt; letter-spacing:.15em; text-transform:uppercase;
+  color:#a79c90; }
+.gloc { display:block; font-size:6.2pt; letter-spacing:.15em; text-transform:uppercase;
+  color:#a9714a; }
+.gtext { display:block; margin-top:.035in; }
+
+/* Full-bleed feature page: photo to all four edges, caption in the dark corner. */
+.hscrim { position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(16,12,8,0) 46%,rgba(16,12,8,.26) 66%,rgba(16,12,8,.84)); }
+.hcap { position:absolute; left:0.425in; right:0.425in; bottom:0.545in;
+  color:#fff; max-width:6.6in; text-shadow:0 1px 6px rgba(0,0,0,.45); }
+.hcap .gdate { color:rgba(255,255,255,.8); font-size:6.6pt; }
+.hcap .gloc { color:#f2c8a6; font-size:6.6pt; }
+.hcap .gtext { margin-top:.07in; font-size:10.5pt; line-height:1.45; }
+
+.month { position:absolute; font-family:Fraunces,Georgia,serif; font-size:9pt;
+  letter-spacing:.24em; text-transform:uppercase; color:#a9714a; }
+.month:after { content:""; display:block; height:1px; background:#e6dfd3; margin-top:.07in; }
+
+.folio { position:absolute; bottom:0.285in; font-size:7pt; letter-spacing:.16em;
+  color:#b3aa9f; }
+.folio.n { right:0.425in; }
+.folio.t { left:0.425in; text-transform:uppercase; }
+
+/* Full-bleed pages: the image intentionally runs past the trim into the bleed. */
+.bleed { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.scrim { position:absolute; inset:0;
+  background:radial-gradient(ellipse 76% 64% at 50% 54%,rgba(18,14,10,.78),rgba(18,14,10,0) 76%),
+             linear-gradient(180deg,rgba(20,16,12,.44),rgba(20,16,12,.32) 45%,rgba(20,16,12,.6)); }
+.opener { position:absolute; left:0; right:0; top:2.55in; text-align:center; color:#fff;
+  text-shadow:0 1px 10px rgba(0,0,0,.5); }
+.opener .kick { font-size:8.5pt; letter-spacing:.36em; text-transform:uppercase;
+  margin:0 0 .18in; opacity:.9; }
+.opener .yr { font-family:Fraunces,Georgia,serif; font-weight:300; font-size:74pt;
+  line-height:1; margin:0; letter-spacing:.02em; }
+.opener .sub { font-size:9pt; letter-spacing:.2em; text-transform:uppercase;
+  margin:.26in 0 0; opacity:.92; }
+.opener .topics { list-style:none; padding:0; margin:.34in auto 0; max-width:5.1in;
+  text-align:center; }
+.opener .topics li { font-family:Fraunces,Georgia,serif; font-size:12pt; line-height:1.4;
+  padding:.09in 0; opacity:.95; }
+.opener .topics li + li { border-top:1px solid rgba(255,255,255,.28); }
+
+#ruler { position:absolute; visibility:hidden; left:-99in; top:0; }
+
+@media screen { .page { box-shadow:0 2px 14px rgba(0,0,0,.35); } }
+
+.aw { background:#faf8f4; }
+.aw .kick { position:absolute; left:0.425in; top:0.425in; font-size:7.4pt;
+  letter-spacing:.34em; text-transform:uppercase; color:#a9714a; }
+.aw h1 { position:absolute; left:0.425in; right:0.425in; top:0.720in; margin:0;
+  font-family:Fraunces,Georgia,serif; font-weight:300; font-size:31pt; line-height:1.1;
+  letter-spacing:.005em; color:#241f1a; }
+.aw .deck { position:absolute; left:0.425in; right:0.425in; top:1.460in;
+  font-family:Fraunces,Georgia,serif; font-style:italic; font-size:10.5pt; color:#8a7f73; }
+.aw .rule { position:absolute; left:0.425in; right:0.425in; top:1.780in; height:1px;
+  background:#e0d8ca; }
+.aw .cols { position:absolute; left:0.425in; right:0.425in; top:1.980in;
+  bottom:0.720in; column-count:3; column-gap:.42in; }
+.aw .cols p { margin:0 0 .10in; font-size:9.6pt; line-height:1.68; color:#4a443c;
+  text-align:justify; hyphens:auto; orphans:2; widows:2; }
+.aw .cols p b { font-weight:500; color:#241f1a; }
+.aw .sign { position:absolute; right:0.425in; bottom:0.465in; font-size:6.6pt;
+  letter-spacing:.16em; text-transform:uppercase; color:#b3aa9f; }
+
+.aw .big { position:absolute; left:0.425in; right:0.425in; top:1.980in;
+  display:flex; justify-content:space-between; }
+.aw .big div { text-align:left; }
+.aw .big .v { font-family:Fraunces,Georgia,serif; font-weight:300; font-size:25pt;
+  line-height:1; color:#241f1a; }
+.aw .big .l { display:block; margin-top:.05in; font-size:6.4pt; letter-spacing:.2em;
+  text-transform:uppercase; color:#a79c90; }
+
+.aw .chart { position:absolute; left:0.425in; right:0.425in; top:2.95in; height:1.72in; }
+.aw .bars { position:absolute; inset:0; display:flex; align-items:flex-end; gap:.014in; }
+.aw .bars i { display:block; flex:1 1 0; background:#cbbda8; min-height:.5pt; }
+.aw .bars i.b { background:#a9714a; }
+.aw .peak { position:absolute; right:0; top:-.20in; font-size:6.4pt; letter-spacing:.16em;
+  text-transform:uppercase; color:#b3aa9f; }
+.aw .axis { position:absolute; left:0.425in; right:0.425in; top:4.67in; height:.008in;
+  background:#e0d8ca; }
+.aw .eras { position:absolute; left:0.425in; right:0.425in; top:4.75in; display:flex; }
+.aw .eras span { font-size:6.4pt; letter-spacing:.18em; text-transform:uppercase; overflow:hidden;
+  white-space:nowrap; text-overflow:ellipsis; padding-right:.07in; min-width:0;
+  color:#8a7f73; border-top:2px solid #d8cbb6; padding-top:.055in; }
+.aw .eras span.gap { border-top-color:transparent; }
+.aw .yrs { position:absolute; left:0.425in; right:0.425in; top:5.13in; display:flex;
+  font-size:6.4pt; letter-spacing:.16em; color:#b3aa9f; }
+
+.aw .lists { position:absolute; left:0.425in; right:0.425in; top:5.62in;
+  bottom:0.465in; display:flex; gap:.5in; }
+.aw .lists section { flex:1 1 0; }
+.aw .lists h2 { margin:0 0 .09in; font-size:6.6pt; letter-spacing:.24em; text-transform:uppercase;
+  color:#a9714a; font-weight:400; border-bottom:1px solid #e0d8ca; padding-bottom:.05in; }
+.aw .lists tr td { font-size:8.2pt; line-height:1.75; color:#4a443c; vertical-align:baseline; }
+.aw .lists table { width:100%; border-collapse:collapse; }
+.aw .lists td.n { text-align:right; font-variant-numeric:tabular-nums; color:#241f1a; }
+.aw .lists td.s { font-size:6.8pt; letter-spacing:.1em; text-transform:uppercase; color:#a79c90;
+  padding-left:.09in; white-space:nowrap; }
+
+.rtb { position:absolute; box-sizing:border-box; height:1.280in; background:#faf8f4;
+  border:1px solid #e6ded1; padding:.15in .22in .13in; }
+.rtb .hd { display:flex; align-items:baseline; gap:.20in; }
+.rtb .kick { margin:0; font-size:6.6pt; letter-spacing:.34em; text-transform:uppercase;
+  color:#a9714a; white-space:nowrap; }
+.rtb h2 { margin:0; font-family:Fraunces,Georgia,serif; font-weight:300; font-size:17pt;
+  line-height:1.1; color:#241f1a; white-space:nowrap; }
+.rtb .deck { margin:0; font-family:Fraunces,Georgia,serif; font-style:italic; font-size:9pt;
+  line-height:1.2; color:#8a7f73; }
+.rtb .stops { display:flex; margin:.13in 0 0; padding:0; border-top:1px solid #e0d8ca; }
+.rtb .stops li { list-style:none; flex:1 1 0; min-width:0; position:relative;
+  padding:.155in .09in 0 0; }
+.rtb .stops li::after { content:""; position:absolute; left:0; top:-.037in; width:.065in;
+  height:.065in; border-radius:50%; background:#cbbda8; }
+.rtb .stops li:first-child::after, .rtb .stops li:last-child::after { background:#a9714a; }
+.rtb .stops .d { display:block; font-size:6.2pt; letter-spacing:.16em; text-transform:uppercase;
+  color:#a9714a; margin-bottom:.035in; }
+.rtb .stops .p { display:block; font-family:Fraunces,Georgia,serif; font-size:8.4pt;
+  line-height:1.28; color:#241f1a; }
+
+.ntb { position:absolute; box-sizing:border-box; background:#faf8f4; border:1px solid #e6ded1;
+  padding:.16in .22in .13in; }
+.ntb .nd { margin:0 0 .07in; font-size:6.6pt; letter-spacing:.34em; text-transform:uppercase;
+  color:#a9714a; }
+.ntb .bd { columns:2.30in; column-gap:.28in; }
+.ntb p { margin:0 0 .075in; font-family:Fraunces,Georgia,serif; font-size:8.4pt;
+  line-height:1.42; color:#241f1a; break-inside:avoid; }
+.ntb p:last-child { margin-bottom:0; }
+</style>
+</head><body>
+<div id="book"></div><div id="ruler"></div>
+<script>
+const DATA = [{"code": "C1-7mVButch", "date": "January 12, 2024", "iso": "2024-01-12", "month": "January 2024", "loc": "Nice, France", "caption": "Journey to the South of France", "photos": [{"src": "images/C1-7mVButch_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-7mVButch_1.jpg", "ar": 0.802, "video": false}, {"src": "images/C1-7mVButch_2.jpg", "ar": 0.802, "video": false}, {"src": "images/C1-7mVButch_3.jpg", "ar": 0.802, "video": false}, {"src": "images/C1-7mVButch_4.jpg", "ar": 0.802, "video": false}, {"src": "images/C1-7mVButch_5.jpg", "ar": 0.802, "video": false}]}, {"code": "C1-7mVButch-2", "date": "January 12, 2024", "iso": "2024-01-12", "month": "January 2024", "loc": "Monaco", "caption": "", "photos": [{"src": "images/C1-7mVButch_6.jpg", "ar": 0.802, "video": false}, {"src": "images/C1-7mVButch_7.jpg", "ar": 0.802, "video": false}, {"src": "images/C1-7mVButch_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-7mVButch_9.jpg", "ar": 0.8, "video": false}]}, {"code": "C1-7yY8O5dC", "date": "January 12, 2024", "iso": "2024-01-12", "month": "January 2024", "loc": "Nice, France", "caption": "Everyone got a lice treatment in Nice...", "photos": [{"src": "images/C1-7yY8O5dC_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C1-7yY8O5dC_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C1-7yY8O5dC_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C1-7yY8O5dC_3.jpg", "ar": 1.3333, "video": false}, {"src": "images/C1-7yY8O5dC_4.jpg", "ar": 1.3333, "video": false}, {"src": "images/C1-7yY8O5dC_5.jpg", "ar": 1.3333, "video": false}]}, {"code": "C1-78Ezue8x", "date": "January 12, 2024", "iso": "2024-01-12", "month": "January 2024", "loc": "London, England", "caption": "London 💕", "photos": [{"src": "images/C1-78Ezue8x_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-78Ezue8x_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-78Ezue8x_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-78Ezue8x_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-78Ezue8x_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-78Ezue8x_5.jpg", "ar": 0.8, "video": false}]}, {"code": "C1-8U30Oa6a", "date": "January 12, 2024", "iso": "2024-01-12", "month": "January 2024", "loc": "London, England", "caption": "", "photos": [{"src": "images/C1-8U30Oa6a_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-8U30Oa6a_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-8U30Oa6a_2.jpg", "ar": 0.802, "video": false}, {"src": "images/C1-8U30Oa6a_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-8U30Oa6a_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-8U30Oa6a_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-8U30Oa6a_6.jpg", "ar": 0.802, "video": false}, {"src": "images/C1-8U30Oa6a_7.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-8U30Oa6a_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C1-8U30Oa6a_9.jpg", "ar": 0.802, "video": false}]}, {"code": "C1-8qWQuqnZ", "date": "January 12, 2024", "iso": "2024-01-12", "month": "January 2024", "loc": "London, England", "caption": "Hamilton- The Room Where It Happens!", "photos": [{"src": "images/C1-8qWQuqnZ_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C1-8qWQuqnZ_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C1-8qWQuqnZ_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C1-8qWQuqnZ_3.jpg", "ar": 1.3333, "video": false}]}, {"code": "C1-9B46uWO0", "date": "January 12, 2024", "iso": "2024-01-12", "month": "January 2024", "loc": "Shanghai, China", "caption": "Forever loved.", "photos": [{"src": "images/C1-9B46uWO0_0.jpg", "ar": 1.1072, "video": false}, {"src": "images/C1-9B46uWO0_1.jpg", "ar": 1.1074, "video": false}, {"src": "images/C1-9B46uWO0_2.jpg", "ar": 1.1013, "video": false}, {"src": "images/C1-9B46uWO0_3.jpg", "ar": 1.1013, "video": false}, {"src": "images/C1-9B46uWO0_4.jpg", "ar": 1.1013, "video": false}, {"src": "images/C1-9B46uWO0_5.jpg", "ar": 1.1074, "video": false}, {"src": "images/C1-9B46uWO0_6.jpg", "ar": 1.1074, "video": false}, {"src": "images/C1-9B46uWO0_7.jpg", "ar": 1.1013, "video": false}, {"src": "images/C1-9B46uWO0_8.jpg", "ar": 1.1013, "video": false}, {"src": "images/C1-9B46uWO0_9.jpg", "ar": 1.1013, "video": false}]}, {"code": "C2K13N-ufar", "date": "January 17, 2024", "iso": "2024-01-17", "month": "January 2024", "loc": "", "caption": "Home 💕", "photos": [{"src": "images/C2K13N-ufar_0.jpg", "ar": 0.925, "video": false}, {"src": "images/C2K13N-ufar_1.jpg", "ar": 0.925, "video": false}, {"src": "images/C2K13N-ufar_2.jpg", "ar": 0.925, "video": false}, {"src": "images/C2K13N-ufar_3.jpg", "ar": 0.925, "video": false}, {"src": "images/C2K13N-ufar_4.jpg", "ar": 0.929, "video": false}, {"src": "images/C2K13N-ufar_5.jpg", "ar": 0.926, "video": false}, {"src": "images/C2K13N-ufar_6.jpg", "ar": 0.925, "video": false}]}, {"code": "C2fJj3ZOOnT", "date": "January 24, 2024", "iso": "2024-01-24", "month": "January 2024", "loc": "", "caption": "So cute 🥺", "photos": [{"src": "images/C2fJj3ZOOnT_0.jpg", "ar": 1.773, "video": true}]}, {"code": "C2fJsIwux-Y", "date": "January 24, 2024", "iso": "2024-01-24", "month": "January 2024", "loc": "", "caption": "First run of the year", "photos": [{"src": "images/C2fJsIwux-Y_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C2fJsIwux-Y_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C2fJsIwux-Y_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C2fJsIwux-Y_3.jpg", "ar": 0.802, "video": false}]}, {"code": "C2fJv_dO3gi", "date": "January 24, 2024", "iso": "2024-01-24", "month": "January 2024", "loc": "", "caption": "She made her own top from pants she outgrew 😂", "photos": [{"src": "images/C2fJv_dO3gi_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C2xQTSJuOFb", "date": "January 31, 2024", "iso": "2024-01-31", "month": "January 2024", "loc": "", "caption": "Sleepover ✌️", "photos": [{"src": "images/C2xQTSJuOFb_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C2xQWfrOgW8", "date": "January 31, 2024", "iso": "2024-01-31", "month": "January 2024", "loc": "", "caption": "", "photos": [{"src": "images/C2xQWfrOgW8_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C2xQWfrOgW8_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C2xQWfrOgW8_2.jpg", "ar": 0.8, "video": false}]}, {"code": "C3NgDxuuokT", "date": "February 11, 2024", "iso": "2024-02-11", "month": "February 2024", "loc": "", "caption": "❤️❤️", "photos": [{"src": "images/C3NgDxuuokT_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C3NgGZwuK_G", "date": "February 11, 2024", "iso": "2024-02-11", "month": "February 2024", "loc": "", "caption": "", "photos": [{"src": "images/C3NgGZwuK_G_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C3WQ7dQt1f3", "date": "February 14, 2024", "iso": "2024-02-14", "month": "February 2024", "loc": "Sheboygan, Wisconsin", "caption": "One day for a world schooler 😊 Sheboygan!", "photos": [{"src": "images/C3WQ7dQt1f3_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C3WQ7dQt1f3_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C3WQ7dQt1f3_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C3WQ7dQt1f3_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C3WQ7dQt1f3_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C3WQ7dQt1f3_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C3WQ7dQt1f3_6.jpg", "ar": 0.802, "video": false}, {"src": "images/C3WQ7dQt1f3_7.jpg", "ar": 0.802, "video": false}, {"src": "images/C3WQ7dQt1f3_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C3WQ7dQt1f3_9.jpg", "ar": 0.802, "video": false}]}, {"code": "C3WRBMxt60e", "date": "February 14, 2024", "iso": "2024-02-14", "month": "February 2024", "loc": "", "caption": "Lunch by Lake Michigan 😊", "photos": [{"src": "images/C3WRBMxt60e_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C3YIpy1uftx", "date": "February 15, 2024", "iso": "2024-02-15", "month": "February 2024", "loc": "", "caption": "", "photos": [{"src": "images/C3YIpy1uftx_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C3YIrMaOWw-", "date": "February 15, 2024", "iso": "2024-02-15", "month": "February 2024", "loc": "", "caption": "", "photos": [{"src": "images/C3YIrMaOWw-_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C3YIs7fun25", "date": "February 15, 2024", "iso": "2024-02-15", "month": "February 2024", "loc": "", "caption": "Farm life", "photos": [{"src": "images/C3YIs7fun25_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C39QrGxSkLr", "date": "March 1, 2024", "iso": "2024-03-01", "month": "March 2024", "loc": "", "caption": "Little babies with their own credit cards, priority pass, and global entry 😂", "photos": [{"src": "images/C39QrGxSkLr_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C39Q9l7SbaH", "date": "March 1, 2024", "iso": "2024-03-01", "month": "March 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "Back to the concrete jungle 🤗🤗", "photos": [{"src": "images/C39Q9l7SbaH_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C39Q9l7SbaH_1.jpg", "ar": 0.802, "video": false}, {"src": "images/C39Q9l7SbaH_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C39Q9l7SbaH_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C39Q9l7SbaH_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C39Q9l7SbaH_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C39Q9l7SbaH_6.jpg", "ar": 0.802, "video": false}, {"src": "images/C39Q9l7SbaH_7.jpg", "ar": 0.802, "video": false}, {"src": "images/C39Q9l7SbaH_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C39Q9l7SbaH_9.jpg", "ar": 0.8, "video": false}]}, {"code": "C3-PK4PSqwg", "date": "March 1, 2024", "iso": "2024-03-01", "month": "March 2024", "loc": "", "caption": "Busy schedule. Japanese lessons at 8pm, piano at 8am. They randomly decided they want to learn Japanese to watch their anime series better 😂", "photos": [{"src": "images/C3-PK4PSqwg_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C3-PK4PSqwg_1.jpg", "ar": 0.802, "video": false}, {"src": "images/C3-PK4PSqwg_2.jpg", "ar": 0.802, "video": false}]}, {"code": "up_77c3ddfdbcc3", "date": "March 8, 2024", "iso": "2024-03-08", "month": "March 2024", "loc": "", "caption": "This is one of our favorite street food vendors. It’s outside of our residence and for $1.22 you get a delicious chicken thigh with fried garlic, fragrant chicken rice, and free flow iced tea.\nWe ate here several times until one day we saw someone walk over and dump tea into the cooler from a moldy, dirty bucket. It shocked us so much we stopped eating street food for weeks… (months?).\nAnyway apparently the food is THAT good because despite the bucket we still come back now and the kids just endearingly refer to the place as “that chicken place with the dirty tea bucket” when they want to go. …we just don’t drink the tea anymore", "photos": [{"src": "images/up_77c3ddfdbcc3_0.jpg", "ar": 0.74, "video": false}]}, {"code": "C4j498MO1lE", "date": "March 16, 2024", "iso": "2024-03-16", "month": "March 2024", "loc": "", "caption": "Best friends, sometimes.", "photos": [{"src": "images/C4j498MO1lE_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C4j5Fw8uIpN", "date": "March 16, 2024", "iso": "2024-03-16", "month": "March 2024", "loc": "", "caption": "☀️", "photos": [{"src": "images/C4j5Fw8uIpN_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C4j5Fw8uIpN_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C4j5Fw8uIpN_3.jpg", "ar": 0.802, "video": false}, {"src": "images/C4j5Fw8uIpN_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C4j5Fw8uIpN_5.jpg", "ar": 0.8, "video": false}]}, {"code": "up_5f2137d20583", "date": "March 23, 2024", "iso": "2024-03-23", "month": "March 2024", "loc": "", "caption": "We’re at a cat cafe and there’s a sphynx here that isn’t friendly. My daughter goes, “I think it thinks everyone thinks it’s ugly that’s why it’s so mean. All cats are cute, you’re cute too. It’s okay to be different!”", "photos": [{"src": "images/up_5f2137d20583_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C5Cu4AyShWV", "date": "March 28, 2024", "iso": "2024-03-28", "month": "March 2024", "loc": "", "caption": "Saigon nights 🥰", "photos": [{"src": "images/C5Cu4AyShWV_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C5Cu4AyShWV_1.jpg", "ar": 0.802, "video": false}, {"src": "images/C5Cu4AyShWV_2.jpg", "ar": 0.802, "video": false}, {"src": "images/C5Cu4AyShWV_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C5Cu4AyShWV_4.jpg", "ar": 0.802, "video": false}, {"src": "images/C5Cu4AyShWV_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C5Cu4AyShWV_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C5Cu4AyShWV_7.jpg", "ar": 0.8, "video": false}, {"src": "images/C5Cu4AyShWV_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C5Cu4AyShWV_9.jpg", "ar": 0.8, "video": false}]}, {"code": "C5Cu8P4SEr9", "date": "March 28, 2024", "iso": "2024-03-28", "month": "March 2024", "loc": "", "caption": "Japanese class", "photos": [{"src": "images/C5Cu8P4SEr9_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C5CvFtuSTaM", "date": "March 28, 2024", "iso": "2024-03-28", "month": "March 2024", "loc": "", "caption": "❤️❤️", "photos": [{"src": "images/C5CvFtuSTaM_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C5CvFtuSTaM_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C5CvMMlSPHx", "date": "March 28, 2024", "iso": "2024-03-28", "month": "March 2024", "loc": "", "caption": "Eat everything", "photos": [{"src": "images/C5CvMMlSPHx_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C5CvMMlSPHx_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C5CvMMlSPHx_2.jpg", "ar": 1.3333, "video": false}]}, {"code": "C5EKJaHy_Gk", "date": "March 28, 2024", "iso": "2024-03-28", "month": "March 2024", "loc": "", "caption": "We tried Japanese hot pot:)", "photos": [{"src": "images/C5EKJaHy_Gk_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C5LS8_4y3QX", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "", "photos": [{"src": "images/C5LS8_4y3QX_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C5LS-n5y9Zn", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "", "photos": [{"src": "images/C5LS-n5y9Zn_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C5LTAsdynOk", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "", "photos": [{"src": "images/C5LTAsdynOk_0.jpg", "ar": 1.065, "video": false}]}, {"code": "C5LTCfkS6Hg", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "", "photos": [{"src": "images/C5LTCfkS6Hg_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C5LTGSyyn1g", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "Sooooo good", "photos": [{"src": "images/C5LTGSyyn1g_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C5LTGSyyn1g_1.jpg", "ar": 1.3333, "video": false}]}, {"code": "C5LTNH2yLAN", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "", "photos": [{"src": "images/C5LTNH2yLAN_0.jpg", "ar": 0.987, "video": false}, {"src": "images/C5LTNH2yLAN_1.jpg", "ar": 0.987, "video": false}, {"src": "images/C5LTNH2yLAN_2.jpg", "ar": 0.99, "video": false}, {"src": "images/C5LTNH2yLAN_3.jpg", "ar": 0.987, "video": false}]}, {"code": "C5LTSWzytPU", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "Happy 1.5 months before birthday 😆", "photos": [{"src": "images/C5LTSWzytPU_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C5LTSWzytPU_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C5LTSWzytPU_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C5LTSWzytPU_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C5LTSWzytPU_4.jpg", "ar": 0.802, "video": false}]}, {"code": "C5LTWW2SRQh", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "", "photos": [{"src": "images/C5LTWW2SRQh_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C5LTWW2SRQh_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C5LTWW2SRQh_2.jpg", "ar": 0.8, "video": false}]}, {"code": "C5LTYIVyZVp", "date": "March 31, 2024", "iso": "2024-03-31", "month": "March 2024", "loc": "", "caption": "Omakase 😍", "photos": [{"src": "images/C5LTYIVyZVp_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C5OG2GdSRxP", "date": "April 1, 2024", "iso": "2024-04-01", "month": "April 2024", "loc": "", "caption": "🥰", "photos": [{"src": "images/C5OG2GdSRxP_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C5OG7-9S1Yc", "date": "April 1, 2024", "iso": "2024-04-01", "month": "April 2024", "loc": "", "caption": "", "photos": [{"src": "images/C5OG7-9S1Yc_0.jpg", "ar": 1.003, "video": false}, {"src": "images/C5OG7-9S1Yc_1.jpg", "ar": 1.0, "video": false}, {"src": "images/C5OG7-9S1Yc_2.jpg", "ar": 1.0042, "video": true}]}, {"code": "C5e-z4HSIYH", "date": "April 8, 2024", "iso": "2024-04-08", "month": "April 2024", "loc": "", "caption": "Shanghai ❤️", "photos": [{"src": "images/C5e-z4HSIYH_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_7.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C5e-z4HSIYH_9.jpg", "ar": 0.802, "video": false}]}, {"code": "C5e-3JHyW0Z", "date": "April 8, 2024", "iso": "2024-04-08", "month": "April 2024", "loc": "", "caption": "Shanghai Costco. A++\nThe food court serves spicy fried chicken, bulgogi chicken bake, and red bean soup with mochi!", "photos": [{"src": "images/C5e-3JHyW0Z_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C5e-3JHyW0Z_1.jpg", "ar": 1.3333, "video": false}]}, {"code": "C6wEL2wrTmG", "date": "May 9, 2024", "iso": "2024-05-09", "month": "May 2024", "loc": "", "caption": "Shanghai shenanigans", "photos": [{"src": "images/C6wEL2wrTmG_0.jpg", "ar": 1.3351, "video": false}, {"src": "images/C6wEL2wrTmG_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C6wEL2wrTmG_2.jpg", "ar": 1.3351, "video": false}, {"src": "images/C6wEL2wrTmG_3.jpg", "ar": 1.3333, "video": false}, {"src": "images/C6wEL2wrTmG_4.jpg", "ar": 1.3333, "video": false}, {"src": "images/C6wEL2wrTmG_5.jpg", "ar": 1.3333, "video": false}, {"src": "images/C6wEL2wrTmG_6.jpg", "ar": 1.3351, "video": false}, {"src": "images/C6wEL2wrTmG_7.jpg", "ar": 1.3333, "video": false}, {"src": "images/C6wEL2wrTmG_8.jpg", "ar": 1.3333, "video": false}]}, {"code": "C6wEeDbLEDc", "date": "May 9, 2024", "iso": "2024-05-09", "month": "May 2024", "loc": "", "caption": "Fun with Aunty Cake", "photos": [{"src": "images/C6wEeDbLEDc_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_7.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wEeDbLEDc_9.jpg", "ar": 0.8, "video": false}]}, {"code": "C6wEiVfL_WJ", "date": "May 9, 2024", "iso": "2024-05-09", "month": "May 2024", "loc": "", "caption": "Hawaii 2024", "photos": [{"src": "images/C6wEiVfL_WJ_0.jpg", "ar": 1.2063, "video": false}]}, {"code": "C6wErBlr8ay", "date": "May 9, 2024", "iso": "2024-05-09", "month": "May 2024", "loc": "", "caption": "", "photos": [{"src": "images/C6wErBlr8ay_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wErBlr8ay_1.jpg", "ar": 0.802, "video": false}, {"src": "images/C6wErBlr8ay_2.jpg", "ar": 0.802, "video": false}, {"src": "images/C6wErBlr8ay_3.jpg", "ar": 0.802, "video": false}, {"src": "images/C6wErBlr8ay_4.jpg", "ar": 0.802, "video": false}, {"src": "images/C6wErBlr8ay_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C6wErBlr8ay_7.jpg", "ar": 0.802, "video": false}]}, {"code": "C8JBuYLONAT", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "Winston had a unit on the Oregon trail and geysers. It sparked a trip out to Yellowstone in our camper. First stop was this museum in Minnesota with historical American artifacts", "photos": [{"src": "images/C8JBuYLONAT_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JBuYLONAT_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JBuYLONAT_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JBuYLONAT_3.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JBuYLONAT_4.jpg", "ar": 1.3333, "video": false}]}, {"code": "C8JB97euzC1", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "Badlands was out of this world", "photos": [{"src": "images/C8JB97euzC1_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JB97euzC1_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JB97euzC1_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JB97euzC1_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JB97euzC1_4.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JB97euzC1_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JB97euzC1_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JB97euzC1_7.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JB97euzC1_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JB97euzC1_9.jpg", "ar": 0.8, "video": false}]}, {"code": "C8JCPHeuAYc", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "We slept overnight in the boondocking area and it was gorgeous. The badlands route 22 is rated top 5 drive in the US and the boondock is also rated top 5. We saw our first wild bison and prairie dog town.", "photos": [{"src": "images/C8JCPHeuAYc_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCPHeuAYc_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCPHeuAYc_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCPHeuAYc_3.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCPHeuAYc_4.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCPHeuAYc_5.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCPHeuAYc_6.jpg", "ar": 1.3333, "video": false}]}, {"code": "C8JCwG2uGt-", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "Geysers!! It was very rainy during our stay but luckily the weather was very agreeable whenever we were doing activities.", "photos": [{"src": "images/C8JCwG2uGt-_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCwG2uGt-_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCwG2uGt-_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCwG2uGt-_3.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCwG2uGt-_4.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JCwG2uGt-_5.jpg", "ar": 1.3333, "video": true}, {"src": "images/C8JCwG2uGt-_6.jpg", "ar": 1.3333, "video": false}]}, {"code": "C8JCx2DOSQc", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "After 3 days of driving we finally made it to Wyoming", "photos": [{"src": "images/C8JCx2DOSQc_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JCx2DOSQc_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JCx2DOSQc_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JCx2DOSQc_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JCx2DOSQc_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JCx2DOSQc_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JCx2DOSQc_6.jpg", "ar": 0.8, "video": true}]}, {"code": "C8JDFWcOgrH", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "Yellowstone is breathtaking and just teeming with animals! We got super lucky on our trip and saw almost everything except moose :)", "photos": [{"src": "images/C8JDFWcOgrH_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDFWcOgrH_1.jpg", "ar": 0.8, "video": true}, {"src": "images/C8JDFWcOgrH_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDFWcOgrH_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDFWcOgrH_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDFWcOgrH_5.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JDFWcOgrH_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDFWcOgrH_7.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JDFWcOgrH_8.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JDFWcOgrH_9.jpg", "ar": 0.8, "video": false}]}, {"code": "C8JDSfzOgaa", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "After seeing most of the major areas in Yellowstone (which was huge) we headed to Grand Teton for a night", "photos": [{"src": "images/C8JDSfzOgaa_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JDSfzOgaa_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JDSfzOgaa_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8JDSfzOgaa_3.jpg", "ar": 1.3333, "video": false}]}, {"code": "C8JDd4JuRgn", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "Grand Teton 🏔️", "photos": [{"src": "images/C8JDd4JuRgn_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDd4JuRgn_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDd4JuRgn_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDd4JuRgn_3.jpg", "ar": 0.8, "video": true}, {"src": "images/C8JDd4JuRgn_4.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JDd4JuRgn_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDd4JuRgn_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDd4JuRgn_7.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JDd4JuRgn_8.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JDd4JuRgn_9.jpg", "ar": 0.8, "video": false}]}, {"code": "C8JDiFqtlp8", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "We stayed at Colter Bay campground which was right next to a lake", "photos": [{"src": "images/C8JDiFqtlp8_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C8JDvj6tJES", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "At Teton, my check engine light came on which caused a moment of panic, but we made it down to Jackson the next day and managed to get an expedited service appointment to fix the coolant valve that apparently malfunctioned.", "photos": [{"src": "images/C8JDvj6tJES_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C8JEST5tHWu", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "If you’ve got to be stranded for a few days to wait for a mechanical issue to be fixed, Jackson WY is not the worst place to be. We took the opportunity to spend the afternoon white water rafting and then explored the downtown area which looked straight out of a cowboy movie. Tomorrow we will go natural hot spring hunting before going horseback riding.", "photos": [{"src": "images/C8JEST5tHWu_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEST5tHWu_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEST5tHWu_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEST5tHWu_3.jpg", "ar": 0.8, "video": true}, {"src": "images/C8JEST5tHWu_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEST5tHWu_5.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEST5tHWu_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEST5tHWu_7.jpg", "ar": 0.8, "video": true}, {"src": "images/C8JEST5tHWu_8.jpg", "ar": 0.8, "video": false}]}, {"code": "C8JEUenttfQ", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "", "photos": [{"src": "images/C8JEUenttfQ_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEUenttfQ_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEUenttfQ_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEUenttfQ_3.jpg", "ar": 0.802, "video": false}]}, {"code": "C8JEayXt4Jm", "date": "June 12, 2024", "iso": "2024-06-12", "month": "June 2024", "loc": "", "caption": "Living outside of Teton Subaru for the next two days 😆", "photos": [{"src": "images/C8JEayXt4Jm_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEayXt4Jm_1.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JEayXt4Jm_2.jpg", "ar": 0.802, "video": false}, {"src": "images/C8JEayXt4Jm_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C8JEayXt4Jm_4.jpg", "ar": 0.8, "video": false}]}, {"code": "C8gGvkytNPD", "date": "June 21, 2024", "iso": "2024-06-21", "month": "June 2024", "loc": "", "caption": "Two hour ride through cowboy country 😊", "photos": [{"src": "images/C8gGvkytNPD_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gGvkytNPD_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gGvkytNPD_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gGvkytNPD_3.jpg", "ar": 0.802, "video": false}, {"src": "images/C8gGvkytNPD_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gGvkytNPD_5.jpg", "ar": 0.802, "video": false}, {"src": "images/C8gGvkytNPD_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gGvkytNPD_7.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gGvkytNPD_8.jpg", "ar": 0.802, "video": false}]}, {"code": "C8gHKO_uZxk", "date": "June 21, 2024", "iso": "2024-06-21", "month": "June 2024", "loc": "", "caption": "What a fun summer ☀️", "photos": [{"src": "images/C8gHKO_uZxk_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gHKO_uZxk_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gHKO_uZxk_2.jpg", "ar": 0.802, "video": false}, {"src": "images/C8gHKO_uZxk_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gHKO_uZxk_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gHKO_uZxk_5.jpg", "ar": 0.802, "video": false}, {"src": "images/C8gHKO_uZxk_6.jpg", "ar": 0.8, "video": false}, {"src": "images/C8gHKO_uZxk_7.jpg", "ar": 0.802, "video": false}]}, {"code": "C8lQFepN3QF", "date": "June 23, 2024", "iso": "2024-06-23", "month": "June 2024", "loc": "", "caption": "", "photos": [{"src": "images/C8lQFepN3QF_0.jpg", "ar": 0.562, "video": true}]}, {"code": "C8lQIHkNuix", "date": "June 23, 2024", "iso": "2024-06-23", "month": "June 2024", "loc": "", "caption": "", "photos": [{"src": "images/C8lQIHkNuix_0.jpg", "ar": 0.562, "video": true}]}, {"code": "C8lQU3hN3M7", "date": "June 23, 2024", "iso": "2024-06-23", "month": "June 2024", "loc": "", "caption": "", "photos": [{"src": "images/C8lQU3hN3M7_0.jpg", "ar": 1.3351, "video": false}, {"src": "images/C8lQU3hN3M7_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8lQU3hN3M7_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8lQU3hN3M7_3.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8lQU3hN3M7_4.jpg", "ar": 1.3333, "video": false}, {"src": "images/C8lQU3hN3M7_5.jpg", "ar": 1.3333, "video": false}]}, {"code": "C8lQYPeNmaR", "date": "June 23, 2024", "iso": "2024-06-23", "month": "June 2024", "loc": "", "caption": "All day in the lake 🥰 Madison life doesn’t get better than this!", "photos": [{"src": "images/C8lQYPeNmaR_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C8lQe36NL2n", "date": "June 23, 2024", "iso": "2024-06-23", "month": "June 2024", "loc": "", "caption": "", "photos": [{"src": "images/C8lQe36NL2n_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C8lQe36NL2n_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C8lQe36NL2n_2.jpg", "ar": 0.8, "video": false}]}, {"code": "C8lTx3eOSlt", "date": "June 23, 2024", "iso": "2024-06-23", "month": "June 2024", "loc": "", "caption": "Already discovering the maintenance of boats haha", "photos": [{"src": "images/C8lTx3eOSlt_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C8uuf47OI4c", "date": "June 27, 2024", "iso": "2024-06-27", "month": "June 2024", "loc": "", "caption": "Boat babies", "photos": [{"src": "images/C8uuf47OI4c_0.jpg", "ar": 0.562, "video": true}]}, {"code": "C80hhW1OBHk", "date": "June 29, 2024", "iso": "2024-06-29", "month": "June 2024", "loc": "", "caption": "Child labor 🤗", "photos": [{"src": "images/C80hhW1OBHk_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C83UQM_uihO", "date": "June 30, 2024", "iso": "2024-06-30", "month": "June 2024", "loc": "", "caption": "Beautiful sunset 🌅", "photos": [{"src": "images/C83UQM_uihO_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C83UQM_uihO_1.jpg", "ar": 0.802, "video": false}, {"src": "images/C83UQM_uihO_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C83UQM_uihO_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C83UQM_uihO_4.jpg", "ar": 0.8, "video": false}, {"src": "images/C83UQM_uihO_5.jpg", "ar": 0.8, "video": false}]}, {"code": "C83UlF_Ou7N", "date": "June 30, 2024", "iso": "2024-06-30", "month": "June 2024", "loc": "", "caption": "Cotton candy sunset", "photos": [{"src": "images/C83UlF_Ou7N_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C83UwW8Omw3", "date": "June 30, 2024", "iso": "2024-06-30", "month": "June 2024", "loc": "", "caption": "", "photos": [{"src": "images/C83UwW8Omw3_0.jpg", "ar": 1.0989, "video": false}]}, {"code": "C84uzLwuJ3Q", "date": "July 1, 2024", "iso": "2024-07-01", "month": "July 2024", "loc": "", "caption": "Yesterday we realized his feet are an insy bit larger than mine now 😭", "photos": [{"src": "images/C84uzLwuJ3Q_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C84u2jmOTIE", "date": "July 1, 2024", "iso": "2024-07-01", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C84u2jmOTIE_0.jpg", "ar": 0.886, "video": false}]}, {"code": "C8-2NHeOmHm", "date": "July 3, 2024", "iso": "2024-07-03", "month": "July 2024", "loc": "", "caption": "Summer 💕", "photos": [{"src": "images/C8-2NHeOmHm_0.jpg", "ar": 0.831, "video": false}, {"src": "images/C8-2NHeOmHm_1.jpg", "ar": 0.831, "video": false}, {"src": "images/C8-2NHeOmHm_2.jpg", "ar": 0.831, "video": false}]}, {"code": "C8-2fJFOR9f", "date": "July 3, 2024", "iso": "2024-07-03", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C8-2fJFOR9f_0.jpg", "ar": 0.874, "video": false}]}, {"code": "C9N8p83SrZ5", "date": "July 9, 2024", "iso": "2024-07-09", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9N8p83SrZ5_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9N8p83SrZ5_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9N8p83SrZ5_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9N8p83SrZ5_3.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9N8p83SrZ5_4.jpg", "ar": 1.3333, "video": false}]}, {"code": "C9N8synSw-z", "date": "July 9, 2024", "iso": "2024-07-09", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9N8synSw-z_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C9N8synSw-z_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C9N8synSw-z_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C9N8synSw-z_3.jpg", "ar": 0.8, "video": false}]}, {"code": "C9N8xwPSp6T", "date": "July 9, 2024", "iso": "2024-07-09", "month": "July 2024", "loc": "", "caption": "Midwestern boys", "photos": [{"src": "images/C9N8xwPSp6T_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C9N8xwPSp6T_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C9N8xwPSp6T_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C9N8xwPSp6T_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C9N8xwPSp6T_4.jpg", "ar": 0.802, "video": false}]}, {"code": "C9dhxFjuE9G", "date": "July 15, 2024", "iso": "2024-07-15", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9dhxFjuE9G_0.jpg", "ar": 1.1001, "video": false}]}, {"code": "C9gOCDoOMyM", "date": "July 16, 2024", "iso": "2024-07-16", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9gOCDoOMyM_0.jpg", "ar": 0.562, "video": true}]}, {"code": "C9gOl3PuHgS", "date": "July 16, 2024", "iso": "2024-07-16", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9gOl3PuHgS_0.jpg", "ar": 1.773, "video": true}]}, {"code": "C9oCgyYue5C", "date": "July 19, 2024", "iso": "2024-07-19", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9oCgyYue5C_0.jpg", "ar": 0.942, "video": false}]}, {"code": "C9oCmIXOH5J", "date": "July 19, 2024", "iso": "2024-07-19", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9oCmIXOH5J_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C9oCmIXOH5J_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C9oCmIXOH5J_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C9oCmIXOH5J_3.jpg", "ar": 0.8, "video": false}]}, {"code": "C9oC0n9u5TC", "date": "July 19, 2024", "iso": "2024-07-19", "month": "July 2024", "loc": "", "caption": "Amazing to have this for a backyard 😊", "photos": [{"src": "images/C9oC0n9u5TC_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9oC0n9u5TC_1.jpg", "ar": 1.3333, "video": false}]}, {"code": "C9oC5mEu6LD", "date": "July 19, 2024", "iso": "2024-07-19", "month": "July 2024", "loc": "", "caption": "How to feed 7 kids with no complaints 😊", "photos": [{"src": "images/C9oC5mEu6LD_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9oC5mEu6LD_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9oC5mEu6LD_2.jpg", "ar": 1.3333, "video": false}]}, {"code": "C9oHphUtCUK", "date": "July 19, 2024", "iso": "2024-07-19", "month": "July 2024", "loc": "", "caption": "S’mores", "photos": [{"src": "images/C9oHphUtCUK_0.jpg", "ar": 0.829, "video": false}]}, {"code": "C9oL3IStD-R", "date": "July 19, 2024", "iso": "2024-07-19", "month": "July 2024", "loc": "", "caption": "Decorating sugar cookies", "photos": [{"src": "images/C9oL3IStD-R_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9oL3IStD-R_1.jpg", "ar": 1.3351, "video": false}]}, {"code": "C9sGpi-uXMX", "date": "July 21, 2024", "iso": "2024-07-21", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9sGpi-uXMX_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C9sGpi-uXMX_1.jpg", "ar": 1.3351, "video": false}, {"src": "images/C9sGpi-uXMX_2.jpg", "ar": 1.3333, "video": false}]}, {"code": "C9sGtCDOhE6", "date": "July 21, 2024", "iso": "2024-07-21", "month": "July 2024", "loc": "", "caption": "3 sleepovers in a row this weekend. Too much fun!", "photos": [{"src": "images/C9sGtCDOhE6_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C9s6TzGObOc", "date": "July 21, 2024", "iso": "2024-07-21", "month": "July 2024", "loc": "", "caption": "Raising the next Costco generation.", "photos": [{"src": "images/C9s6TzGObOc_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C9vm0k0urwO", "date": "July 22, 2024", "iso": "2024-07-22", "month": "July 2024", "loc": "", "caption": "Pizza in the sunset — the good life 😁", "photos": [{"src": "images/C9vm0k0urwO_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C9vshtiOrXJ", "date": "July 22, 2024", "iso": "2024-07-22", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9vshtiOrXJ_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C9xIwKnOU6h", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9xIwKnOU6h_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C9xJv06O-Q_", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9xJv06O-Q__0.jpg", "ar": 0.8, "video": false}]}, {"code": "C9ybKkCNZCg", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9ybKkCNZCg_0.jpg", "ar": 0.916, "video": false}]}, {"code": "C9ybNHitfFL", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9ybNHitfFL_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C9ybU4rNCDf", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9ybU4rNCDf_0.jpg", "ar": 1.2706, "video": false}, {"src": "images/C9ybU4rNCDf_1.jpg", "ar": 1.2642, "video": false}, {"src": "images/C9ybU4rNCDf_2.jpg", "ar": 1.2642, "video": false}, {"src": "images/C9ybU4rNCDf_3.jpg", "ar": 1.2642, "video": false}]}, {"code": "C9ybZK8tk_-", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9ybZK8tk_-_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C9ybZK8tk_-_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C9ybZK8tk_-_2.jpg", "ar": 0.8, "video": false}]}, {"code": "C9ybavFNPrf", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9ybavFNPrf_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C9ybdyRtEbd", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9ybdyRtEbd_0.jpg", "ar": 1.0881, "video": false}, {"src": "images/C9ybdyRtEbd_1.jpg", "ar": 1.0881, "video": false}, {"src": "images/C9ybdyRtEbd_2.jpg", "ar": 1.0823, "video": false}]}, {"code": "C9ybjMutao-", "date": "July 23, 2024", "iso": "2024-07-23", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C9ybjMutao-_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C9ybjMutao-_1.jpg", "ar": 0.8, "video": false}]}, {"code": "up_2386b598c865", "date": "July 24, 2024", "iso": "2024-07-24", "month": "July 2024", "loc": "Olbrich Botanical Gardens", "caption": "Mom life.  We did so much this summer!\nEvery day has been filled with activities. On this day alone we visited the immaculate Olbrich Gardens, checked out their butterfly exhibit then got ice cream at the Chocolate Shoppe.\nWe then had some extra time so we also stopped at the zoo. The kids were hungry so they all got a kids meal at Culver’s and then had a custard after before being dropped off to their afternoon playground program.\nEveryone is having so much fun and the adults are pleased but exhausted. Madison in the summer is the best place ever", "photos": [{"src": "images/up_2386b598c865_0.jpg", "ar": 0.75, "video": false}]}, {"code": "C91F1tItOdU", "date": "July 24, 2024", "iso": "2024-07-24", "month": "July 2024", "loc": "", "caption": "Fun under the sun grateful for the midwestern lakes, the clean fresh air, the beautiful sunsets, and the nature & architecture around the shore", "photos": [{"src": "images/C91F1tItOdU_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C98l6E_u9Gp", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "Pop quiz", "photos": [{"src": "images/C98l6E_u9Gp_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C98mG9UOToJ", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C98mG9UOToJ_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C98mG9UOToJ_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C98mJiFOCgw", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C98mJiFOCgw_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C98mRUcubAK", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "Last boating session of the summer", "photos": [{"src": "images/C98mRUcubAK_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C98mRUcubAK_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C98mRUcubAK_2.jpg", "ar": 0.802, "video": false}]}, {"code": "C98mSL3u4kg", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C98mSL3u4kg_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C98mXSNugXm", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "", "photos": [{"src": "images/C98mXSNugXm_0.jpg", "ar": 0.5625, "video": true}]}, {"code": "C98mbEjOG74", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "#USA summer", "photos": [{"src": "images/C98mbEjOG74_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C98mgBQOysd", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "They flew to PHL, we drove…", "photos": [{"src": "images/C98mgBQOysd_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C98mkkNOJh5", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "Electricity show volunteer", "photos": [{"src": "images/C98mkkNOJh5_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C98mkkNOJh5_1.jpg", "ar": 1.3333, "video": false}]}, {"code": "C98mooyO6Av", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "Live heart dissection", "photos": [{"src": "images/C98mooyO6Av_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C98mooyO6Av_1.jpg", "ar": 0.802, "video": false}]}, {"code": "C98mtfCue98", "date": "July 27, 2024", "iso": "2024-07-27", "month": "July 2024", "loc": "", "caption": "Our PA home ☺️ some things never change ❤️", "photos": [{"src": "images/C98mtfCue98_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C98mtfCue98_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/C98mtfCue98_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/C98mtfCue98_3.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-AkefBO6Lc", "date": "July 29, 2024", "iso": "2024-07-29", "month": "July 2024", "loc": "", "caption": "Costco run", "photos": [{"src": "images/C-AkefBO6Lc_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/C-AkefBO6Lc_1.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-AkgiyupzC", "date": "July 29, 2024", "iso": "2024-07-29", "month": "July 2024", "loc": "", "caption": "Water ice!", "photos": [{"src": "images/C-AkgiyupzC_0.jpg", "ar": 1.0417, "video": false}]}, {"code": "C-N6TPvuBUv", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "Learning to crochet", "photos": [{"src": "images/C-N6TPvuBUv_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6TPvuBUv_1.jpg", "ar": 0.802, "video": false}, {"src": "images/C-N6TPvuBUv_2.jpg", "ar": 0.8, "video": false}]}, {"code": "C-N6XD2uS1A", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "Generational exchange. Teaching yepo virtual reality, while the kids learn crocheting", "photos": [{"src": "images/C-N6XD2uS1A_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-N6ahvumn8", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "Dumpling making", "photos": [{"src": "images/C-N6ahvumn8_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-N6fowu722", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "They choose to sleep on small couches rather than their room..", "photos": [{"src": "images/C-N6fowu722_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6fowu722_1.jpg", "ar": 0.802, "video": false}]}, {"code": "C-N6iVOOFnM", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "Morning art", "photos": [{"src": "images/C-N6iVOOFnM_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-N6pMHOfSd", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "The Magic Gardens after the Museum of Art", "photos": [{"src": "images/C-N6pMHOfSd_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6pMHOfSd_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6pMHOfSd_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6pMHOfSd_3.jpg", "ar": 0.8, "video": false}]}, {"code": "C-N6rWEO5ZF", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C-N6rWEO5ZF_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-N6yJZO9X8", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "Glencairn", "photos": [{"src": "images/C-N6yJZO9X8_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6yJZO9X8_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6yJZO9X8_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6yJZO9X8_3.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N6yJZO9X8_4.jpg", "ar": 0.8, "video": false}]}, {"code": "C-N60XBORIS", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C-N60XBORIS_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-N638vub58", "date": "August 3, 2024", "iso": "2024-08-03", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C-N638vub58_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N638vub58_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C-N638vub58_2.jpg", "ar": 0.8, "video": false}]}, {"code": "C-WEJgbNYGl", "date": "August 7, 2024", "iso": "2024-08-07", "month": "August 2024", "loc": "", "caption": "Drawing an isometric room", "photos": [{"src": "images/C-WEJgbNYGl_0.jpg", "ar": 1.0267, "video": false}]}, {"code": "C-WEN2NNA9r", "date": "August 7, 2024", "iso": "2024-08-07", "month": "August 2024", "loc": "", "caption": "Hello again, Qatar", "photos": [{"src": "images/C-WEN2NNA9r_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-WEQ1UtU4O", "date": "August 7, 2024", "iso": "2024-08-07", "month": "August 2024", "loc": "", "caption": "The honey cake at Katara is the best dessert we have ever had!", "photos": [{"src": "images/C-WEQ1UtU4O_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-WEUDJt0Th", "date": "August 7, 2024", "iso": "2024-08-07", "month": "August 2024", "loc": "", "caption": "Picking out ouds", "photos": [{"src": "images/C-WEUDJt0Th_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-WEUDJt0Th_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C-WEZL9tXHY", "date": "August 7, 2024", "iso": "2024-08-07", "month": "August 2024", "loc": "", "caption": "Henna at the Souq Walif one and a half years later", "photos": [{"src": "images/C-WEZL9tXHY_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-WEZL9tXHY_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C-WEfENNOR1", "date": "August 7, 2024", "iso": "2024-08-07", "month": "August 2024", "loc": "", "caption": "Friendly kitty at the Arabian market", "photos": [{"src": "images/C-WEfENNOR1_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-WEfENNOR1_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C-WEfENNOR1_2.jpg", "ar": 0.8, "video": false}]}, {"code": "C-fSThkyGf8", "date": "August 10, 2024", "iso": "2024-08-10", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C-fSThkyGf8_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-fSW0Yy6cT", "date": "August 10, 2024", "iso": "2024-08-10", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C-fSW0Yy6cT_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-fSW0Yy6cT_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C-fSatUSaNj", "date": "August 10, 2024", "iso": "2024-08-10", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C-fSatUSaNj_0.jpg", "ar": 1.2469, "video": false}]}, {"code": "C-j5ZeFSsip", "date": "August 12, 2024", "iso": "2024-08-12", "month": "August 2024", "loc": "", "caption": "Hcm 🎉", "photos": [{"src": "images/C-j5ZeFSsip_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-j5ZeFSsip_1.jpg", "ar": 0.802, "video": false}]}, {"code": "C-j5bFtSCYT", "date": "August 12, 2024", "iso": "2024-08-12", "month": "August 2024", "loc": "", "caption": "Little 3D printer", "photos": [{"src": "images/C-j5bFtSCYT_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-j5hZEy_rh", "date": "August 12, 2024", "iso": "2024-08-12", "month": "August 2024", "loc": "", "caption": "Wknd", "photos": [{"src": "images/C-j5hZEy_rh_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-l_S8eyYh2", "date": "August 13, 2024", "iso": "2024-08-13", "month": "August 2024", "loc": "", "caption": "Went industrial for our 🍊", "photos": [{"src": "images/C-l_S8eyYh2_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-l_S8eyYh2_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C-l_S8eyYh2_2.jpg", "ar": 0.8, "video": true}]}, {"code": "C-mcLiBySuL", "date": "August 13, 2024", "iso": "2024-08-13", "month": "August 2024", "loc": "", "caption": "Perm", "photos": [{"src": "images/C-mcLiBySuL_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-mcLiBySuL_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C-pWkdtyhbm", "date": "August 14, 2024", "iso": "2024-08-14", "month": "August 2024", "loc": "", "caption": "Design lessons 🙌🏻", "photos": [{"src": "images/C-pWkdtyhbm_0.jpg", "ar": 0.944, "video": false}, {"src": "images/C-pWkdtyhbm_1.jpg", "ar": 0.944, "video": false}]}, {"code": "C-pejl9yPtX", "date": "August 14, 2024", "iso": "2024-08-14", "month": "August 2024", "loc": "", "caption": "Winston is going to grow up and be like, “When I was 11 my mom stopped buying me toys and I had to make my own” 😂", "photos": [{"src": "images/C-pejl9yPtX_0.jpg", "ar": 1.2077, "video": false}, {"src": "images/C-pejl9yPtX_1.jpg", "ar": 1.2019, "video": false}]}, {"code": "C-uGpjJuECQ", "date": "August 16, 2024", "iso": "2024-08-16", "month": "August 2024", "loc": "", "caption": "CAD lessons 🙌🏻", "photos": [{"src": "images/C-uGpjJuECQ_0.jpg", "ar": 1.2594, "video": false}, {"src": "images/C-uGpjJuECQ_1.jpg", "ar": 1.2563, "video": false}]}, {"code": "C-uGtgEOsfh", "date": "August 16, 2024", "iso": "2024-08-16", "month": "August 2024", "loc": "", "caption": "Laang", "photos": [{"src": "images/C-uGtgEOsfh_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-wpxAlyEue", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "Tropical life", "photos": [{"src": "images/C-wpxAlyEue_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-wp0NoSfSG", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "Winston, go take that boat", "photos": [{"src": "images/C-wp0NoSfSG_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-wp0NoSfSG_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C-wp0NoSfSG_2.jpg", "ar": 0.8, "video": false}]}, {"code": "C-wp1xZS6rQ", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "Morning ride", "photos": [{"src": "images/C-wp1xZS6rQ_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-wp6VkyX3h", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "So green :)", "photos": [{"src": "images/C-wp6VkyX3h_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-wp8RCSGLx", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "", "photos": [{"src": "images/C-wp8RCSGLx_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C-wq7TIyj3Q", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "Ella was so busy this weekend we barely saw her", "photos": [{"src": "images/C-wq7TIyj3Q_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-wq7TIyj3Q_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C-wq7TIyj3Q_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C-wq7TIyj3Q_3.jpg", "ar": 0.8, "video": false}]}, {"code": "C-wrEFISlAG", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "", "photos": [{"src": "images/C-wrEFISlAG_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-wrUBZS0Mj", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "", "photos": [{"src": "images/C-wrUBZS0Mj_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-wrSN1SOIv", "date": "August 17, 2024", "iso": "2024-08-17", "month": "August 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "Dance camp", "photos": [{"src": "images/C-wrSN1SOIv_0.jpg", "ar": 1.7778, "video": true}]}, {"code": "C-y_lazyKzL", "date": "August 18, 2024", "iso": "2024-08-18", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "", "photos": [{"src": "images/C-y_lazyKzL_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-y_tvoSWnw", "date": "August 18, 2024", "iso": "2024-08-18", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "", "photos": [{"src": "images/C-y_tvoSWnw_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C-y_tvoSWnw_1.jpg", "ar": 0.799, "video": false}]}, {"code": "C-y_vjKSh1z", "date": "August 18, 2024", "iso": "2024-08-18", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "", "photos": [{"src": "images/C-y_vjKSh1z_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-zMEGTSLqr", "date": "August 18, 2024", "iso": "2024-08-18", "month": "August 2024", "loc": "Ninh Binh, Vietnam", "caption": "", "photos": [{"src": "images/C-zMEGTSLqr_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-1xkwPSquZ", "date": "August 19, 2024", "iso": "2024-08-19", "month": "August 2024", "loc": "Hanoi, Vietnam", "caption": "Authentic street food", "photos": [{"src": "images/C-1xkwPSquZ_0.jpg", "ar": 1.0776, "video": false}]}, {"code": "C-1xqDuyG1w", "date": "August 19, 2024", "iso": "2024-08-19", "month": "August 2024", "loc": "", "caption": "Goodbye countryside Vietnam. Back to the lap of luxury.", "photos": [{"src": "images/C-1xqDuyG1w_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C-5N3PHS3H2", "date": "August 20, 2024", "iso": "2024-08-20", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C-5N3PHS3H2_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C_A7zjuSZ77", "date": "August 23, 2024", "iso": "2024-08-23", "month": "August 2024", "loc": "", "caption": "Only 9 months 🥹", "photos": [{"src": "images/C_A7zjuSZ77_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C_A7zjuSZ77_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C_DZcHjya2j", "date": "August 24, 2024", "iso": "2024-08-24", "month": "August 2024", "loc": "", "caption": "Kids to work day", "photos": [{"src": "images/C_DZcHjya2j_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C_DZcHjya2j_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C_DZcHjya2j_2.jpg", "ar": 0.8, "video": false}, {"src": "images/C_DZcHjya2j_3.jpg", "ar": 0.802, "video": false}]}, {"code": "C_DZiNwyTA9", "date": "August 24, 2024", "iso": "2024-08-24", "month": "August 2024", "loc": "Sa Pa, Vietnam", "caption": "Back to the city above the clouds. Pictures don’t do it justice 😊", "photos": [{"src": "images/C_DZiNwyTA9_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C_DZiNwyTA9_1.jpg", "ar": 0.8, "video": false}, {"src": "images/C_DZiNwyTA9_2.jpg", "ar": 0.802, "video": false}]}, {"code": "C_DZoAwSMrT", "date": "August 24, 2024", "iso": "2024-08-24", "month": "August 2024", "loc": "Sa Pa, Vietnam", "caption": "Balcony cuddles", "photos": [{"src": "images/C_DZoAwSMrT_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C_DZoAwSMrT_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C_DZtt-S8CI", "date": "August 24, 2024", "iso": "2024-08-24", "month": "August 2024", "loc": "Sa Pa, Vietnam", "caption": "Back to the same restaurants 😊", "photos": [{"src": "images/C_DZtt-S8CI_0.jpg", "ar": 0.862, "video": false}, {"src": "images/C_DZtt-S8CI_1.jpg", "ar": 0.862, "video": false}]}, {"code": "C_S8fFmJh9J", "date": "August 30, 2024", "iso": "2024-08-30", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C_S8fFmJh9J_0.jpg", "ar": 0.8, "video": false}, {"src": "images/C_S8fFmJh9J_1.jpg", "ar": 0.8, "video": false}]}, {"code": "C_S8ibYp3pX", "date": "August 30, 2024", "iso": "2024-08-30", "month": "August 2024", "loc": "", "caption": "", "photos": [{"src": "images/C_S8ibYp3pX_0.jpg", "ar": 0.5625, "video": true}]}, {"code": "C_VZn97yqbL", "date": "August 31, 2024", "iso": "2024-08-31", "month": "August 2024", "loc": "", "caption": "Making banh xeo", "photos": [{"src": "images/C_VZn97yqbL_0.jpg", "ar": 1.171, "video": false}]}, {"code": "C_cVNB5y390", "date": "September 3, 2024", "iso": "2024-09-03", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/C_cVNB5y390_0.jpg", "ar": 0.873, "video": false}]}, {"code": "C_cVPWySzLX", "date": "September 3, 2024", "iso": "2024-09-03", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/C_cVPWySzLX_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C_p07X7S3RC", "date": "September 8, 2024", "iso": "2024-09-08", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/C_p07X7S3RC_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C_p0-bIySbm", "date": "September 8, 2024", "iso": "2024-09-08", "month": "September 2024", "loc": "", "caption": "Muay thai", "photos": [{"src": "images/C_p0-bIySbm_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C_p1HIQy8un", "date": "September 8, 2024", "iso": "2024-09-08", "month": "September 2024", "loc": "", "caption": "Been trying to get the kids into Harry Potter for years. I tried reading to them, getting the illustrated copies, audiobooks, movies. And now… FINALLY Winston is reading through the first book by himself without being forced to. And says that the books are better than the movies!", "photos": [{"src": "images/C_p1HIQy8un_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "C_suAl4SlKe", "date": "September 9, 2024", "iso": "2024-09-09", "month": "September 2024", "loc": "", "caption": "Big bro and photographer 4 life :)", "photos": [{"src": "images/C_suAl4SlKe_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C_28O5VzVEf", "date": "September 13, 2024", "iso": "2024-09-13", "month": "September 2024", "loc": "", "caption": "❤️❤️", "photos": [{"src": "images/C_28O5VzVEf_0.jpg", "ar": 0.8, "video": false}]}, {"code": "C_4tTGgTTW3", "date": "September 14, 2024", "iso": "2024-09-14", "month": "September 2024", "loc": "", "caption": "Best friends… 40% of the time 😊", "photos": [{"src": "images/C_4tTGgTTW3_0.jpg", "ar": 0.85, "video": false}, {"src": "images/C_4tTGgTTW3_1.jpg", "ar": 0.8491, "video": true}]}, {"code": "C_5fIZkzK_S", "date": "September 14, 2024", "iso": "2024-09-14", "month": "September 2024", "loc": "", "caption": "Our tree ❤️ 🌴", "photos": [{"src": "images/C_5fIZkzK_S_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DADuf0fze_H", "date": "September 18, 2024", "iso": "2024-09-18", "month": "September 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "", "photos": [{"src": "images/DADuf0fze_H_0.jpg", "ar": 1.0, "video": false}]}, {"code": "DADupbMzSrs", "date": "September 18, 2024", "iso": "2024-09-18", "month": "September 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "", "photos": [{"src": "images/DADupbMzSrs_0.jpg", "ar": 1.0, "video": false}]}, {"code": "DAD9HpszAWL", "date": "September 18, 2024", "iso": "2024-09-18", "month": "September 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "", "photos": [{"src": "images/DAD9HpszAWL_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DAD9O1zTxkc", "date": "September 18, 2024", "iso": "2024-09-18", "month": "September 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "debate class with mom", "photos": [{"src": "images/DAD9O1zTxkc_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/DAD9O1zTxkc_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/DAD9O1zTxkc_2.jpg", "ar": 1.3333, "video": false}]}, {"code": "DAFyMbxTsX6", "date": "September 19, 2024", "iso": "2024-09-19", "month": "September 2024", "loc": "", "caption": "First meal in Singapore. Delicious but sticker shocking 😂", "photos": [{"src": "images/DAFyMbxTsX6_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DAFyTWxzO-Q", "date": "September 19, 2024", "iso": "2024-09-19", "month": "September 2024", "loc": "", "caption": "The kids as soon as they stepped out of the plane: “I can smell the air already. It smells amazing! No drugs. No pollution.“ 😂", "photos": [{"src": "images/DAFyTWxzO-Q_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DAFyeRHzKkh", "date": "September 19, 2024", "iso": "2024-09-19", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAFyeRHzKkh_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DAIUixhT9zS", "date": "September 20, 2024", "iso": "2024-09-20", "month": "September 2024", "loc": "", "caption": "From private driver to bus", "photos": [{"src": "images/DAIUixhT9zS_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DAIUpDczgDA", "date": "September 20, 2024", "iso": "2024-09-20", "month": "September 2024", "loc": "", "caption": "Experts on 711s around the world", "photos": [{"src": "images/DAIUpDczgDA_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DAIUr-hTmlP", "date": "September 20, 2024", "iso": "2024-09-20", "month": "September 2024", "loc": "", "caption": "Singaporean breakfast", "photos": [{"src": "images/DAIUr-hTmlP_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DAIUr-hTmlP_1.jpg", "ar": 0.8, "video": false}]}, {"code": "DAIe30Nz-Dt", "date": "September 20, 2024", "iso": "2024-09-20", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAIe30Nz-Dt_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DAKaU41zOAS", "date": "September 21, 2024", "iso": "2024-09-21", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAKaU41zOAS_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DAK2eZgzuCM", "date": "September 21, 2024", "iso": "2024-09-21", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAK2eZgzuCM_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DAK2eZgzuCM_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DAK2eZgzuCM_2.jpg", "ar": 0.8, "video": false}]}, {"code": "DAK2lxqzrie", "date": "September 21, 2024", "iso": "2024-09-21", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAK2lxqzrie_0.jpg", "ar": 0.858, "video": false}, {"src": "images/DAK2lxqzrie_1.jpg", "ar": 0.858, "video": false}]}, {"code": "DAK2uZpzWEi", "date": "September 21, 2024", "iso": "2024-09-21", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAK2uZpzWEi_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DAK2zSjzzcN", "date": "September 21, 2024", "iso": "2024-09-21", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAK2zSjzzcN_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DAK23s0zjKh", "date": "September 21, 2024", "iso": "2024-09-21", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAK23s0zjKh_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DANvIY-zYyw", "date": "September 22, 2024", "iso": "2024-09-22", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DANvIY-zYyw_0.jpg", "ar": 1.3351, "video": false}]}, {"code": "DANvZFvzszf", "date": "September 22, 2024", "iso": "2024-09-22", "month": "September 2024", "loc": "", "caption": "We had such a good time at the Singapore airport and lounge. Could have definitely stayed longer!", "photos": [{"src": "images/DANvZFvzszf_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DANvdkMzCda", "date": "September 22, 2024", "iso": "2024-09-22", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DANvdkMzCda_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DANwjlbTRsD", "date": "September 22, 2024", "iso": "2024-09-22", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DANwjlbTRsD_0.jpg", "ar": 0.858, "video": false}]}, {"code": "DATBgOsTLhW", "date": "September 24, 2024", "iso": "2024-09-24", "month": "September 2024", "loc": "Ho Chi Minh City, Vietnam", "caption": "Aerial flow :)", "photos": [{"src": "images/DATBgOsTLhW_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DATBgOsTLhW_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DATBgOsTLhW_2.jpg", "ar": 0.802, "video": false}]}, {"code": "DAgAQf1zprK", "date": "September 29, 2024", "iso": "2024-09-29", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAgAQf1zprK_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/DAgAQf1zprK_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/DAgAQf1zprK_2.jpg", "ar": 1.3333, "video": false}]}, {"code": "DAgASabzdNs", "date": "September 29, 2024", "iso": "2024-09-29", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAgASabzdNs_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DAgAY8xz6_A", "date": "September 29, 2024", "iso": "2024-09-29", "month": "September 2024", "loc": "", "caption": "Haidilao magic", "photos": [{"src": "images/DAgAY8xz6_A_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DAgAY8xz6_A_1.jpg", "ar": 0.802, "video": false}]}, {"code": "DAgAeGTT4HB", "date": "September 29, 2024", "iso": "2024-09-29", "month": "September 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAgAeGTT4HB_0.jpg", "ar": 1.0, "video": false}]}, {"code": "DAlVOhIAoGs", "date": "October 1, 2024", "iso": "2024-10-01", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAlVOhIAoGs_0.jpg", "ar": 0.562, "video": true}]}, {"code": "DAlVNLZgpod", "date": "October 1, 2024", "iso": "2024-10-01", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAlVNLZgpod_0.jpg", "ar": 0.562, "video": true}]}, {"code": "DAr8JxazO7L", "date": "October 4, 2024", "iso": "2024-10-04", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAr8JxazO7L_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DAr8JxazO7L_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DAr8JxazO7L_2.jpg", "ar": 0.8, "video": false}, {"src": "images/DAr8JxazO7L_3.jpg", "ar": 0.8, "video": false}]}, {"code": "DAr8N2Hzh8O", "date": "October 4, 2024", "iso": "2024-10-04", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DAr8N2Hzh8O_0.jpg", "ar": 0.873, "video": false}, {"src": "images/DAr8N2Hzh8O_1.jpg", "ar": 0.873, "video": false}, {"src": "images/DAr8N2Hzh8O_2.jpg", "ar": 0.878, "video": false}]}, {"code": "DAvW26mzNFw", "date": "October 5, 2024", "iso": "2024-10-05", "month": "October 2024", "loc": "", "caption": "Dinner", "photos": [{"src": "images/DAvW26mzNFw_0.jpg", "ar": 1.0905, "video": false}, {"src": "images/DAvW26mzNFw_1.jpg", "ar": 1.0893, "video": false}]}, {"code": "DA40I0LTIjT", "date": "October 9, 2024", "iso": "2024-10-09", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DA40I0LTIjT_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DA40LA8zF-o", "date": "October 9, 2024", "iso": "2024-10-09", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DA40LA8zF-o_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DA40L9eTZ30", "date": "October 9, 2024", "iso": "2024-10-09", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DA40L9eTZ30_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DBBbEWdvTqX", "date": "October 12, 2024", "iso": "2024-10-12", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DBBbEWdvTqX_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DBBbEWdvTqX_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DBBbEWdvTqX_2.jpg", "ar": 0.802, "video": false}]}, {"code": "DBJO7Mev6IJ", "date": "October 15, 2024", "iso": "2024-10-15", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DBJO7Mev6IJ_0.jpg", "ar": 0.913, "video": false}]}, {"code": "DBJO-juP1_8", "date": "October 15, 2024", "iso": "2024-10-15", "month": "October 2024", "loc": "", "caption": "One gymnast 🤸‍♀️ one break dancer 🕺", "photos": [{"src": "images/DBJO-juP1_8_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DBNfT-xpfBA", "date": "October 17, 2024", "iso": "2024-10-17", "month": "October 2024", "loc": "", "caption": "Iron cap", "photos": [{"src": "images/DBNfT-xpfBA_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DBc_gWNz9c-", "date": "October 23, 2024", "iso": "2024-10-23", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DBc_gWNz9c-_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DBfq4ygzDxC", "date": "October 24, 2024", "iso": "2024-10-24", "month": "October 2024", "loc": "", "caption": "Diligently figuring out if she has enough money to afford her toy 🤭", "photos": [{"src": "images/DBfq4ygzDxC_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DBf9IpkzKPm", "date": "October 24, 2024", "iso": "2024-10-24", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DBf9IpkzKPm_0.jpg", "ar": 1.218, "video": false}]}, {"code": "DBf9K4BAjk_", "date": "October 24, 2024", "iso": "2024-10-24", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DBf9K4BAjk__0.jpg", "ar": 1.773, "video": true}]}, {"code": "DBqU7i-RrHz", "date": "October 28, 2024", "iso": "2024-10-28", "month": "October 2024", "loc": "", "caption": "Besties", "photos": [{"src": "images/DBqU7i-RrHz_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DBqU7i-RrHz_1.jpg", "ar": 0.8, "video": false}]}, {"code": "DBqVCpJRGTF", "date": "October 28, 2024", "iso": "2024-10-28", "month": "October 2024", "loc": "", "caption": "Little baker 👩‍🍳", "photos": [{"src": "images/DBqVCpJRGTF_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DBqVCpJRGTF_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DBqVCpJRGTF_2.jpg", "ar": 0.8, "video": false}]}, {"code": "DBs8I17xdpo", "date": "October 29, 2024", "iso": "2024-10-29", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DBs8I17xdpo_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/DBs8I17xdpo_1.jpg", "ar": 1.3333, "video": false}]}, {"code": "DBtbrJzvFpZ", "date": "October 29, 2024", "iso": "2024-10-29", "month": "October 2024", "loc": "", "caption": "", "photos": [{"src": "images/DBtbrJzvFpZ_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DB1dw6-z-h9", "date": "November 1, 2024", "iso": "2024-11-01", "month": "November 2024", "loc": "", "caption": "En route to china with all of mom’s prized asia kitchen possessions", "photos": [{"src": "images/DB1dw6-z-h9_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DCEmw5MTZ8x", "date": "November 7, 2024", "iso": "2024-11-07", "month": "November 2024", "loc": "Beijing, China", "caption": "", "photos": [{"src": "images/DCEmw5MTZ8x_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DCEm04cTNzZ", "date": "November 7, 2024", "iso": "2024-11-07", "month": "November 2024", "loc": "Beijing, China", "caption": "", "photos": [{"src": "images/DCEm04cTNzZ_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DCEm5yROvnB", "date": "November 7, 2024", "iso": "2024-11-07", "month": "November 2024", "loc": "Beijing, China", "caption": "", "photos": [{"src": "images/DCEm5yROvnB_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DCEm5yROvnB_1.jpg", "ar": 0.802, "video": false}, {"src": "images/DCEm5yROvnB_2.jpg", "ar": 0.8, "video": false}, {"src": "images/DCEm5yROvnB_3.jpg", "ar": 0.8, "video": false}]}, {"code": "DCEm_QLOSjc", "date": "November 7, 2024", "iso": "2024-11-07", "month": "November 2024", "loc": "Beijing, China", "caption": "", "photos": [{"src": "images/DCEm_QLOSjc_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DCEm_QLOSjc_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DCEm_QLOSjc_2.jpg", "ar": 0.802, "video": false}, {"src": "images/DCEm_QLOSjc_3.jpg", "ar": 0.8, "video": false}]}, {"code": "DCEnBH5O4v5", "date": "November 7, 2024", "iso": "2024-11-07", "month": "November 2024", "loc": "Beijing, China", "caption": "", "photos": [{"src": "images/DCEnBH5O4v5_0.jpg", "ar": 1.0, "video": false}]}, {"code": "DCOiCOuT4Z7", "date": "November 11, 2024", "iso": "2024-11-11", "month": "November 2024", "loc": "Beijing, China", "caption": "So much history", "photos": [{"src": "images/DCOiCOuT4Z7_0.jpg", "ar": 0.936, "video": false}, {"src": "images/DCOiCOuT4Z7_1.jpg", "ar": 0.936, "video": false}]}, {"code": "DCO5FLUzerN", "date": "November 11, 2024", "iso": "2024-11-11", "month": "November 2024", "loc": "Beijing, China", "caption": "Beijing duck", "photos": [{"src": "images/DCO5FLUzerN_0.jpg", "ar": 1.0, "video": false}, {"src": "images/DCO5FLUzerN_1.jpg", "ar": 1.0, "video": false}]}, {"code": "DC3cFRTOJt-", "date": "November 27, 2024", "iso": "2024-11-27", "month": "November 2024", "loc": "", "caption": "", "photos": [{"src": "images/DC3cFRTOJt-_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/DC3cFRTOJt-_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/DC3cFRTOJt-_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/DC3cFRTOJt-_3.jpg", "ar": 1.3333, "video": false}]}, {"code": "DC3cHznuxxy", "date": "November 27, 2024", "iso": "2024-11-27", "month": "November 2024", "loc": "", "caption": "", "photos": [{"src": "images/DC3cHznuxxy_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DC3cHznuxxy_1.jpg", "ar": 0.8, "video": false}]}, {"code": "DC3cL-lunLn", "date": "November 27, 2024", "iso": "2024-11-27", "month": "November 2024", "loc": "", "caption": "", "photos": [{"src": "images/DC3cL-lunLn_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DC3cL-lunLn_1.jpg", "ar": 0.8, "video": false}]}, {"code": "DC3cOU5OThz", "date": "November 27, 2024", "iso": "2024-11-27", "month": "November 2024", "loc": "", "caption": "Reunited ❤️", "photos": [{"src": "images/DC3cOU5OThz_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DC3cP17Ofpd", "date": "November 27, 2024", "iso": "2024-11-27", "month": "November 2024", "loc": "", "caption": "", "photos": [{"src": "images/DC3cP17Ofpd_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DC3cRmsO_GT", "date": "November 27, 2024", "iso": "2024-11-27", "month": "November 2024", "loc": "", "caption": "", "photos": [{"src": "images/DC3cRmsO_GT_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DC6DqEkxDr-", "date": "November 28, 2024", "iso": "2024-11-28", "month": "November 2024", "loc": "", "caption": "", "photos": [{"src": "images/DC6DqEkxDr-_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DC6DqEkxDr-_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DC6DqEkxDr-_2.jpg", "ar": 0.8, "video": false}]}, {"code": "DC6DqdJRxHY", "date": "November 28, 2024", "iso": "2024-11-28", "month": "November 2024", "loc": "", "caption": "", "photos": [{"src": "images/DC6DqdJRxHY_0.jpg", "ar": 1.7794, "video": false}, {"src": "images/DC6DqdJRxHY_1.jpg", "ar": 1.773, "video": false}]}, {"code": "DDTGy33zuO6", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTGy33zuO6_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DDTGzJfTmlw", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "", "caption": "", "photos": [{"src": "images/DDTGzJfTmlw_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTGzJfTmlw_1.jpg", "ar": 0.8, "video": false}]}, {"code": "DDTGzN4z8zq", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTGzN4z8zq_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/DDTGzN4z8zq_1.jpg", "ar": 1.3333, "video": false}]}, {"code": "DDTG6hqToP5", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTG6hqToP5_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DDTG_5Xzmrt", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTG_5Xzmrt_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DDTHDPHTU7x", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHDPHTU7x_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DDTHGGuTi_D", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHGGuTi_D_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHGGuTi_D_1.jpg", "ar": 0.8, "video": false}]}, {"code": "DDTHJ90zE2P", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHJ90zE2P_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHJ90zE2P_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHJ90zE2P_2.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHJ90zE2P_3.jpg", "ar": 0.802, "video": false}, {"src": "images/DDTHJ90zE2P_4.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHJ90zE2P_5.jpg", "ar": 0.8, "video": false}]}, {"code": "DDTHN3XzWHi", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHN3XzWHi_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/DDTHN3XzWHi_1.jpg", "ar": 1.3333, "video": false}, {"src": "images/DDTHN3XzWHi_2.jpg", "ar": 1.3333, "video": false}, {"src": "images/DDTHN3XzWHi_3.jpg", "ar": 1.3333, "video": false}, {"src": "images/DDTHN3XzWHi_4.jpg", "ar": 1.3333, "video": false}, {"src": "images/DDTHN3XzWHi_5.jpg", "ar": 1.3333, "video": false}, {"src": "images/DDTHN3XzWHi_6.jpg", "ar": 1.3333, "video": false}]}, {"code": "DDTHRTQTCGj", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHRTQTCGj_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "DDTHV4FzVhX", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHV4FzVhX_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHV4FzVhX_1.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHV4FzVhX_2.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHV4FzVhX_3.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHV4FzVhX_4.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHV4FzVhX_5.jpg", "ar": 0.802, "video": false}, {"src": "images/DDTHV4FzVhX_6.jpg", "ar": 0.8, "video": false}]}, {"code": "DDTHcNpz0kU", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHcNpz0kU_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DDTHcNpz0kU_1.jpg", "ar": 0.802, "video": false}, {"src": "images/DDTHcNpz0kU_2.jpg", "ar": 0.8018, "video": false}]}, {"code": "DDTHdDbTzns", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHdDbTzns_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/DDTHdDbTzns_1.jpg", "ar": 1.3333, "video": false}]}, {"code": "DDTHd5tTccK", "date": "December 8, 2024", "iso": "2024-12-08", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "", "photos": [{"src": "images/DDTHd5tTccK_0.jpg", "ar": 0.8, "video": false}]}, {"code": "DDZeJI8TPPc", "date": "December 10, 2024", "iso": "2024-12-10", "month": "December 2024", "loc": "Bangkok, Thailand", "caption": "When you’ve got two completely different children", "photos": [{"src": "images/DDZeJI8TPPc_0.jpg", "ar": 0.8, "video": false}, {"src": "images/DDZeJI8TPPc_1.jpg", "ar": 0.8, "video": false}]}];
+const META = {"year": 2024, "posts": 258, "photos": 625, "range": "January 12 &ndash; December 10, 2024", "cover": "images/C6wEL2wrTmG_0.jpg", "topics": ["The big camper road trip &mdash; Minnesota, the Badlands, Yellowstone, Grand Teton", "Stranded in Jackson, Wyoming &mdash; then white-water rafting", "Beijing &mdash; the Great Wall and the Forbidden City", "Japanese lessons and piano", "Harry Potter finally lands with Winston"], "heroes": ["images/C1-8qWQuqnZ_0.jpg", "images/C5CvMMlSPHx_1.jpg", "images/C9ybU4rNCDf_0.jpg", "images/C-N6ahvumn8_0.jpg", "images/DDTG_5Xzmrt_0.jpg"], "afterword": ["<p class=\"kick\">Afterword</p><h1>A childhood, as its own record keeps it</h1><p class=\"deck\">Seven years, 1,437 posts, read end to end</p><div class=\"rule\"></div><div class=\"cols\"><p>This book was made from an Instagram account, <i>kiddoswhotravel</i>, kept between\n        22 May 2018 and 10 December 2024:\n        1,437 posts, 2,915 photographs and 161 short films,\n        made on 499 separate days &mdash; one day in\n        five.</p><p>Read end to end it is not a travel account. It is the record of a childhood that\n        happened to be lived across twelve countries. Winston is five\n        in the first photograph and twelve in the last; Ella is four, and ten. The account keeps\n        four chapters.</p><p>The first is <b>Bangkok</b> &mdash; 591 posts to the middle of 2020.\n        A city childhood: the same lobby staff every morning, the same street vendors, school\n        friends who live in the building, Muay Thai in the afternoons, a British curriculum and\n        a Thai class in the same week.</p><p>The second is <b>Wisconsin</b>, 357 posts, and it opens with the\n        loudest thing in the archive &mdash; 60 days of nothing, 10 June to\n        9 August 2020, which is the sound of a family moving to the other side of\n        the world. What follows is a deliberate second education: soccer seasons, county fairs,\n        a museum every other week, a plant stall the children run themselves.</p><p>The third is <b>Bangkok again</b>, 221 posts &mdash; home\n        chosen rather than defaulted to, and the travelling now openly the schooling.</p><p>The fourth is <b>Vietnam and Verona</b>, 268 posts, and it\n        begins quietly: twelve days of silence and then, on 9 December 2023, Hanoi above the\n        clouds. This is the only chapter with two homes at once. Vietnam is where most of the\n        days are spent, but the Wisconsin house is never given up, and the year is lived going\n        back and forth &mdash; a Saigon January, a Yellowstone June out of Verona, a Vietnamese\n        August, a Bangkok December. Bangkok does not disappear either; it becomes somewhere\n        they go back to. The schooling still sets the itinerary: Yellowstone came out of a unit\n        on the Oregon Trail. This is the chapter the account never announces, and the only one\n        that had to be told to the book rather than read out of it.</p><p>None of it is drifting. 661 posts keep Bangkok time,\n        375 the American Midwest&rsquo;s and 165\n        Vietnam&rsquo;s; almost everything else is a trip taken from one of those homes and\n        returned from. Spokes, not a road.</p><p>Being from two places is work, and the archive shows the working. Asian dolls bought\n        because the shelves in neither country carried enough of them. The &ldquo;American\n        Pencil&rdquo;, as Winston named it, in the first week of a Wisconsin school. A favourite\n        American buffet in Bangkok; &ldquo;Thai food&rdquo; &mdash; her quotation marks &mdash;\n        for dinner in Verona.</p><p>And the subject is not the places. Counted across every caption,\n        <b>friends</b> appears 35 times, <b>school</b> 36,\n        <b>sleepover</b> 15 &mdash; and the word <b>trip</b> 13. For a\n        travel account that is the tell. The trips are the setting. The plot is company.</p><p>The writing is short and plural. Captions average 9.2 words;\n        527 posts carry none at all. <i>We</i> and <i>our</i> appear\n        211 times against 115 for <i>they</i> and 106 for <i>I</i>. The\n        person holding the camera is hardly ever in the photograph and hardly ever out of the\n        sentence. The single most-used word in seven years of writing is\n        <b>kids</b>, 51 times.</p><p>The hardest page is 30 May 2021: emergency one-year passports, a petition to the\n        embassy, lawyers in Washington, and the flat sentence at the end of it &mdash;\n        <i>the law is power</i>. It quietly re-reads the second chapter. Not a relocation. An\n        exit. Which makes the third chapter a decision.</p><p>The book stops before the story does. Some months after the last photograph the\n        family left Vietnam, sold the house in Verona, and moved to the Bay Area &mdash; around\n        October 2025. Both of the homes in the fourth chapter are let go at once, which is why\n        that chapter reads differently from here: not a settling, a last long season of having\n        two places before choosing a third. None of it is in the archive. It is written down\n        because a photograph cannot say what happened next.</p><p>What the record cannot hold is the ordinary 1,895 days\n        it says nothing about, and the 527 pictures that were never explained.\n        A photograph is evidence that you were there. It does not say what it was like. That\n        part belongs to the four people in it.</p></div><p class=\"sign\">Kiddos Who Travel &middot; 2018&ndash;2024</p>", "<p class=\"kick\">The record</p><h1>Everything, counted</h1><p class=\"deck\">Posts by month &mdash; the bands are the four chapters</p><div class=\"rule\"></div><div class=\"big\"><div><span class=\"v\">1,437</span><span class=\"l\">posts</span></div><div><span class=\"v\">2,915</span><span class=\"l\">photographs</span></div><div><span class=\"v\">161</span><span class=\"l\">films</span></div><div><span class=\"v\">499</span><span class=\"l\">days posted</span></div><div><span class=\"v\">910</span><span class=\"l\">captions</span></div><div><span class=\"v\">144</span><span class=\"l\">places named</span></div><div><span class=\"v\">12</span><span class=\"l\">countries</span></div><div><span class=\"v\">17</span><span class=\"l\">time zones</span></div></div><div class=\"chart\"><p class=\"peak\">Busiest month &middot; April 2023, 75 posts</p><div class=\"bars\"><i style='height:61.3%'></i><i style='height:40.0%'></i><i style='height:54.7%'></i><i style='height:30.7%'></i><i style='height:52.0%'></i><i style='height:68.0%'></i><i style='height:22.7%'></i><i style='height:94.7%'></i><i style='height:36.0%'></i><i style='height:36.0%'></i><i style='height:16.0%'></i><i style='height:36.0%'></i><i style='height:38.7%'></i><i style='height:46.7%'></i><i style='height:20.0%'></i><i style='height:20.0%'></i><i style='height:17.3%'></i><i style='height:10.7%'></i><i style='height:33.3%'></i><i style='height:9.3%'></i><i style='height:13.3%'></i><i style='height:5.3%'></i><i style='height:2.7%'></i><i style='height:0.6%'></i><i style='height:21.3%'></i><i style='height:1.3%'></i><i class='b' style='height:0.6%'></i><i class='b' style='height:21.3%'></i><i class='b' style='height:12.0%'></i><i class='b' style='height:12.0%'></i><i class='b' style='height:12.0%'></i><i class='b' style='height:4.0%'></i><i class='b' style='height:12.0%'></i><i class='b' style='height:5.3%'></i><i class='b' style='height:14.7%'></i><i class='b' style='height:21.3%'></i><i class='b' style='height:26.7%'></i><i class='b' style='height:4.0%'></i><i class='b' style='height:9.3%'></i><i class='b' style='height:22.7%'></i><i class='b' style='height:20.0%'></i><i class='b' style='height:8.0%'></i><i class='b' style='height:16.0%'></i><i class='b' style='height:54.7%'></i><i class='b' style='height:13.3%'></i><i class='b' style='height:5.3%'></i><i class='b' style='height:17.3%'></i><i class='b' style='height:12.0%'></i><i class='b' style='height:18.7%'></i><i class='b' style='height:8.0%'></i><i class='b' style='height:38.7%'></i><i class='b' style='height:6.7%'></i><i class='b' style='height:16.0%'></i><i class='b' style='height:2.7%'></i><i class='b' style='height:5.3%'></i><i class='b' style='height:14.7%'></i><i class='b' style='height:21.3%'></i><i class='b' style='height:20.0%'></i><i style='height:54.7%'></i><i style='height:100.0%'></i><i style='height:26.7%'></i><i style='height:22.7%'></i><i style='height:10.7%'></i><i style='height:14.7%'></i><i style='height:0.6%'></i><i style='height:32.0%'></i><i style='height:33.3%'></i><i class='b' style='height:13.3%'></i><i class='b' style='height:17.3%'></i><i class='b' style='height:9.3%'></i><i class='b' style='height:28.0%'></i><i class='b' style='height:5.3%'></i><i class='b' style='height:5.3%'></i><i class='b' style='height:34.7%'></i><i class='b' style='height:60.0%'></i><i class='b' style='height:69.3%'></i><i class='b' style='height:46.7%'></i><i class='b' style='height:26.7%'></i><i class='b' style='height:21.3%'></i><i class='b' style='height:20.0%'></i></div></div><div class=\"axis\"></div><div class=\"eras\"><span style='flex:26 1 0'>Bangkok</span><span class='gap' style='flex:1 1 0'>&nbsp;</span><span style='flex:31 1 0'>Wisconsin</span><span style='flex:9 1 0'>Bangkok again</span><span style='flex:13 1 0'>Vietnam and Verona</span></div><div class=\"yrs\"><span style='flex:8 1 0'>2018</span><span style='flex:12 1 0'>2019</span><span style='flex:12 1 0'>2020</span><span style='flex:12 1 0'>2021</span><span style='flex:12 1 0'>2022</span><span style='flex:12 1 0'>2023</span><span style='flex:12 1 0'>2024</span></div><div class=\"lists\"><section><h2>Chapters</h2><table><tr><td>Bangkok</td><td class=\"n\">591</td><td class=\"s\">May 2018 &ndash; Jun 2020</td></tr><tr><td>Wisconsin</td><td class=\"n\">357</td><td class=\"s\">Jul 2020 &ndash; Feb 2023</td></tr><tr><td>Bangkok again</td><td class=\"n\">221</td><td class=\"s\">Mar 2023 &ndash; Nov 2023</td></tr><tr><td>Vietnam and Verona</td><td class=\"n\">268</td><td class=\"s\">Dec 2023 &ndash; Dec 2024</td></tr></table></section><section><h2>Most-used words</h2><table><tr><td>kids</td><td class=\"n\">51</td><td class=\"s\">times</td></tr><tr><td>first</td><td class=\"n\">44</td><td class=\"s\">times</td></tr><tr><td>school</td><td class=\"n\">36</td><td class=\"s\">times</td></tr><tr><td>friends</td><td class=\"n\">35</td><td class=\"s\">times</td></tr><tr><td>time</td><td class=\"n\">35</td><td class=\"s\">times</td></tr><tr><td>trip</td><td class=\"n\">13</td><td class=\"s\">times</td></tr></table></section><section><h2>The voice</h2><table><tr><td>Captions written</td><td class=\"n\">910</td></tr><tr><td>Posted without words</td><td class=\"n\">527</td></tr><tr><td>Average caption</td><td class=\"n\">9.2 words</td></tr><tr><td>&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;</td><td class=\"n\">211</td></tr><tr><td>&ldquo;they&rdquo;, &ldquo;their&rdquo;, &ldquo;them&rdquo;</td><td class=\"n\">115</td></tr><tr><td>&ldquo;I&rdquo;, &ldquo;my&rdquo;, &ldquo;me&rdquo;</td><td class=\"n\">106</td></tr></table></section></div>"], "routes": [{"iso": "2024-03-26", "html": "<p class=\"nd\">March 26, 2024</p><div class=\"bd\"><p>I am so impressed with my kids’ school. Today, my fourth grader learned about federalism and the US government. I listened in on her lecture and it was taught in a way that was detailed but easy to understand. It’s so impressive to hear 9 year olds accurately talk about the supremacy clause and how the US government functions at different levels.</p><p>Every week they exclaim to me that they’re learning so much and I love that</p></div>", "cls": "ntb"}]};
+</script>
+<script>
+const P = { w: 11.250000, h: 8.250000, bleed: 0.125000 };
+const M = { top: P.bleed + 0.30, bottom: P.bleed + 0.34,
+            left: P.bleed + 0.30, right: P.bleed + 0.30 };
+const CW = P.w - M.left - M.right;          // live content width
+const CH = P.h - M.top - M.bottom;          // live content height
+const GAP = 0.17;                           // gutter between photos
+const CHUNK = 4;                            // most of one post's photos kept in a single block
+const MAX_PER_ROW = 8;                      // MIN_ROW is the real limit; this is a safety rail
+const MAX_GROUPS_PER_ROW = 5;               // how many separate posts may share a row
+const CAP_GAP = 0.055;                      // photo -> its caption
+const ROW_PAD = 0.24;                       // caption -> next row of photos
+const MONTH_H = 0.30;
+const ROUTE_H = 1.480000;                  // a route band heads its page; photographs take the rest
+const BAND_GAP = 0.20;                      // band -> the first row of photographs beneath it
+const BAND_MAX = 7.400000;               // past this a band stops sharing and takes its own page
+const MIN_ROW = 1.30, MAX_ROW = 4.6;        // bounds on a justified row's photo height
+const ABS_MIN = 0.95;                       // floor for a row that is one unsplittable post
+const MAX_SCALE = 1.045;                    // growth the packer may assume when comparing layouts
+const MAX_FILL_SCALE = 1.32;                // growth allowed to close a page the packer cannot fill
+const MIN_SCALE = 0.86;                     // squeeze allowed to keep a row from spilling to its own page
+const MAX_EXTRA = 0.55;                     // widest a between-row gap may open to absorb slack
+const MAX_ROWS = 6;
+const HERO_EVERY = 9;                       // rhythm: a full-bleed page roughly this often
+
+const book = document.getElementById('book');
+const ruler = document.getElementById('ruler');
+let page = null, y = 0, pageNo = 0, placed = [];
+
+const inch = v => v.toFixed(4) + 'in';
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function addPage(cls) {
+  page = document.createElement('div');
+  page.className = 'page' + (cls ? ' ' + cls : '');
+  book.appendChild(page);
+  pageNo++;
+  y = 0;
+  return page;
+}
+
+function folio() {
+  for (const [cls, txt] of [['n', pageNo], ['t', META.year]]) {
+    const d = document.createElement('div');
+    d.className = 'folio ' + cls;
+    d.textContent = txt;
+    page.appendChild(d);
+  }
+}
+
+/* ---- content model -------------------------------------------------------
+   A group is one post's photos (split into chunks of at most MAX_PER_ROW) kept adjacent so
+   they still read as a single moment. Only the first chunk carries the date and caption. */
+const HEROES = new Set(META.heroes || []);
+
+function groups() {
+  const out = [];
+  let month = null;
+  for (const post of DATA) {
+    const fresh = post.month !== month;
+    month = post.month;
+    let first = true;
+    for (let k = 0; k < post.photos.length; k += CHUNK) {
+      const photos = post.photos.slice(k, k + CHUNK);
+      out.push({
+        post, photos, lead: first,
+        // A picked photo also gets a full-bleed page, but it stays here in the grid so the
+        // post is never broken apart around it.
+        picks: photos.filter(ph => HEROES.has(ph.src)),
+        monthStart: fresh && first ? post.month : null,
+        n: photos.length,
+        sum: photos.reduce((s, p) => s + p.ar, 0),
+      });
+      first = false;
+    }
+  }
+  return out;
+}
+
+const capHTML = (g) => !g.lead ? '' :
+  '<span class="gdate">' + esc(g.post.date) + '</span>' +
+  (g.post.loc ? '<span class="gloc">' + esc(g.post.loc) + '</span>' : '') +
+  (g.post.caption ? '<span class="gtext">' + esc(g.post.caption).replace(/\n/g, '<br>') + '</span>' : '');
+
+/* Caption height depends on the width the group ends up with, and the packer asks for it
+   thousands of times while searching, so measurements are cached per width bucket. */
+const capCache = new Map();
+function capHeight(g, w) {
+  if (!g.lead) return 0;
+  const key = g.post.code + '|' + Math.round(w * 12);
+  let h = capCache.get(key);
+  if (h === undefined) {
+    const d = document.createElement('div');
+    d.className = 'gcap';
+    d.style.width = inch(w);
+    d.innerHTML = capHTML(g);
+    ruler.appendChild(d);
+    h = d.getBoundingClientRect().height / 96;
+    ruler.removeChild(d);
+    capCache.set(key, h);
+  }
+  return h;
+}
+
+/* ---- justified rows ------------------------------------------------------ */
+const heightOf = (n, sum) => (CW - GAP * (n - 1)) / sum;
+
+/* One candidate row: groups i..j-1 justified across the full column width. Returns null when
+   that combination cannot span the column at a sane photo height, so the packer never
+   produces a row sitting centred with dead margins either side. */
+function rowAt(gs, i, j) {
+  let n = 0, sum = 0;
+  for (let k = i; k < j; k++) {
+    if (k > i && gs[k].monthStart) return null;   // a month always opens a row
+    n += gs[k].n; sum += gs[k].sum;
+    if (n > MAX_PER_ROW) return null;
+  }
+  const h = heightOf(n, sum);
+  // MIN_ROW stops a row being padded out with so many photos that none of them read. A single
+  // post that is simply wide is not that case -- its photos cannot be split across rows, so
+  // refusing the row would leave the page with no legal layout at all.
+  if (h > MAX_ROW || h < (j - i > 1 ? MIN_ROW : ABS_MIN)) return null;
+  const cur = gs.slice(i, j);
+  const capH = cur.reduce((m, g) => Math.max(m, capHeight(g, h * g.sum + GAP * (g.n - 1))), 0);
+  return { gs: cur, h, sum, n, capH, full: true, end: j,
+           block: h + (capH ? CAP_GAP + capH : 0) };
+}
+
+/* A group too tall to justify across the column (a lone portrait) has no valid row, so it is
+   placed at MAX_ROW and centred. Only ever reached as a fallback; heroPage catches most. */
+function looseRow(gs, i) {
+  let n = 0, sum = 0, j = i;
+  while (j < gs.length && n + gs[j].n <= MAX_PER_ROW && (j === i || !gs[j].monthStart)) {
+    n += gs[j].n; sum += gs[j].sum; j++;
+    if (heightOf(n, sum) <= MAX_ROW) break;
+  }
+  const h = Math.min(heightOf(n, sum), MAX_ROW);
+  const cur = gs.slice(i, j);
+  const capH = cur.reduce((m, g) => Math.max(m, capHeight(g, h * g.sum + GAP * (g.n - 1))), 0);
+  return { gs: cur, h, sum, n, capH, full: heightOf(n, sum) <= MAX_ROW, end: j,
+           block: h + (capH ? CAP_GAP + capH : 0) };
+}
+
+/* The page is the unit that has to look right, so rather than filling rows greedily until the
+   next one overflows -- which is what left a dead band at the foot of every page -- every way
+   of cutting the upcoming groups into rows is considered and the one putting the most
+   photograph on the page wins.
+
+   What is maximised is photo area, not height used: captions and gutters consume the page
+   without showing a single picture, so a layout that merely reaches the bottom margin can
+   still look empty. Rows that end short are then scaled up to square the page off, so the
+   real objective is min(nat * MAX_SCALE, avail) -- and since avail = budget - block + nat,
+   both terms depend only on (block used, photo height accumulated). Carrying the
+   non-dominated (block, nat) pairs at each cut point therefore finds the true optimum. */
+function packRows(gs, start, budget, minO) {
+  const K = Math.min(gs.length - start, 26);
+  const front = Array.from({ length: K + 1 }, () => []);
+  front[0].push({ block: 0, nat: 0, photos: 0, rows: [] });
+
+  const offer = (j, e) => {
+    const f = front[j];
+    for (const o of f) if (o.block <= e.block + 1e-9 && o.nat >= e.nat - 1e-9) return;
+    for (let k = f.length - 1; k >= 0; k--) {
+      if (e.block <= f[k].block + 1e-9 && e.nat >= f[k].nat - 1e-9) f.splice(k, 1);
+    }
+    f.push(e);
+    if (f.length > 40) { f.sort((a, b) => a.block - b.block); f.length = 40; }
+  };
+
+  for (let o = 0; o < K; o++) {
+    for (const from of front[o]) {
+      if (from.rows.length >= MAX_ROWS) continue;
+      for (let j = o + 1; j <= Math.min(o + MAX_GROUPS_PER_ROW, K); j++) {
+        const r = rowAt(gs, start + o, start + j);
+        if (!r) continue;
+        const rule = from.rows.length && gs[start + o].monthStart ? MONTH_H : 0;
+        const pad = (from.rows.length ? ROW_PAD : 0) + rule;
+        const block = from.block + pad + r.block;
+        const nat = from.nat + r.h;
+        // Photo height can be squeezed a little (the crop is invisible), captions cannot, so
+        // the page fits if the rows still clear the budget at their most compressed.
+        if (block - nat * (1 - MIN_SCALE) > budget + 1e-6) continue;
+        const row = Object.assign({}, r, { pad, rule: rule ? gs[start + o].monthStart : null });
+        offer(j, { block, nat, photos: from.photos + r.n,
+                   rows: from.rows.concat([row]) });
+      }
+    }
+  }
+
+  let pick = null, bestScore = -Infinity;
+  for (let o = Math.max(1, minO || 1); o <= K; o++) {
+    for (const e of front[o]) {
+      const avail = budget - e.block + e.nat;
+      const score = Math.min(e.nat * MAX_SCALE, avail) + 0.004 * e.photos;
+      if (score > bestScore) { bestScore = score; pick = e; }
+    }
+  }
+  if (!pick) return null;
+  const end = start + pick.rows.reduce((s, r) => s + r.gs.length, 0);
+  return { rows: pick.rows, end, height: pick.block };
+}
+
+/* Occasionally a post cannot start any legal row -- a lone portrait is far too tall to justify
+   across the column, and the posts after it cannot be borrowed to shorten it. It gets placed
+   at its natural size and the packer then carries on with the rest of the page, because
+   letting it end the page is exactly what used to leave three inches of white below it. */
+function fillPage(gs, start, budget, minO) {
+  const packed = packRows(gs, start, budget, minO);
+  if (packed) return packed;
+  if (minO) return null;
+  const r = looseRow(gs, start);
+  r.pad = 0; r.rule = null;
+  const rows = [r];
+  let end = r.end, height = r.block;
+  const rest = packRows(gs, r.end, budget - r.block - ROW_PAD);
+  if (rest && rest.rows.length) {
+    rest.rows[0].pad = ROW_PAD;
+    rows.push.apply(rows, rest.rows);
+    end = rest.end;
+    height += ROW_PAD + rest.height;
+  }
+  return { rows, end, height };
+}
+
+/* ---- rendering ----------------------------------------------------------- */
+function groupEl(g, hNat, hBox) {
+  const cell = document.createElement('div');
+  cell.className = 'grp';
+  cell.style.width = inch(hNat * g.sum + GAP * (g.n - 1));
+  const pics = document.createElement('div');
+  pics.className = 'pics';
+  pics.style.height = inch(hBox);
+  for (const ph of g.photos) {
+    const f = document.createElement('figure');
+    f.style.width = inch(hNat * ph.ar);
+    f.innerHTML = '<img src="' + ph.src + '" alt="" loading="eager">' +
+                  (ph.video ? '<span class="vtag"></span>' : '');
+    pics.appendChild(f);
+  }
+  cell.appendChild(pics);
+  const cap = document.createElement('div');
+  cap.className = 'gcap';
+  cap.innerHTML = capHTML(g);
+  cell.appendChild(cap);
+  return cell;
+}
+
+function rowEl(row, scale) {
+  const el = document.createElement('div');
+  el.className = 'row';
+  const w = row.full ? CW : row.h * row.sum + GAP * (row.n - 1);
+  el.style.width = inch(w);
+  el.style.left = inch(M.left + (CW - w) / 2);
+  row.gs.forEach(g => el.appendChild(groupEl(g, row.h, row.h * scale)));
+  return el;
+}
+
+function monthRule(name, top) {
+  const m = document.createElement('div');
+  m.className = 'month';
+  m.style.left = inch(M.left);
+  m.style.width = inch(CW);
+  m.style.top = inch(top);
+  m.textContent = name;
+  return m;
+}
+
+function renderPage(fill, budget, top0) {
+  const rows = fill.rows;
+  const pads = rows.reduce((s, r) => s + r.pad, 0);
+  const caps = rows.reduce((s, r) => s + (r.capH ? CAP_GAP + r.capH : 0), 0);
+  const nat = rows.reduce((s, r) => s + r.h, 0);
+  const avail = budget - pads - caps;
+  // Square the page off: grow the photos a touch (the cover crop hides it), then spend whatever
+  // is still left widening the gaps between rows, and only centre what even that cannot absorb.
+  let scale = nat > 0 && isFinite(nat) ? avail / nat : 1;
+  scale = Math.max(MIN_SCALE, Math.min(scale, MAX_FILL_SCALE));
+  const slack = Math.max(0, avail - nat * scale);
+  const gaps = rows.length - 1;
+  const extra = gaps > 0 ? Math.min(slack / gaps, MAX_EXTRA) : 0;
+  let y = top0 + (slack - extra * gaps) / 2;
+  rows.forEach((r, i) => {
+    y += r.pad + (i ? extra : 0);
+    if (r.rule) { page.appendChild(monthRule(r.rule, y - MONTH_H + 0.06)); }
+    const el = rowEl(r, scale);
+    el.style.top = inch(y);
+    page.appendChild(el);
+    y += r.h * scale + (r.capH ? CAP_GAP + r.capH : 0);
+  });
+}
+
+/* A full-bleed page every so often gives the book a pulse instead of grid after grid. */
+function heroOK(g) {
+  return g && g.lead && g.n === 1 && g.photos[0].ar >= 1.25 && !g.monthStart;
+}
+
+function heroPage(p, photo, why, withCap) {
+  addPage('full');
+  page.dataset.why = why || 'picked';
+  page.innerHTML =
+    '<img class="bleed" src="' + photo.src + '" alt="">' +
+    '<div class="hscrim"></div>' +
+    '<div class="hcap"><span class="gdate">' + esc(p.date) + '</span>' +
+    (p.loc ? '<span class="gloc">' + esc(p.loc) + '</span>' : '') +
+    // The caption prints once. A picked photo still appears in the grid with its post, which
+    // is where the caption belongs, so the feature page carries only date and place.
+    (withCap && p.caption
+      ? '<span class="gtext">' + esc(p.caption).replace(/\n/g, '<br>') + '</span>' : '') +
+    '</div>';
+  folio();
+}
+
+function openerPage() {
+  addPage('full');
+  page.innerHTML =
+    '<img class="bleed" src="' + META.cover + '" alt="">' +
+    '<div class="scrim"></div>' +
+    '<div class="opener"><p class="kick">Winston and Eleanor</p>' +
+    '<p class="yr">' + META.year + '</p>' +
+    '<p class="sub">' + META.posts + ' posts &middot; ' + META.photos + ' photographs</p>' +
+    '<p class="sub">' + META.range + '</p>' +
+    (META.topics && META.topics.length
+      ? '<ul class="topics">' + META.topics.map(t => '<li>' + t + '</li>').join('') + '</ul>'
+      : '') + '</div>';
+}
+
+/* A hand-written route, as a strip across the head of a page. It is measured rather than
+   given a page: seven lines of itinerary cannot carry 11x8in alone, and the trip reads
+   better with its own first photographs underneath it. */
+function routeBand(html, top, cls) {
+  const b = document.createElement('div');
+  b.className = cls || 'rtb';
+  b.style.left = inch(M.left);
+  b.style.width = inch(CW);
+  b.style.top = inch(top);
+  b.innerHTML = html;
+  return b;
+}
+
+/* A route is one fixed size; a post whose photographs the archive lost is however long Cat
+   wrote it. So a band is measured off the ruler before the page commits to carrying it. */
+const bandCache = new Map();
+function bandHeight(b) {
+  let h = bandCache.get(b.html);
+  if (h === undefined) {
+    const d = routeBand(b.html, 0, b.cls);
+    d.style.position = 'static';
+    ruler.appendChild(d);
+    h = d.getBoundingClientRect().height / 96 + BAND_GAP;
+    ruler.removeChild(d);
+    bandCache.set(b.html, h);
+  }
+  return h;
+}
+
+/* A route anchored past the last photograph of the volume still has to print. The 'full'
+   marker keeps the page out of the audit that checks every photograph reached a page. */
+function routePage(b) {
+  addPage('full');
+  page.appendChild(routeBand(b.html, M.top, b.cls));
+  folio();
+}
+
+function layout() {
+  openerPage();
+  const gs = groups();
+  const pending = [];                            // picks waiting for a page of their own
+  const routes = (META.routes || []).slice();    // hand-written itineraries, in date order
+  let i = 0, sinceHero = 0, lastFull = true;     // the opener is itself a full-bleed page
+  while (i < gs.length) {
+    // A route heads the trip it describes, so it takes the top of that trip's first page and
+    // the photographs of the trip fill the rest of it.
+    const band = [];
+    while (routes.length && gs[i].post.iso >= routes[0].iso) band.push(routes.shift());
+    // A band longer than the page can usefully share is given its own page rather than
+    // squeezing the day's photographs into a strip at the foot of the sheet.
+    let bandH = 0;
+    for (const b of band) bandH += bandHeight(b);
+    while (band.length && bandH > BAND_MAX) {
+      routePage(band.shift());
+      bandH = 0;
+      for (const b of band) bandH += bandHeight(b);
+    }
+    // A feature page carries one photograph and no room for a band, so the rhythm waits a page.
+    if (!band.length && !HEROES.size && !lastFull && sinceHero >= HERO_EVERY && heroOK(gs[i])) {
+      heroPage(gs[i].post, gs[i].photos[0], 'rhythm', gs[i].lead);
+      i++; sinceHero = 0; lastFull = true;
+      continue;
+    }
+    addPage();
+    folio();
+    let top = M.top, budget = CH;
+    for (const b of band) {
+      page.appendChild(routeBand(b.html, top, b.cls));
+      const h = bandHeight(b);
+      top += h;
+      budget -= h;
+    }
+    if (gs[i].monthStart) {
+      page.appendChild(monthRule(gs[i].monthStart, top));
+      top += MONTH_H;
+      budget -= MONTH_H;
+    }
+    // A route page has to introduce its trip, so no photo page may straddle the anchor date.
+    // The packer is shown only the groups in front of it; without this a page beginning on
+    // the 19th ran on through the 24th and the route printed in the middle of its own trip.
+    const bnd = routes.length ? gs.findIndex(g => g.post.iso >= routes[0].iso) : -1;
+    const view = bnd > i ? gs.slice(0, bnd) : gs;
+    let fill = fillPage(view, i, budget);
+    // A photo that would be left alone on the next page has nowhere to go: rather than hand it
+    // a full page it never earned, pull it back onto this one, even if this page then carries
+    // less photograph than its best arrangement.
+    if (fill.end < view.length) {
+      const nxt = fillPage(view, fill.end, CH);
+      if (nxt && nxt.rows.length === 1 && !nxt.rows[0].full && nxt.rows[0].n === 1) {
+        const wider = fillPage(view, i, budget, fill.end + 1 - i);
+        if (wider) fill = wider;
+      }
+    }
+    // A single photo that cannot justify across the column would sit marooned in white,
+    // so it takes the page full-bleed instead - unless a route band heads this page, since
+    // going full-bleed drops the page and would take the band down with it.
+    if (!band.length && fill.rows.length === 1 && !fill.rows[0].full && fill.rows[0].n === 1) {
+      const g = fill.rows[0].gs[0];
+      page.remove(); pageNo--;
+      heroPage(g.post, g.photos[0], 'stranded', g.lead);
+      i = fill.end; sinceHero = 0; lastFull = true;
+      continue;
+    }
+    renderPage(fill, budget, top);
+    for (let k = i; k < fill.end; k++) {
+      for (const ph of gs[k].picks) pending.push({ post: gs[k].post, photo: ph });
+    }
+    i = fill.end;
+    sinceHero++;
+    lastFull = false;
+    // At most one feature page per grid page, so two full-bleed pages never sit together -
+    // the year opener followed straight by a feature read as a double.
+    if (pending.length) {
+      const pk = pending.shift();
+      heroPage(pk.post, pk.photo, 'picked', false);
+      lastFull = true;
+    }
+  }
+  while (pending.length) {
+    const pk = pending.shift();
+    heroPage(pk.post, pk.photo, 'picked', false);
+  }
+  // A route anchored past the last post of the volume still has to print somewhere.
+  while (routes.length) routePage(routes.shift());
+  for (const html of (META.afterword || [])) {
+    addPage('aw full');
+    page.innerHTML = html;
+    folio();
+  }
+}
+
+/* Caption heights drive the packing and they are wrong until the fonts are in, which made the
+   same book paginate differently from one run to the next. Waiting on document.fonts.ready is
+   not enough: with no text on the page yet, nothing has requested a font, so it resolves
+   immediately and layout still measures fallback metrics. Each face is therefore requested
+   explicitly and awaited before a single row is packed. */
+const FACES = ['300 16px Inter', '400 16px Inter', '300 16px Fraunces', '400 16px Fraunces'];
+
+function run() {
+  layout();
+  document.body.dataset.pages = document.querySelectorAll('.page').length;
+}
+
+if (document.fonts && document.fonts.load) {
+  Promise.all(FACES.map(f => document.fonts.load(f, 'Aa0')))
+    .then(() => document.fonts.ready)
+    .then(run, run);
+} else {
+  run();
+}
+</script>
+</body></html>

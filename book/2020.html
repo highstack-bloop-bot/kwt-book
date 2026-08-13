@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<base href="/">
+<title>Winston and Eleanor &mdash; 2020</title>
+<style>@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-0.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-1.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-2.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-3.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-4.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-5.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-6.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-7.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-8.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-9.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-10.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-11.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-12.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-13.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-14.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-15.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-16.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-17.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-18.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-19.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@page { size: 11.250in 8.250in; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; background:#8d8d8d; }
+body { font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-weight:300; color:#241f1a; -webkit-font-smoothing:antialiased; }
+
+.page { position:relative; width:11.250in; height:8.250in; background:#faf8f4;
+  overflow:hidden; page-break-after:always; break-after:page; margin:0 auto 14px; }
+.page:last-child { page-break-after:auto; break-after:auto; }
+
+/* Everything below is positioned from the media-box edge, i.e. bleed included. */
+.row { position:absolute; display:flex; gap:0.170in; align-items:flex-start; }
+.grp { display:flex; flex-direction:column; }
+.pics { display:flex; gap:0.170in; }
+/* Cells are sized by the packer; cover absorbs the sub-percent scaling that squares a
+   justified row off against the page height. */
+.row img { display:block; width:100%; height:100%; object-fit:cover; background:#efe9e0; }
+figure { margin:0; position:relative; height:100%; overflow:hidden; }
+.vtag { position:absolute; right:.07in; bottom:.07in; width:.17in; height:.17in;
+  border-radius:50%; background:rgba(20,16,12,.5); }
+.vtag:after { content:""; position:absolute; left:.066in; top:.048in; border-style:solid;
+  border-width:.037in 0 .037in .058in; border-color:transparent transparent transparent #fff; }
+
+.gcap { margin-top:0.055in; font-size:7.4pt; line-height:1.42; color:#5f574e; }
+.gdate { display:block; font-size:6.2pt; letter-spacing:.15em; text-transform:uppercase;
+  color:#a79c90; }
+.gloc { display:block; font-size:6.2pt; letter-spacing:.15em; text-transform:uppercase;
+  color:#a9714a; }
+.gtext { display:block; margin-top:.035in; }
+
+/* Full-bleed feature page: photo to all four edges, caption in the dark corner. */
+.hscrim { position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(16,12,8,0) 46%,rgba(16,12,8,.26) 66%,rgba(16,12,8,.84)); }
+.hcap { position:absolute; left:0.425in; right:0.425in; bottom:0.545in;
+  color:#fff; max-width:6.6in; text-shadow:0 1px 6px rgba(0,0,0,.45); }
+.hcap .gdate { color:rgba(255,255,255,.8); font-size:6.6pt; }
+.hcap .gloc { color:#f2c8a6; font-size:6.6pt; }
+.hcap .gtext { margin-top:.07in; font-size:10.5pt; line-height:1.45; }
+
+.month { position:absolute; font-family:Fraunces,Georgia,serif; font-size:9pt;
+  letter-spacing:.24em; text-transform:uppercase; color:#a9714a; }
+.month:after { content:""; display:block; height:1px; background:#e6dfd3; margin-top:.07in; }
+
+.folio { position:absolute; bottom:0.285in; font-size:7pt; letter-spacing:.16em;
+  color:#b3aa9f; }
+.folio.n { right:0.425in; }
+.folio.t { left:0.425in; text-transform:uppercase; }
+
+/* Full-bleed pages: the image intentionally runs past the trim into the bleed. */
+.bleed { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.scrim { position:absolute; inset:0;
+  background:radial-gradient(ellipse 76% 64% at 50% 54%,rgba(18,14,10,.78),rgba(18,14,10,0) 76%),
+             linear-gradient(180deg,rgba(20,16,12,.44),rgba(20,16,12,.32) 45%,rgba(20,16,12,.6)); }
+.opener { position:absolute; left:0; right:0; top:2.55in; text-align:center; color:#fff;
+  text-shadow:0 1px 10px rgba(0,0,0,.5); }
+.opener .kick { font-size:8.5pt; letter-spacing:.36em; text-transform:uppercase;
+  margin:0 0 .18in; opacity:.9; }
+.opener .yr { font-family:Fraunces,Georgia,serif; font-weight:300; font-size:74pt;
+  line-height:1; margin:0; letter-spacing:.02em; }
+.opener .sub { font-size:9pt; letter-spacing:.2em; text-transform:uppercase;
+  margin:.26in 0 0; opacity:.92; }
+.opener .topics { list-style:none; padding:0; margin:.34in auto 0; max-width:5.1in;
+  text-align:center; }
+.opener .topics li { font-family:Fraunces,Georgia,serif; font-size:12pt; line-height:1.4;
+  padding:.09in 0; opacity:.95; }
+.opener .topics li + li { border-top:1px solid rgba(255,255,255,.28); }
+
+#ruler { position:absolute; visibility:hidden; left:-99in; top:0; }
+
+@media screen { .page { box-shadow:0 2px 14px rgba(0,0,0,.35); } }
+
+.aw { background:#faf8f4; }
+.aw .kick { position:absolute; left:0.425in; top:0.425in; font-size:7.4pt;
+  letter-spacing:.34em; text-transform:uppercase; color:#a9714a; }
+.aw h1 { position:absolute; left:0.425in; right:0.425in; top:0.720in; margin:0;
+  font-family:Fraunces,Georgia,serif; font-weight:300; font-size:31pt; line-height:1.1;
+  letter-spacing:.005em; color:#241f1a; }
+.aw .deck { position:absolute; left:0.425in; right:0.425in; top:1.460in;
+  font-family:Fraunces,Georgia,serif; font-style:italic; font-size:10.5pt; color:#8a7f73; }
+.aw .rule { position:absolute; left:0.425in; right:0.425in; top:1.780in; height:1px;
+  background:#e0d8ca; }
+.aw .cols { position:absolute; left:0.425in; right:0.425in; top:1.980in;
+  bottom:0.720in; column-count:3; column-gap:.42in; }
+.aw .cols p { margin:0 0 .10in; font-size:9.6pt; line-height:1.68; color:#4a443c;
+  text-align:justify; hyphens:auto; orphans:2; widows:2; }
+.aw .cols p b { font-weight:500; color:#241f1a; }
+.aw .sign { position:absolute; right:0.425in; bottom:0.465in; font-size:6.6pt;
+  letter-spacing:.16em; text-transform:uppercase; color:#b3aa9f; }
+
+.aw .big { position:absolute; left:0.425in; right:0.425in; top:1.980in;
+  display:flex; justify-content:space-between; }
+.aw .big div { text-align:left; }
+.aw .big .v { font-family:Fraunces,Georgia,serif; font-weight:300; font-size:25pt;
+  line-height:1; color:#241f1a; }
+.aw .big .l { display:block; margin-top:.05in; font-size:6.4pt; letter-spacing:.2em;
+  text-transform:uppercase; color:#a79c90; }
+
+.aw .chart { position:absolute; left:0.425in; right:0.425in; top:2.95in; height:1.72in; }
+.aw .bars { position:absolute; inset:0; display:flex; align-items:flex-end; gap:.014in; }
+.aw .bars i { display:block; flex:1 1 0; background:#cbbda8; min-height:.5pt; }
+.aw .bars i.b { background:#a9714a; }
+.aw .peak { position:absolute; right:0; top:-.20in; font-size:6.4pt; letter-spacing:.16em;
+  text-transform:uppercase; color:#b3aa9f; }
+.aw .axis { position:absolute; left:0.425in; right:0.425in; top:4.67in; height:.008in;
+  background:#e0d8ca; }
+.aw .eras { position:absolute; left:0.425in; right:0.425in; top:4.75in; display:flex; }
+.aw .eras span { font-size:6.4pt; letter-spacing:.18em; text-transform:uppercase; overflow:hidden;
+  white-space:nowrap; text-overflow:ellipsis; padding-right:.07in; min-width:0;
+  color:#8a7f73; border-top:2px solid #d8cbb6; padding-top:.055in; }
+.aw .eras span.gap { border-top-color:transparent; }
+.aw .yrs { position:absolute; left:0.425in; right:0.425in; top:5.13in; display:flex;
+  font-size:6.4pt; letter-spacing:.16em; color:#b3aa9f; }
+
+.aw .lists { position:absolute; left:0.425in; right:0.425in; top:5.62in;
+  bottom:0.465in; display:flex; gap:.5in; }
+.aw .lists section { flex:1 1 0; }
+.aw .lists h2 { margin:0 0 .09in; font-size:6.6pt; letter-spacing:.24em; text-transform:uppercase;
+  color:#a9714a; font-weight:400; border-bottom:1px solid #e0d8ca; padding-bottom:.05in; }
+.aw .lists tr td { font-size:8.2pt; line-height:1.75; color:#4a443c; vertical-align:baseline; }
+.aw .lists table { width:100%; border-collapse:collapse; }
+.aw .lists td.n { text-align:right; font-variant-numeric:tabular-nums; color:#241f1a; }
+.aw .lists td.s { font-size:6.8pt; letter-spacing:.1em; text-transform:uppercase; color:#a79c90;
+  padding-left:.09in; white-space:nowrap; }
+
+.rt { background:#faf8f4; }
+.rt .kick { position:absolute; left:0.425in; top:0.425in; font-size:7.4pt;
+  letter-spacing:.34em; text-transform:uppercase; color:#a9714a; }
+.rt h1 { position:absolute; left:0.425in; right:0.425in; top:0.720in; margin:0;
+  font-family:Fraunces,Georgia,serif; font-weight:300; font-size:31pt; line-height:1.1;
+  color:#241f1a; }
+.rt .deck { position:absolute; left:0.425in; right:0.425in; top:1.460in;
+  font-family:Fraunces,Georgia,serif; font-style:italic; font-size:10.5pt; color:#8a7f73; }
+.rt .line { position:absolute; left:0.425in; right:0.425in; top:2.950in; height:1px;
+  background:#e0d8ca; }
+.rt .stops { position:absolute; left:0.425in; right:0.425in; top:2.950in;
+  display:flex; }
+.rt .stops li { list-style:none; flex:1 1 0; min-width:0; position:relative;
+  padding:.20in .10in 0 0; }
+.rt .stops li::after { content:""; position:absolute; left:0; top:-.035in; width:.07in;
+  height:.07in; border-radius:50%; background:#cbbda8; }
+.rt .stops li:first-child::after, .rt .stops li:last-child::after { background:#a9714a; }
+.rt .stops .d { display:block; font-size:6.6pt; letter-spacing:.18em; text-transform:uppercase;
+  color:#a9714a; margin-bottom:.05in; }
+.rt .stops .p { display:block; font-family:Fraunces,Georgia,serif; font-size:10pt;
+  line-height:1.34; color:#241f1a; }
+.rt .note { position:absolute; left:0.425in; top:4.180in; width:5.6in;
+  padding-top:.09in; border-top:1px solid #e0d8ca; font-size:8.2pt; line-height:1.66;
+  color:#6d6459; }
+.rt .sign { position:absolute; right:0.425in; bottom:0.465in; font-size:6.6pt;
+  letter-spacing:.16em; text-transform:uppercase; color:#b3aa9f; }
+</style>
+</head><body>
+<div id="book"></div><div id="ruler"></div>
+<script>
+const DATA = [{"code": "B67bfMAD3jP", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "Sk8er boy", "photos": [{"src": "images/B67bfMAD3jP_0.jpg", "ar": 1.0929, "video": false}]}, {"code": "B67cEiTDKQn", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "Literal definition of “we run this town” 🥰 #internationalkids", "photos": [{"src": "images/B67cEiTDKQn_0.jpg", "ar": 0.8, "video": true}]}, {"code": "B67cSokjxSB", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "Love for Aunty Som", "photos": [{"src": "images/B67cSokjxSB_0.jpg", "ar": 0.996, "video": false}]}, {"code": "B67ca87DBzS", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "🥰", "photos": [{"src": "images/B67ca87DBzS_0.jpg", "ar": 1.105, "video": false}]}, {"code": "B67cfReDiuG", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "Arts & crafts", "photos": [{"src": "images/B67cfReDiuG_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B67cie5jdPp", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "Future hi-so 😂", "photos": [{"src": "images/B67cie5jdPp_0.jpg", "ar": 0.8, "video": false}]}, {"code": "B67cqhnDFvG", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "All American art day with Isabel & Chloe", "photos": [{"src": "images/B67cqhnDFvG_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B67cwYVD2-R", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "", "photos": [{"src": "images/B67cwYVD2-R_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B67cz5qjWgy", "date": "January 5, 2020", "iso": "2020-01-05", "month": "January 2020", "loc": "", "caption": "", "photos": [{"src": "images/B67cz5qjWgy_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B7xNfFmDLpI", "date": "January 26, 2020", "iso": "2020-01-26", "month": "January 2020", "loc": "", "caption": "Ice cream sundays", "photos": [{"src": "images/B7xNfFmDLpI_0.jpg", "ar": 0.869, "video": false}]}, {"code": "B8ZFOcSjWvv", "date": "February 10, 2020", "iso": "2020-02-10", "month": "February 2020", "loc": "", "caption": "", "photos": [{"src": "images/B8ZFOcSjWvv_0.jpg", "ar": 0.802, "video": false}, {"src": "images/B8ZFOcSjWvv_1.jpg", "ar": 0.802, "video": false}, {"src": "images/B8ZFOcSjWvv_2.jpg", "ar": 0.802, "video": false}]}, {"code": "B83WjT6jTTr", "date": "February 22, 2020", "iso": "2020-02-22", "month": "February 2020", "loc": "", "caption": "Book worm 🐛🥰", "photos": [{"src": "images/B83WjT6jTTr_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B83WlokDMm5", "date": "February 22, 2020", "iso": "2020-02-22", "month": "February 2020", "loc": "", "caption": "The real deal", "photos": [{"src": "images/B83WlokDMm5_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B83WmwcjJ_h", "date": "February 22, 2020", "iso": "2020-02-22", "month": "February 2020", "loc": "", "caption": "You turn my world upside down", "photos": [{"src": "images/B83WmwcjJ_h_0.jpg", "ar": 1.004, "video": false}]}, {"code": "B-HxsHyD-Z3", "date": "March 24, 2020", "iso": "2020-03-24", "month": "March 2020", "loc": "", "caption": "Homeschool 2020 😒 and Winston being a good boy haha", "photos": [{"src": "images/B-HxsHyD-Z3_0.jpg", "ar": 0.8, "video": false}, {"src": "images/B-HxsHyD-Z3_1.jpg", "ar": 0.8, "video": false}]}, {"code": "B-HyQ6iD4xq", "date": "March 24, 2020", "iso": "2020-03-24", "month": "March 2020", "loc": "", "caption": "Quarantine activities", "photos": [{"src": "images/B-HyQ6iD4xq_0.jpg", "ar": 0.972, "video": false}, {"src": "images/B-HyQ6iD4xq_1.jpg", "ar": 0.9756, "video": true}, {"src": "images/B-HyQ6iD4xq_2.jpg", "ar": 0.976, "video": false}]}, {"code": "B_uVRVdj_q2", "date": "May 3, 2020", "iso": "2020-05-03", "month": "May 2020", "loc": "", "caption": "", "photos": [{"src": "images/B_uVRVdj_q2_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B_4wi7PjzZR", "date": "May 7, 2020", "iso": "2020-05-07", "month": "May 2020", "loc": "", "caption": "Best gift ever 😭😭😭 memories of a lifetime. We love you 💕❤️", "photos": [{"src": "images/B_4wi7PjzZR_0.jpg", "ar": 1.0, "video": true}]}, {"code": "B_4xF-LDH2m", "date": "May 7, 2020", "iso": "2020-05-07", "month": "May 2020", "loc": "", "caption": "Besties", "photos": [{"src": "images/B_4xF-LDH2m_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B_4xI5iDqyj", "date": "May 7, 2020", "iso": "2020-05-07", "month": "May 2020", "loc": "", "caption": "", "photos": [{"src": "images/B_4xI5iDqyj_0.jpg", "ar": 1.0, "video": false}]}, {"code": "B_4xPGaDJBi", "date": "May 7, 2020", "iso": "2020-05-07", "month": "May 2020", "loc": "", "caption": "One last sleepover 😭😭😭", "photos": [{"src": "images/B_4xPGaDJBi_0.jpg", "ar": 1.1299, "video": false}]}, {"code": "B_4xSeVjglf", "date": "May 7, 2020", "iso": "2020-05-07", "month": "May 2020", "loc": "", "caption": "Family 💕", "photos": [{"src": "images/B_4xSeVjglf_0.jpg", "ar": 1.0385, "video": false}]}, {"code": "CACHssEDkFf", "date": "May 11, 2020", "iso": "2020-05-11", "month": "May 2020", "loc": "", "caption": "❤️❤️❤️", "photos": [{"src": "images/CACHssEDkFf_0.jpg", "ar": 0.8, "video": true}]}, {"code": "CAC22WljvpR", "date": "May 11, 2020", "iso": "2020-05-11", "month": "May 2020", "loc": "", "caption": "Truck back in the USA", "photos": [{"src": "images/CAC22WljvpR_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CAJmxVJjXSF", "date": "May 13, 2020", "iso": "2020-05-13", "month": "May 2020", "loc": "", "caption": "", "photos": [{"src": "images/CAJmxVJjXSF_0.jpg", "ar": 0.8, "video": true}]}, {"code": "CAROXapjU4Q", "date": "May 16, 2020", "iso": "2020-05-16", "month": "May 2020", "loc": "Honolulu, Hawaii", "caption": "Been a while since we had summer in paradise.", "photos": [{"src": "images/CAROXapjU4Q_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CAROXapjU4Q_1.jpg", "ar": 1.001, "video": false}]}, {"code": "CAT_tnxjl5h", "date": "May 17, 2020", "iso": "2020-05-17", "month": "May 2020", "loc": "", "caption": "Rediscovering some of their old books 😊", "photos": [{"src": "images/CAT_tnxjl5h_0.jpg", "ar": 1.1186, "video": false}]}, {"code": "CA1eY0IjSso", "date": "May 30, 2020", "iso": "2020-05-30", "month": "May 2020", "loc": "", "caption": "", "photos": [{"src": "images/CA1eY0IjSso_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CA1ebsTjCuc", "date": "May 30, 2020", "iso": "2020-05-30", "month": "May 2020", "loc": "", "caption": "", "photos": [{"src": "images/CA1ebsTjCuc_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CA1efIrDLLT", "date": "May 30, 2020", "iso": "2020-05-30", "month": "May 2020", "loc": "", "caption": "", "photos": [{"src": "images/CA1efIrDLLT_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CA1eiOujAFk", "date": "May 30, 2020", "iso": "2020-05-30", "month": "May 2020", "loc": "", "caption": "", "photos": [{"src": "images/CA1eiOujAFk_0.jpg", "ar": 0.889, "video": false}]}, {"code": "CA1eotQjCTb", "date": "May 30, 2020", "iso": "2020-05-30", "month": "May 2020", "loc": "Honolulu, Hawaii", "caption": "When her new doll house is bigger than she is 😂 my back hurts from building this", "photos": [{"src": "images/CA1eotQjCTb_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CBQ2tORjrCc", "date": "June 10, 2020", "iso": "2020-06-10", "month": "June 2020", "loc": "", "caption": "", "photos": [{"src": "images/CBQ2tORjrCc_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CDrHgwNDYr5", "date": "August 9, 2020", "iso": "2020-08-09", "month": "August 2020", "loc": "", "caption": "Verona beach", "photos": [{"src": "images/CDrHgwNDYr5_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CDrHgwNDYr5_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CDrHgwNDYr5_2.jpg", "ar": 1.0, "video": false}]}, {"code": "CDrHl1JjOuF", "date": "August 9, 2020", "iso": "2020-08-09", "month": "August 2020", "loc": "", "caption": "Rhubarb", "photos": [{"src": "images/CDrHl1JjOuF_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CDrHl1JjOuF_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CDrHl1JjOuF_2.jpg", "ar": 1.001, "video": false}]}, {"code": "CDrHpXYD7pM", "date": "August 9, 2020", "iso": "2020-08-09", "month": "August 2020", "loc": "", "caption": "Rhubarb strawberry pie.", "photos": [{"src": "images/CDrHpXYD7pM_0.jpg", "ar": 1.0, "video": true}, {"src": "images/CDrHpXYD7pM_1.jpg", "ar": 1.0, "video": true}, {"src": "images/CDrHpXYD7pM_2.jpg", "ar": 1.0, "video": true}, {"src": "images/CDrHpXYD7pM_3.jpg", "ar": 1.0, "video": false}, {"src": "images/CDrHpXYD7pM_4.jpg", "ar": 1.0, "video": false}]}, {"code": "CEDZIJBDG2-", "date": "August 18, 2020", "iso": "2020-08-18", "month": "August 2020", "loc": "Stoughton, Wisconsin", "caption": "It feels like summer.", "photos": [{"src": "images/CEDZIJBDG2-_0.jpg", "ar": 1.001, "video": false}, {"src": "images/CEDZIJBDG2-_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CEDZIJBDG2-_2.jpg", "ar": 1.0, "video": true}]}, {"code": "CEDZMszDxm_", "date": "August 18, 2020", "iso": "2020-08-18", "month": "August 2020", "loc": "", "caption": "Bike gang", "photos": [{"src": "images/CEDZMszDxm__0.jpg", "ar": 1.001, "video": false}, {"src": "images/CEDZMszDxm__1.jpg", "ar": 1.0, "video": false}, {"src": "images/CEDZMszDxm__2.jpg", "ar": 1.001, "video": false}]}, {"code": "CEDZVhoDAeO", "date": "August 18, 2020", "iso": "2020-08-18", "month": "August 2020", "loc": "Verona, Wisconsin", "caption": "Neighborhood friends", "photos": [{"src": "images/CEDZVhoDAeO_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CEDZVhoDAeO_1.jpg", "ar": 1.001, "video": false}, {"src": "images/CEDZVhoDAeO_2.jpg", "ar": 1.0, "video": false}]}, {"code": "CEPHX-HDIwP", "date": "August 23, 2020", "iso": "2020-08-23", "month": "August 2020", "loc": "", "caption": "Throwback to when we said bye to Thailand 💕", "photos": [{"src": "images/CEPHX-HDIwP_0.jpg", "ar": 0.9964, "video": false}]}, {"code": "CEQU0oDjTzU", "date": "August 23, 2020", "iso": "2020-08-23", "month": "August 2020", "loc": "Verona, Wisconsin", "caption": "Camping in our backyard before real camping this weekend!", "photos": [{"src": "images/CEQU0oDjTzU_0.jpg", "ar": 1.0384, "video": false}]}, {"code": "CEQU6pPjJUd", "date": "August 23, 2020", "iso": "2020-08-23", "month": "August 2020", "loc": "", "caption": "Sharing is caring", "photos": [{"src": "images/CEQU6pPjJUd_0.jpg", "ar": 1.0121, "video": false}]}, {"code": "CEQVAkqDKUn", "date": "August 23, 2020", "iso": "2020-08-23", "month": "August 2020", "loc": "", "caption": "Wisconsin life with many new friends 🤗", "photos": [{"src": "images/CEQVAkqDKUn_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CEQVIGlDZaY", "date": "August 23, 2020", "iso": "2020-08-23", "month": "August 2020", "loc": "", "caption": "We biked 4+ miles today!", "photos": [{"src": "images/CEQVIGlDZaY_0.jpg", "ar": 0.8, "video": true}]}, {"code": "CEhnmbKDP8_", "date": "August 30, 2020", "iso": "2020-08-30", "month": "August 2020", "loc": "", "caption": "Friends 💕", "photos": [{"src": "images/CEhnmbKDP8__0.jpg", "ar": 1.3333, "video": false}]}, {"code": "CEhoCabDFbN", "date": "August 30, 2020", "iso": "2020-08-30", "month": "August 2020", "loc": "Blue Mound State Park", "caption": "Weekend camping 😍", "photos": [{"src": "images/CEhoCabDFbN_0.jpg", "ar": 1.1792, "video": false}, {"src": "images/CEhoCabDFbN_1.jpg", "ar": 1.1765, "video": false}, {"src": "images/CEhoCabDFbN_2.jpg", "ar": 1.1765, "video": false}, {"src": "images/CEhoCabDFbN_3.jpg", "ar": 1.1765, "video": false}, {"src": "images/CEhoCabDFbN_4.jpg", "ar": 1.1765, "video": false}, {"src": "images/CEhoCabDFbN_5.jpg", "ar": 1.1765, "video": false}, {"src": "images/CEhoCabDFbN_6.jpg", "ar": 1.1765, "video": false}, {"src": "images/CEhoCabDFbN_7.jpg", "ar": 1.1765, "video": false}, {"src": "images/CEhoCabDFbN_8.jpg", "ar": 1.1779, "video": false}]}, {"code": "CEkqQkij3rd", "date": "August 31, 2020", "iso": "2020-08-31", "month": "August 2020", "loc": "Washington Monument", "caption": "The “American Pencil” as Winston calls it 😂", "photos": [{"src": "images/CEkqQkij3rd_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqQkij3rd_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqQkij3rd_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqQkij3rd_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqQkij3rd_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqQkij3rd_5.jpg", "ar": 0.8, "video": false}]}, {"code": "CEkqbzxD2gp", "date": "August 31, 2020", "iso": "2020-08-31", "month": "August 2020", "loc": "Washington, DC", "caption": "All our states", "photos": [{"src": "images/CEkqbzxD2gp_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqbzxD2gp_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqbzxD2gp_2.jpg", "ar": 0.802, "video": false}, {"src": "images/CEkqbzxD2gp_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqbzxD2gp_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqbzxD2gp_5.jpg", "ar": 0.802, "video": false}, {"src": "images/CEkqbzxD2gp_6.jpg", "ar": 0.802, "video": false}, {"src": "images/CEkqbzxD2gp_7.jpg", "ar": 0.8, "video": false}, {"src": "images/CEkqbzxD2gp_8.jpg", "ar": 0.802, "video": false}]}, {"code": "CEkqsTPj_YQ", "date": "August 31, 2020", "iso": "2020-08-31", "month": "August 2020", "loc": "Supreme Court of the United States", "caption": "SCOTUS", "photos": [{"src": "images/CEkqsTPj_YQ_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CEkqsTPj_YQ_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CEkqsTPj_YQ_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CEkqsTPj_YQ_3.jpg", "ar": 1.0, "video": false}]}, {"code": "CEpRYlhjHol", "date": "September 2, 2020", "iso": "2020-09-02", "month": "September 2020", "loc": "Harleysville, Pennsylvania", "caption": "Winter is coming and shopping for comfy winter clothing is awesome haha.", "photos": [{"src": "images/CEpRYlhjHol_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CEs1ypkDSJz", "date": "September 4, 2020", "iso": "2020-09-04", "month": "September 2020", "loc": "Harleysville, Pennsylvania", "caption": "Coding his first website 😊", "photos": [{"src": "images/CEs1ypkDSJz_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CE1n9ihDQpM", "date": "September 7, 2020", "iso": "2020-09-07", "month": "September 2020", "loc": "", "caption": "Typing and coding", "photos": [{"src": "images/CE1n9ihDQpM_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CE1n9ihDQpM_1.jpg", "ar": 1.001, "video": false}]}, {"code": "CE1oF_TjHa3", "date": "September 7, 2020", "iso": "2020-09-07", "month": "September 2020", "loc": "", "caption": "Madison > DC > Pennsylvania > Chicago > Madison. Great sports for the long drive.", "photos": [{"src": "images/CE1oF_TjHa3_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CE1oF_TjHa3_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CE1oF_TjHa3_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CE1oLHvDxhp", "date": "September 7, 2020", "iso": "2020-09-07", "month": "September 2020", "loc": "Verona, Wisconsin", "caption": "Happy to be home 🥰", "photos": [{"src": "images/CE1oLHvDxhp_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CE1oLHvDxhp_1.jpg", "ar": 0.802, "video": false}]}, {"code": "CFYQCqOjFc3", "date": "September 20, 2020", "iso": "2020-09-20", "month": "September 2020", "loc": "Verona, Wisconsin", "caption": "Apple picking on our hike 😍", "photos": [{"src": "images/CFYQCqOjFc3_0.jpg", "ar": 1.0718, "video": false}, {"src": "images/CFYQCqOjFc3_1.jpg", "ar": 1.0695, "video": false}]}, {"code": "CFYQLKbD7Z9", "date": "September 20, 2020", "iso": "2020-09-20", "month": "September 2020", "loc": "Verona, Wisconsin", "caption": "First birthday in Wisconsin 😍 #8yearsold", "photos": [{"src": "images/CFYQLKbD7Z9_0.jpg", "ar": 1.001, "video": false}, {"src": "images/CFYQLKbD7Z9_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CFYQLKbD7Z9_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CFYQLKbD7Z9_3.jpg", "ar": 1.0, "video": true}]}, {"code": "CFarcvujCFW", "date": "September 21, 2020", "iso": "2020-09-21", "month": "September 2020", "loc": "Verona, Wisconsin", "caption": "🥰", "photos": [{"src": "images/CFarcvujCFW_0.jpg", "ar": 1.1198, "video": false}, {"src": "images/CFarcvujCFW_1.jpg", "ar": 1.1198, "video": false}, {"src": "images/CFarcvujCFW_2.jpg", "ar": 1.1198, "video": false}, {"src": "images/CFarcvujCFW_3.jpg", "ar": 1.1198, "video": false}]}, {"code": "CFxOgIJjqcd", "date": "September 30, 2020", "iso": "2020-09-30", "month": "September 2020", "loc": "", "caption": "Helping little sister see over the fence and yesterday mommy wasn’t home so he gave her a hug and kiss so she could fall asleep 🥰", "photos": [{"src": "images/CFxOgIJjqcd_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CF0n189j2Gz", "date": "October 1, 2020", "iso": "2020-10-01", "month": "October 2020", "loc": "Verona, Wisconsin", "caption": "Homework time", "photos": [{"src": "images/CF0n189j2Gz_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CF7-_0iDLIg", "date": "October 4, 2020", "iso": "2020-10-04", "month": "October 2020", "loc": "", "caption": "Devils Lake ❤️", "photos": [{"src": "images/CF7-_0iDLIg_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CGNh4GjDIHv", "date": "October 11, 2020", "iso": "2020-10-11", "month": "October 2020", "loc": "", "caption": "Starting piano lessons", "photos": [{"src": "images/CGNh4GjDIHv_0.jpg", "ar": 0.8, "video": true}]}, {"code": "CGNh77xjvCR", "date": "October 11, 2020", "iso": "2020-10-11", "month": "October 2020", "loc": "", "caption": "Fall 🍁", "photos": [{"src": "images/CGNh77xjvCR_0.jpg", "ar": 0.8, "video": true}]}, {"code": "CGyEuzmD1SH", "date": "October 25, 2020", "iso": "2020-10-25", "month": "October 2020", "loc": "", "caption": "Last of fall 😊", "photos": [{"src": "images/CGyEuzmD1SH_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CGyEuzmD1SH_1.jpg", "ar": 1.0, "video": false}]}, {"code": "CGyO5F6jyNo", "date": "October 25, 2020", "iso": "2020-10-25", "month": "October 2020", "loc": "", "caption": "4 day weekend", "photos": [{"src": "images/CGyO5F6jyNo_0.jpg", "ar": 1.2376, "video": false}]}, {"code": "CGyO_Egjsjs", "date": "October 25, 2020", "iso": "2020-10-25", "month": "October 2020", "loc": "", "caption": "Midwestern fun", "photos": [{"src": "images/CGyO_Egjsjs_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CGyO_Egjsjs_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CGyO_Egjsjs_2.jpg", "ar": 1.0, "video": false}]}, {"code": "CG8ArXdjtze", "date": "October 29, 2020", "iso": "2020-10-29", "month": "October 2020", "loc": "", "caption": "Ready for our first real Halloween back in the US!", "photos": [{"src": "images/CG8ArXdjtze_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CG8ArXdjtze_4.jpg", "ar": 1.001, "video": false}, {"src": "images/CG8ArXdjtze_5.jpg", "ar": 1.0, "video": false}, {"src": "images/CG8ArXdjtze_6.jpg", "ar": 1.0, "video": false}, {"src": "images/CG8ArXdjtze_7.jpg", "ar": 1.0, "video": true}]}, {"code": "CHBaXuLjocI", "date": "October 31, 2020", "iso": "2020-10-31", "month": "October 2020", "loc": "Sutter's Ridge Family Farm", "caption": "Apple picking at the orchard!", "photos": [{"src": "images/CHBaXuLjocI_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CHBaXuLjocI_1.jpg", "ar": 0.802, "video": false}, {"src": "images/CHBaXuLjocI_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CHDXY09D7Pv", "date": "November 1, 2020", "iso": "2020-11-01", "month": "November 2020", "loc": "Verona, Wisconsin", "caption": "Halloween haul 👻", "photos": [{"src": "images/CHDXY09D7Pv_0.jpg", "ar": 1.001, "video": false}, {"src": "images/CHDXY09D7Pv_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CHDXY09D7Pv_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CHDXY09D7Pv_3.jpg", "ar": 1.0, "video": false}, {"src": "images/CHDXY09D7Pv_4.jpg", "ar": 1.0, "video": false}, {"src": "images/CHDXY09D7Pv_5.jpg", "ar": 1.0, "video": false}, {"src": "images/CHDXY09D7Pv_6.jpg", "ar": 1.0, "video": false}]}, {"code": "CHQlMvwjhIr", "date": "November 6, 2020", "iso": "2020-11-06", "month": "November 2020", "loc": "", "caption": "", "photos": [{"src": "images/CHQlMvwjhIr_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CHQlMvwjhIr_1.jpg", "ar": 0.802, "video": false}]}, {"code": "CHVxdm0j-fa", "date": "November 8, 2020", "iso": "2020-11-08", "month": "November 2020", "loc": "Epic Campus", "caption": "An “Epic” day.", "photos": [{"src": "images/CHVxdm0j-fa_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CHVxdm0j-fa_1.jpg", "ar": 0.802, "video": false}, {"src": "images/CHVxdm0j-fa_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CHxkrI2DFT8", "date": "November 19, 2020", "iso": "2020-11-19", "month": "November 2020", "loc": "Verona, Wisconsin", "caption": "Getting ready for our first white Christmas!", "photos": [{"src": "images/CHxkrI2DFT8_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CH3gd9CjxWz", "date": "November 21, 2020", "iso": "2020-11-21", "month": "November 2020", "loc": "", "caption": "", "photos": [{"src": "images/CH3gd9CjxWz_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CH3gik0DfRE", "date": "November 21, 2020", "iso": "2020-11-21", "month": "November 2020", "loc": "Madison, Wisconsin", "caption": "Be like a rock. Controversial.", "photos": [{"src": "images/CH3gik0DfRE_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CH3gik0DfRE_1.jpg", "ar": 1.0, "video": false}]}, {"code": "CH3gqoYDs_T", "date": "November 21, 2020", "iso": "2020-11-21", "month": "November 2020", "loc": "University of Wisconsin-Madison", "caption": "", "photos": [{"src": "images/CH3gqoYDs_T_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CH3gqoYDs_T_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CH3gqoYDs_T_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CH3gqoYDs_T_3.jpg", "ar": 1.0, "video": false}]}, {"code": "CH-rUnzjGAr", "date": "November 24, 2020", "iso": "2020-11-24", "month": "November 2020", "loc": "", "caption": "It’s snowingggg!", "photos": [{"src": "images/CH-rUnzjGAr_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CH-rUnzjGAr_1.jpg", "ar": 1.0, "video": true}, {"src": "images/CH-rUnzjGAr_2.jpg", "ar": 1.0, "video": true}, {"src": "images/CH-rUnzjGAr_3.jpg", "ar": 1.0, "video": true}]}, {"code": "CIGrmr8DZyF", "date": "November 27, 2020", "iso": "2020-11-27", "month": "November 2020", "loc": "", "caption": "", "photos": [{"src": "images/CIGrmr8DZyF_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CIGrmr8DZyF_1.jpg", "ar": 1.0, "video": false}]}, {"code": "CJHXt1OD2gk", "date": "December 22, 2020", "iso": "2020-12-22", "month": "December 2020", "loc": "Verona, Wisconsin", "caption": "Winter activities to make the cold more manageable ⛄️", "photos": [{"src": "images/CJHXt1OD2gk_0.jpg", "ar": 1.0, "video": true}, {"src": "images/CJHXt1OD2gk_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CJHXt1OD2gk_2.jpg", "ar": 1.0, "video": false}]}, {"code": "CJHX6xgja_P", "date": "December 22, 2020", "iso": "2020-12-22", "month": "December 2020", "loc": "Verona, Wisconsin", "caption": "Snowy the snowman", "photos": [{"src": "images/CJHX6xgja_P_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CJHX6xgja_P_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CJHX6xgja_P_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CJHX6xgja_P_3.jpg", "ar": 1.0, "video": false}, {"src": "images/CJHX6xgja_P_4.jpg", "ar": 1.0, "video": true}, {"src": "images/CJHX6xgja_P_5.jpg", "ar": 1.0, "video": false}, {"src": "images/CJHX6xgja_P_6.jpg", "ar": 1.0, "video": true}]}, {"code": "CJR7HmQjJhU", "date": "December 26, 2020", "iso": "2020-12-26", "month": "December 2020", "loc": "Madison, Wisconsin", "caption": "Walking on ice", "photos": [{"src": "images/CJR7HmQjJhU_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CJR7HmQjJhU_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CJR7HmQjJhU_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CJR7HmQjJhU_3.jpg", "ar": 1.0, "video": false}]}];
+const META = {"year": 2020, "posts": 79, "photos": 171, "range": "January 5 &ndash; December 26, 2020", "cover": "images/B67cwYVD2-R_0.jpg", "topics": ["The move to Wisconsin &mdash; Verona and Madison", "Covid homeschool and quarantine", "A first American winter", "Road trip: Madison to DC, Pennsylvania and Chicago"], "heroes": ["images/B83WjT6jTTr_0.jpg"], "afterword": [], "routes": []};
+</script>
+<script>
+const P = { w: 11.250000, h: 8.250000, bleed: 0.125000 };
+const M = { top: P.bleed + 0.30, bottom: P.bleed + 0.34,
+            left: P.bleed + 0.30, right: P.bleed + 0.30 };
+const CW = P.w - M.left - M.right;          // live content width
+const CH = P.h - M.top - M.bottom;          // live content height
+const GAP = 0.17;                           // gutter between photos
+const CHUNK = 4;                            // most of one post's photos kept in a single block
+const MAX_PER_ROW = 8;                      // MIN_ROW is the real limit; this is a safety rail
+const MAX_GROUPS_PER_ROW = 5;               // how many separate posts may share a row
+const CAP_GAP = 0.055;                      // photo -> its caption
+const ROW_PAD = 0.24;                       // caption -> next row of photos
+const MONTH_H = 0.30;
+const MIN_ROW = 1.30, MAX_ROW = 4.6;        // bounds on a justified row's photo height
+const ABS_MIN = 0.95;                       // floor for a row that is one unsplittable post
+const MAX_SCALE = 1.045;                    // growth the packer may assume when comparing layouts
+const MAX_FILL_SCALE = 1.32;                // growth allowed to close a page the packer cannot fill
+const MIN_SCALE = 0.86;                     // squeeze allowed to keep a row from spilling to its own page
+const MAX_EXTRA = 0.55;                     // widest a between-row gap may open to absorb slack
+const MAX_ROWS = 6;
+const HERO_EVERY = 9;                       // rhythm: a full-bleed page roughly this often
+
+const book = document.getElementById('book');
+const ruler = document.getElementById('ruler');
+let page = null, y = 0, pageNo = 0, placed = [];
+
+const inch = v => v.toFixed(4) + 'in';
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function addPage(cls) {
+  page = document.createElement('div');
+  page.className = 'page' + (cls ? ' ' + cls : '');
+  book.appendChild(page);
+  pageNo++;
+  y = 0;
+  return page;
+}
+
+function folio() {
+  for (const [cls, txt] of [['n', pageNo], ['t', META.year]]) {
+    const d = document.createElement('div');
+    d.className = 'folio ' + cls;
+    d.textContent = txt;
+    page.appendChild(d);
+  }
+}
+
+/* ---- content model -------------------------------------------------------
+   A group is one post's photos (split into chunks of at most MAX_PER_ROW) kept adjacent so
+   they still read as a single moment. Only the first chunk carries the date and caption. */
+const HEROES = new Set(META.heroes || []);
+
+function groups() {
+  const out = [];
+  let month = null;
+  for (const post of DATA) {
+    const fresh = post.month !== month;
+    month = post.month;
+    let first = true;
+    for (let k = 0; k < post.photos.length; k += CHUNK) {
+      const photos = post.photos.slice(k, k + CHUNK);
+      out.push({
+        post, photos, lead: first,
+        // A picked photo also gets a full-bleed page, but it stays here in the grid so the
+        // post is never broken apart around it.
+        picks: photos.filter(ph => HEROES.has(ph.src)),
+        monthStart: fresh && first ? post.month : null,
+        n: photos.length,
+        sum: photos.reduce((s, p) => s + p.ar, 0),
+      });
+      first = false;
+    }
+  }
+  return out;
+}
+
+const capHTML = (g) => !g.lead ? '' :
+  '<span class="gdate">' + esc(g.post.date) + '</span>' +
+  (g.post.loc ? '<span class="gloc">' + esc(g.post.loc) + '</span>' : '') +
+  (g.post.caption ? '<span class="gtext">' + esc(g.post.caption).replace(/\n/g, '<br>') + '</span>' : '');
+
+/* Caption height depends on the width the group ends up with, and the packer asks for it
+   thousands of times while searching, so measurements are cached per width bucket. */
+const capCache = new Map();
+function capHeight(g, w) {
+  if (!g.lead) return 0;
+  const key = g.post.code + '|' + Math.round(w * 12);
+  let h = capCache.get(key);
+  if (h === undefined) {
+    const d = document.createElement('div');
+    d.className = 'gcap';
+    d.style.width = inch(w);
+    d.innerHTML = capHTML(g);
+    ruler.appendChild(d);
+    h = d.getBoundingClientRect().height / 96;
+    ruler.removeChild(d);
+    capCache.set(key, h);
+  }
+  return h;
+}
+
+/* ---- justified rows ------------------------------------------------------ */
+const heightOf = (n, sum) => (CW - GAP * (n - 1)) / sum;
+
+/* One candidate row: groups i..j-1 justified across the full column width. Returns null when
+   that combination cannot span the column at a sane photo height, so the packer never
+   produces a row sitting centred with dead margins either side. */
+function rowAt(gs, i, j) {
+  let n = 0, sum = 0;
+  for (let k = i; k < j; k++) {
+    if (k > i && gs[k].monthStart) return null;   // a month always opens a row
+    n += gs[k].n; sum += gs[k].sum;
+    if (n > MAX_PER_ROW) return null;
+  }
+  const h = heightOf(n, sum);
+  // MIN_ROW stops a row being padded out with so many photos that none of them read. A single
+  // post that is simply wide is not that case -- its photos cannot be split across rows, so
+  // refusing the row would leave the page with no legal layout at all.
+  if (h > MAX_ROW || h < (j - i > 1 ? MIN_ROW : ABS_MIN)) return null;
+  const cur = gs.slice(i, j);
+  const capH = cur.reduce((m, g) => Math.max(m, capHeight(g, h * g.sum + GAP * (g.n - 1))), 0);
+  return { gs: cur, h, sum, n, capH, full: true, end: j,
+           block: h + (capH ? CAP_GAP + capH : 0) };
+}
+
+/* A group too tall to justify across the column (a lone portrait) has no valid row, so it is
+   placed at MAX_ROW and centred. Only ever reached as a fallback; heroPage catches most. */
+function looseRow(gs, i) {
+  let n = 0, sum = 0, j = i;
+  while (j < gs.length && n + gs[j].n <= MAX_PER_ROW && (j === i || !gs[j].monthStart)) {
+    n += gs[j].n; sum += gs[j].sum; j++;
+    if (heightOf(n, sum) <= MAX_ROW) break;
+  }
+  const h = Math.min(heightOf(n, sum), MAX_ROW);
+  const cur = gs.slice(i, j);
+  const capH = cur.reduce((m, g) => Math.max(m, capHeight(g, h * g.sum + GAP * (g.n - 1))), 0);
+  return { gs: cur, h, sum, n, capH, full: heightOf(n, sum) <= MAX_ROW, end: j,
+           block: h + (capH ? CAP_GAP + capH : 0) };
+}
+
+/* The page is the unit that has to look right, so rather than filling rows greedily until the
+   next one overflows -- which is what left a dead band at the foot of every page -- every way
+   of cutting the upcoming groups into rows is considered and the one putting the most
+   photograph on the page wins.
+
+   What is maximised is photo area, not height used: captions and gutters consume the page
+   without showing a single picture, so a layout that merely reaches the bottom margin can
+   still look empty. Rows that end short are then scaled up to square the page off, so the
+   real objective is min(nat * MAX_SCALE, avail) -- and since avail = budget - block + nat,
+   both terms depend only on (block used, photo height accumulated). Carrying the
+   non-dominated (block, nat) pairs at each cut point therefore finds the true optimum. */
+function packRows(gs, start, budget, minO) {
+  const K = Math.min(gs.length - start, 26);
+  const front = Array.from({ length: K + 1 }, () => []);
+  front[0].push({ block: 0, nat: 0, photos: 0, rows: [] });
+
+  const offer = (j, e) => {
+    const f = front[j];
+    for (const o of f) if (o.block <= e.block + 1e-9 && o.nat >= e.nat - 1e-9) return;
+    for (let k = f.length - 1; k >= 0; k--) {
+      if (e.block <= f[k].block + 1e-9 && e.nat >= f[k].nat - 1e-9) f.splice(k, 1);
+    }
+    f.push(e);
+    if (f.length > 40) { f.sort((a, b) => a.block - b.block); f.length = 40; }
+  };
+
+  for (let o = 0; o < K; o++) {
+    for (const from of front[o]) {
+      if (from.rows.length >= MAX_ROWS) continue;
+      for (let j = o + 1; j <= Math.min(o + MAX_GROUPS_PER_ROW, K); j++) {
+        const r = rowAt(gs, start + o, start + j);
+        if (!r) continue;
+        const rule = from.rows.length && gs[start + o].monthStart ? MONTH_H : 0;
+        const pad = (from.rows.length ? ROW_PAD : 0) + rule;
+        const block = from.block + pad + r.block;
+        const nat = from.nat + r.h;
+        // Photo height can be squeezed a little (the crop is invisible), captions cannot, so
+        // the page fits if the rows still clear the budget at their most compressed.
+        if (block - nat * (1 - MIN_SCALE) > budget + 1e-6) continue;
+        const row = Object.assign({}, r, { pad, rule: rule ? gs[start + o].monthStart : null });
+        offer(j, { block, nat, photos: from.photos + r.n,
+                   rows: from.rows.concat([row]) });
+      }
+    }
+  }
+
+  let pick = null, bestScore = -Infinity;
+  for (let o = Math.max(1, minO || 1); o <= K; o++) {
+    for (const e of front[o]) {
+      const avail = budget - e.block + e.nat;
+      const score = Math.min(e.nat * MAX_SCALE, avail) + 0.004 * e.photos;
+      if (score > bestScore) { bestScore = score; pick = e; }
+    }
+  }
+  if (!pick) return null;
+  const end = start + pick.rows.reduce((s, r) => s + r.gs.length, 0);
+  return { rows: pick.rows, end, height: pick.block };
+}
+
+/* Occasionally a post cannot start any legal row -- a lone portrait is far too tall to justify
+   across the column, and the posts after it cannot be borrowed to shorten it. It gets placed
+   at its natural size and the packer then carries on with the rest of the page, because
+   letting it end the page is exactly what used to leave three inches of white below it. */
+function fillPage(gs, start, budget, minO) {
+  const packed = packRows(gs, start, budget, minO);
+  if (packed) return packed;
+  if (minO) return null;
+  const r = looseRow(gs, start);
+  r.pad = 0; r.rule = null;
+  const rows = [r];
+  let end = r.end, height = r.block;
+  const rest = packRows(gs, r.end, budget - r.block - ROW_PAD);
+  if (rest && rest.rows.length) {
+    rest.rows[0].pad = ROW_PAD;
+    rows.push.apply(rows, rest.rows);
+    end = rest.end;
+    height += ROW_PAD + rest.height;
+  }
+  return { rows, end, height };
+}
+
+/* ---- rendering ----------------------------------------------------------- */
+function groupEl(g, hNat, hBox) {
+  const cell = document.createElement('div');
+  cell.className = 'grp';
+  cell.style.width = inch(hNat * g.sum + GAP * (g.n - 1));
+  const pics = document.createElement('div');
+  pics.className = 'pics';
+  pics.style.height = inch(hBox);
+  for (const ph of g.photos) {
+    const f = document.createElement('figure');
+    f.style.width = inch(hNat * ph.ar);
+    f.innerHTML = '<img src="' + ph.src + '" alt="" loading="eager">' +
+                  (ph.video ? '<span class="vtag"></span>' : '');
+    pics.appendChild(f);
+  }
+  cell.appendChild(pics);
+  const cap = document.createElement('div');
+  cap.className = 'gcap';
+  cap.innerHTML = capHTML(g);
+  cell.appendChild(cap);
+  return cell;
+}
+
+function rowEl(row, scale) {
+  const el = document.createElement('div');
+  el.className = 'row';
+  const w = row.full ? CW : row.h * row.sum + GAP * (row.n - 1);
+  el.style.width = inch(w);
+  el.style.left = inch(M.left + (CW - w) / 2);
+  row.gs.forEach(g => el.appendChild(groupEl(g, row.h, row.h * scale)));
+  return el;
+}
+
+function monthRule(name, top) {
+  const m = document.createElement('div');
+  m.className = 'month';
+  m.style.left = inch(M.left);
+  m.style.width = inch(CW);
+  m.style.top = inch(top);
+  m.textContent = name;
+  return m;
+}
+
+function renderPage(fill, budget, top0) {
+  const rows = fill.rows;
+  const pads = rows.reduce((s, r) => s + r.pad, 0);
+  const caps = rows.reduce((s, r) => s + (r.capH ? CAP_GAP + r.capH : 0), 0);
+  const nat = rows.reduce((s, r) => s + r.h, 0);
+  const avail = budget - pads - caps;
+  // Square the page off: grow the photos a touch (the cover crop hides it), then spend whatever
+  // is still left widening the gaps between rows, and only centre what even that cannot absorb.
+  let scale = nat > 0 && isFinite(nat) ? avail / nat : 1;
+  scale = Math.max(MIN_SCALE, Math.min(scale, MAX_FILL_SCALE));
+  const slack = Math.max(0, avail - nat * scale);
+  const gaps = rows.length - 1;
+  const extra = gaps > 0 ? Math.min(slack / gaps, MAX_EXTRA) : 0;
+  let y = top0 + (slack - extra * gaps) / 2;
+  rows.forEach((r, i) => {
+    y += r.pad + (i ? extra : 0);
+    if (r.rule) { page.appendChild(monthRule(r.rule, y - MONTH_H + 0.06)); }
+    const el = rowEl(r, scale);
+    el.style.top = inch(y);
+    page.appendChild(el);
+    y += r.h * scale + (r.capH ? CAP_GAP + r.capH : 0);
+  });
+}
+
+/* A full-bleed page every so often gives the book a pulse instead of grid after grid. */
+function heroOK(g) {
+  return g && g.lead && g.n === 1 && g.photos[0].ar >= 1.25 && !g.monthStart;
+}
+
+function heroPage(p, photo, why, withCap) {
+  addPage('full');
+  page.dataset.why = why || 'picked';
+  page.innerHTML =
+    '<img class="bleed" src="' + photo.src + '" alt="">' +
+    '<div class="hscrim"></div>' +
+    '<div class="hcap"><span class="gdate">' + esc(p.date) + '</span>' +
+    (p.loc ? '<span class="gloc">' + esc(p.loc) + '</span>' : '') +
+    // The caption prints once. A picked photo still appears in the grid with its post, which
+    // is where the caption belongs, so the feature page carries only date and place.
+    (withCap && p.caption
+      ? '<span class="gtext">' + esc(p.caption).replace(/\n/g, '<br>') + '</span>' : '') +
+    '</div>';
+  folio();
+}
+
+function openerPage() {
+  addPage('full');
+  page.innerHTML =
+    '<img class="bleed" src="' + META.cover + '" alt="">' +
+    '<div class="scrim"></div>' +
+    '<div class="opener"><p class="kick">Winston and Eleanor</p>' +
+    '<p class="yr">' + META.year + '</p>' +
+    '<p class="sub">' + META.posts + ' posts &middot; ' + META.photos + ' photographs</p>' +
+    '<p class="sub">' + META.range + '</p>' +
+    (META.topics && META.topics.length
+      ? '<ul class="topics">' + META.topics.map(t => '<li>' + t + '</li>').join('') + '</ul>'
+      : '') + '</div>';
+}
+
+/* A page of words rather than photographs. The 'full' marker keeps it out of the audit that
+   checks every photograph reached a page. */
+function textPage(html) {
+  addPage('rt full');
+  page.innerHTML = html;
+  folio();
+}
+
+function layout() {
+  openerPage();
+  const gs = groups();
+  const pending = [];                            // picks waiting for a page of their own
+  const routes = (META.routes || []).slice();    // hand-written itineraries, in date order
+  let i = 0, sinceHero = 0, lastFull = true;     // the opener is itself a full-bleed page
+  while (i < gs.length) {
+    // A route introduces the trip it describes, so it prints before that trip's first page.
+    while (routes.length && gs[i].post.iso >= routes[0].iso) {
+      textPage(routes.shift().html);
+      lastFull = true;
+    }
+    // Once there is a hand-picked list, the book stops choosing feature photos on its own.
+    if (!HEROES.size && !lastFull && sinceHero >= HERO_EVERY && heroOK(gs[i])) {
+      heroPage(gs[i].post, gs[i].photos[0], 'rhythm', gs[i].lead);
+      i++; sinceHero = 0; lastFull = true;
+      continue;
+    }
+    addPage();
+    folio();
+    let top = M.top, budget = CH;
+    if (gs[i].monthStart) {
+      page.appendChild(monthRule(gs[i].monthStart, M.top));
+      top += MONTH_H;
+      budget -= MONTH_H;
+    }
+    // A route page has to introduce its trip, so no photo page may straddle the anchor date.
+    // The packer is shown only the groups in front of it; without this a page beginning on
+    // the 19th ran on through the 24th and the route printed in the middle of its own trip.
+    const bnd = routes.length ? gs.findIndex(g => g.post.iso >= routes[0].iso) : -1;
+    const view = bnd > i ? gs.slice(0, bnd) : gs;
+    let fill = fillPage(view, i, budget);
+    // A photo that would be left alone on the next page has nowhere to go: rather than hand it
+    // a full page it never earned, pull it back onto this one, even if this page then carries
+    // less photograph than its best arrangement.
+    if (fill.end < view.length) {
+      const nxt = fillPage(view, fill.end, CH);
+      if (nxt && nxt.rows.length === 1 && !nxt.rows[0].full && nxt.rows[0].n === 1) {
+        const wider = fillPage(view, i, budget, fill.end + 1 - i);
+        if (wider) fill = wider;
+      }
+    }
+    // A single photo that cannot justify across the column would sit marooned in white,
+    // so it takes the page full-bleed instead.
+    if (fill.rows.length === 1 && !fill.rows[0].full && fill.rows[0].n === 1) {
+      const g = fill.rows[0].gs[0];
+      page.remove(); pageNo--;
+      heroPage(g.post, g.photos[0], 'stranded', g.lead);
+      i = fill.end; sinceHero = 0; lastFull = true;
+      continue;
+    }
+    renderPage(fill, budget, top);
+    for (let k = i; k < fill.end; k++) {
+      for (const ph of gs[k].picks) pending.push({ post: gs[k].post, photo: ph });
+    }
+    i = fill.end;
+    sinceHero++;
+    lastFull = false;
+    // At most one feature page per grid page, so two full-bleed pages never sit together -
+    // the year opener followed straight by a feature read as a double.
+    if (pending.length) {
+      const pk = pending.shift();
+      heroPage(pk.post, pk.photo, 'picked', false);
+      lastFull = true;
+    }
+  }
+  while (pending.length) {
+    const pk = pending.shift();
+    heroPage(pk.post, pk.photo, 'picked', false);
+  }
+  // A route anchored past the last post of the volume still has to print somewhere.
+  while (routes.length) textPage(routes.shift().html);
+  for (const html of (META.afterword || [])) {
+    addPage('aw full');
+    page.innerHTML = html;
+    folio();
+  }
+}
+
+/* Caption heights drive the packing and they are wrong until the fonts are in, which made the
+   same book paginate differently from one run to the next. Waiting on document.fonts.ready is
+   not enough: with no text on the page yet, nothing has requested a font, so it resolves
+   immediately and layout still measures fallback metrics. Each face is therefore requested
+   explicitly and awaited before a single row is packed. */
+const FACES = ['300 16px Inter', '400 16px Inter', '300 16px Fraunces', '400 16px Fraunces'];
+
+function run() {
+  layout();
+  document.body.dataset.pages = document.querySelectorAll('.page').length;
+}
+
+if (document.fonts && document.fonts.load) {
+  Promise.all(FACES.map(f => document.fonts.load(f, 'Aa0')))
+    .then(() => document.fonts.ready)
+    .then(run, run);
+} else {
+  run();
+}
+</script>
+</body></html>

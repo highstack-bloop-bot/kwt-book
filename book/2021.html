@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<base href="/">
+<title>Winston and Eleanor &mdash; 2021</title>
+<style>@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-0.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-1.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/fraunces-300-2.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-3.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-4.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/fraunces-400-5.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-6.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-7.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-8.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-9.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-10.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-11.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300;font-display:block;src:url(/fonts/inter-300-12.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-13.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-14.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-15.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-16.woff2) format('woff2');unicode-range:U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-17.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-18.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:block;src:url(/fonts/inter-400-19.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@page { size: 11.250in 8.250in; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; background:#8d8d8d; }
+body { font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-weight:300; color:#241f1a; -webkit-font-smoothing:antialiased; }
+
+.page { position:relative; width:11.250in; height:8.250in; background:#faf8f4;
+  overflow:hidden; page-break-after:always; break-after:page; margin:0 auto 14px; }
+.page:last-child { page-break-after:auto; break-after:auto; }
+
+/* Everything below is positioned from the media-box edge, i.e. bleed included. */
+.row { position:absolute; display:flex; gap:0.170in; align-items:flex-start; }
+.grp { display:flex; flex-direction:column; }
+.pics { display:flex; gap:0.170in; }
+/* Cells are sized by the packer; cover absorbs the sub-percent scaling that squares a
+   justified row off against the page height. */
+.row img { display:block; width:100%; height:100%; object-fit:cover; background:#efe9e0; }
+figure { margin:0; position:relative; height:100%; overflow:hidden; }
+.vtag { position:absolute; right:.07in; bottom:.07in; width:.17in; height:.17in;
+  border-radius:50%; background:rgba(20,16,12,.5); }
+.vtag:after { content:""; position:absolute; left:.066in; top:.048in; border-style:solid;
+  border-width:.037in 0 .037in .058in; border-color:transparent transparent transparent #fff; }
+
+.gcap { margin-top:0.055in; font-size:7.4pt; line-height:1.42; color:#5f574e; }
+.gdate { display:block; font-size:6.2pt; letter-spacing:.15em; text-transform:uppercase;
+  color:#a79c90; }
+.gloc { display:block; font-size:6.2pt; letter-spacing:.15em; text-transform:uppercase;
+  color:#a9714a; }
+.gtext { display:block; margin-top:.035in; }
+
+/* Full-bleed feature page: photo to all four edges, caption in the dark corner. */
+.hscrim { position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(16,12,8,0) 46%,rgba(16,12,8,.26) 66%,rgba(16,12,8,.84)); }
+.hcap { position:absolute; left:0.425in; right:0.425in; bottom:0.545in;
+  color:#fff; max-width:6.6in; text-shadow:0 1px 6px rgba(0,0,0,.45); }
+.hcap .gdate { color:rgba(255,255,255,.8); font-size:6.6pt; }
+.hcap .gloc { color:#f2c8a6; font-size:6.6pt; }
+.hcap .gtext { margin-top:.07in; font-size:10.5pt; line-height:1.45; }
+
+.month { position:absolute; font-family:Fraunces,Georgia,serif; font-size:9pt;
+  letter-spacing:.24em; text-transform:uppercase; color:#a9714a; }
+.month:after { content:""; display:block; height:1px; background:#e6dfd3; margin-top:.07in; }
+
+.folio { position:absolute; bottom:0.285in; font-size:7pt; letter-spacing:.16em;
+  color:#b3aa9f; }
+.folio.n { right:0.425in; }
+.folio.t { left:0.425in; text-transform:uppercase; }
+
+/* Full-bleed pages: the image intentionally runs past the trim into the bleed. */
+.bleed { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.scrim { position:absolute; inset:0;
+  background:radial-gradient(ellipse 76% 64% at 50% 54%,rgba(18,14,10,.78),rgba(18,14,10,0) 76%),
+             linear-gradient(180deg,rgba(20,16,12,.44),rgba(20,16,12,.32) 45%,rgba(20,16,12,.6)); }
+.opener { position:absolute; left:0; right:0; top:2.55in; text-align:center; color:#fff;
+  text-shadow:0 1px 10px rgba(0,0,0,.5); }
+.opener .kick { font-size:8.5pt; letter-spacing:.36em; text-transform:uppercase;
+  margin:0 0 .18in; opacity:.9; }
+.opener .yr { font-family:Fraunces,Georgia,serif; font-weight:300; font-size:74pt;
+  line-height:1; margin:0; letter-spacing:.02em; }
+.opener .sub { font-size:9pt; letter-spacing:.2em; text-transform:uppercase;
+  margin:.26in 0 0; opacity:.92; }
+.opener .topics { list-style:none; padding:0; margin:.34in auto 0; max-width:5.1in;
+  text-align:center; }
+.opener .topics li { font-family:Fraunces,Georgia,serif; font-size:12pt; line-height:1.4;
+  padding:.09in 0; opacity:.95; }
+.opener .topics li + li { border-top:1px solid rgba(255,255,255,.28); }
+
+#ruler { position:absolute; visibility:hidden; left:-99in; top:0; }
+
+@media screen { .page { box-shadow:0 2px 14px rgba(0,0,0,.35); } }
+
+.aw { background:#faf8f4; }
+.aw .kick { position:absolute; left:0.425in; top:0.425in; font-size:7.4pt;
+  letter-spacing:.34em; text-transform:uppercase; color:#a9714a; }
+.aw h1 { position:absolute; left:0.425in; right:0.425in; top:0.720in; margin:0;
+  font-family:Fraunces,Georgia,serif; font-weight:300; font-size:31pt; line-height:1.1;
+  letter-spacing:.005em; color:#241f1a; }
+.aw .deck { position:absolute; left:0.425in; right:0.425in; top:1.460in;
+  font-family:Fraunces,Georgia,serif; font-style:italic; font-size:10.5pt; color:#8a7f73; }
+.aw .rule { position:absolute; left:0.425in; right:0.425in; top:1.780in; height:1px;
+  background:#e0d8ca; }
+.aw .cols { position:absolute; left:0.425in; right:0.425in; top:1.980in;
+  bottom:0.720in; column-count:3; column-gap:.42in; }
+.aw .cols p { margin:0 0 .10in; font-size:9.6pt; line-height:1.68; color:#4a443c;
+  text-align:justify; hyphens:auto; orphans:2; widows:2; }
+.aw .cols p b { font-weight:500; color:#241f1a; }
+.aw .sign { position:absolute; right:0.425in; bottom:0.465in; font-size:6.6pt;
+  letter-spacing:.16em; text-transform:uppercase; color:#b3aa9f; }
+
+.aw .big { position:absolute; left:0.425in; right:0.425in; top:1.980in;
+  display:flex; justify-content:space-between; }
+.aw .big div { text-align:left; }
+.aw .big .v { font-family:Fraunces,Georgia,serif; font-weight:300; font-size:25pt;
+  line-height:1; color:#241f1a; }
+.aw .big .l { display:block; margin-top:.05in; font-size:6.4pt; letter-spacing:.2em;
+  text-transform:uppercase; color:#a79c90; }
+
+.aw .chart { position:absolute; left:0.425in; right:0.425in; top:2.95in; height:1.72in; }
+.aw .bars { position:absolute; inset:0; display:flex; align-items:flex-end; gap:.014in; }
+.aw .bars i { display:block; flex:1 1 0; background:#cbbda8; min-height:.5pt; }
+.aw .bars i.b { background:#a9714a; }
+.aw .peak { position:absolute; right:0; top:-.20in; font-size:6.4pt; letter-spacing:.16em;
+  text-transform:uppercase; color:#b3aa9f; }
+.aw .axis { position:absolute; left:0.425in; right:0.425in; top:4.67in; height:.008in;
+  background:#e0d8ca; }
+.aw .eras { position:absolute; left:0.425in; right:0.425in; top:4.75in; display:flex; }
+.aw .eras span { font-size:6.4pt; letter-spacing:.18em; text-transform:uppercase; overflow:hidden;
+  white-space:nowrap; text-overflow:ellipsis; padding-right:.07in; min-width:0;
+  color:#8a7f73; border-top:2px solid #d8cbb6; padding-top:.055in; }
+.aw .eras span.gap { border-top-color:transparent; }
+.aw .yrs { position:absolute; left:0.425in; right:0.425in; top:5.13in; display:flex;
+  font-size:6.4pt; letter-spacing:.16em; color:#b3aa9f; }
+
+.aw .lists { position:absolute; left:0.425in; right:0.425in; top:5.62in;
+  bottom:0.465in; display:flex; gap:.5in; }
+.aw .lists section { flex:1 1 0; }
+.aw .lists h2 { margin:0 0 .09in; font-size:6.6pt; letter-spacing:.24em; text-transform:uppercase;
+  color:#a9714a; font-weight:400; border-bottom:1px solid #e0d8ca; padding-bottom:.05in; }
+.aw .lists tr td { font-size:8.2pt; line-height:1.75; color:#4a443c; vertical-align:baseline; }
+.aw .lists table { width:100%; border-collapse:collapse; }
+.aw .lists td.n { text-align:right; font-variant-numeric:tabular-nums; color:#241f1a; }
+.aw .lists td.s { font-size:6.8pt; letter-spacing:.1em; text-transform:uppercase; color:#a79c90;
+  padding-left:.09in; white-space:nowrap; }
+
+.rtb { position:absolute; box-sizing:border-box; height:1.280in; background:#faf8f4;
+  border:1px solid #e6ded1; padding:.15in .22in .13in; }
+.rtb .hd { display:flex; align-items:baseline; gap:.20in; }
+.rtb .kick { margin:0; font-size:6.6pt; letter-spacing:.34em; text-transform:uppercase;
+  color:#a9714a; white-space:nowrap; }
+.rtb h2 { margin:0; font-family:Fraunces,Georgia,serif; font-weight:300; font-size:17pt;
+  line-height:1.1; color:#241f1a; white-space:nowrap; }
+.rtb .deck { margin:0; font-family:Fraunces,Georgia,serif; font-style:italic; font-size:9pt;
+  line-height:1.2; color:#8a7f73; }
+.rtb .stops { display:flex; margin:.13in 0 0; padding:0; border-top:1px solid #e0d8ca; }
+.rtb .stops li { list-style:none; flex:1 1 0; min-width:0; position:relative;
+  padding:.155in .09in 0 0; }
+.rtb .stops li::after { content:""; position:absolute; left:0; top:-.037in; width:.065in;
+  height:.065in; border-radius:50%; background:#cbbda8; }
+.rtb .stops li:first-child::after, .rtb .stops li:last-child::after { background:#a9714a; }
+.rtb .stops .d { display:block; font-size:6.2pt; letter-spacing:.16em; text-transform:uppercase;
+  color:#a9714a; margin-bottom:.035in; }
+.rtb .stops .p { display:block; font-family:Fraunces,Georgia,serif; font-size:8.4pt;
+  line-height:1.28; color:#241f1a; }
+
+.ntb { position:absolute; box-sizing:border-box; background:#faf8f4; border:1px solid #e6ded1;
+  padding:.16in .22in .13in; }
+.ntb .nd { margin:0 0 .07in; font-size:6.6pt; letter-spacing:.34em; text-transform:uppercase;
+  color:#a9714a; }
+.ntb .bd { columns:2.30in; column-gap:.28in; }
+.ntb p { margin:0 0 .075in; font-family:Fraunces,Georgia,serif; font-size:8.4pt;
+  line-height:1.42; color:#241f1a; break-inside:avoid; }
+.ntb p:last-child { margin-bottom:0; }
+</style>
+</head><body>
+<div id="book"></div><div id="ruler"></div>
+<script>
+const DATA = [{"code": "CJm899tD9A1", "date": "January 3, 2021", "iso": "2021-01-03", "month": "January 2021", "loc": "Verona, Wisconsin", "caption": "Fluffy slime", "photos": [{"src": "images/CJm899tD9A1_0.jpg", "ar": 1.001, "video": false}, {"src": "images/CJm899tD9A1_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CJm899tD9A1_2.jpg", "ar": 1.001, "video": false}, {"src": "images/CJm899tD9A1_3.jpg", "ar": 1.001, "video": false}, {"src": "images/CJm899tD9A1_4.jpg", "ar": 1.0, "video": false}, {"src": "images/CJm899tD9A1_5.jpg", "ar": 1.0, "video": false}]}, {"code": "CJm9YCgjtxI", "date": "January 3, 2021", "iso": "2021-01-03", "month": "January 2021", "loc": "", "caption": "", "photos": [{"src": "images/CJm9YCgjtxI_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CJm9YCgjtxI_1.jpg", "ar": 1.0, "video": false}]}, {"code": "CJm9b0XjuDZ", "date": "January 3, 2021", "iso": "2021-01-03", "month": "January 2021", "loc": "", "caption": "", "photos": [{"src": "images/CJm9b0XjuDZ_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CJm9b0XjuDZ_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CJm9b0XjuDZ_2.jpg", "ar": 1.0, "video": false}]}, {"code": "CJ4f9YJDhL-", "date": "January 10, 2021", "iso": "2021-01-10", "month": "January 2021", "loc": "", "caption": "", "photos": [{"src": "images/CJ4f9YJDhL-_0.jpg", "ar": 1.3072, "video": false}]}, {"code": "CJ4f-2zjUqJ", "date": "January 10, 2021", "iso": "2021-01-10", "month": "January 2021", "loc": "", "caption": "", "photos": [{"src": "images/CJ4f-2zjUqJ_0.jpg", "ar": 1.1547, "video": false}]}, {"code": "CJ4gDGRjul-", "date": "January 10, 2021", "iso": "2021-01-10", "month": "January 2021", "loc": "", "caption": "", "photos": [{"src": "images/CJ4gDGRjul-_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CJ4gDGRjul-_1.jpg", "ar": 0.8, "video": true}]}, {"code": "CKFfSbgjsCY", "date": "January 15, 2021", "iso": "2021-01-15", "month": "January 2021", "loc": "", "caption": "Friday fondue", "photos": [{"src": "images/CKFfSbgjsCY_0.jpg", "ar": 1.0081, "video": false}]}, {"code": "CKHz2RFDeWa", "date": "January 16, 2021", "iso": "2021-01-16", "month": "January 2021", "loc": "", "caption": "Throwback", "photos": [{"src": "images/CKHz2RFDeWa_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CKIPEPojIRP", "date": "January 16, 2021", "iso": "2021-01-16", "month": "January 2021", "loc": "Verona, Wisconsin", "caption": "Chocolate fondue with friends.", "photos": [{"src": "images/CKIPEPojIRP_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CKIPEPojIRP_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CKIPEPojIRP_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CKIPEPojIRP_3.jpg", "ar": 1.0, "video": false}]}, {"code": "CLQOWrwDl3z", "date": "February 13, 2021", "iso": "2021-02-13", "month": "February 2021", "loc": "Verona, Wisconsin", "caption": "We’ve gotten used to this weather. 1 degree walk today.", "photos": [{"src": "images/CLQOWrwDl3z_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CLcOkdmDQcq", "date": "February 18, 2021", "iso": "2021-02-18", "month": "February 2021", "loc": "", "caption": "Winston is surprisingly good at hitting baseballs!", "photos": [{"src": "images/CLcOkdmDQcq_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CLcOkdmDQcq_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CLcOkdmDQcq_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CLkbaIdj5oQ", "date": "February 21, 2021", "iso": "2021-02-21", "month": "February 2021", "loc": "Vitense Golfland", "caption": "First time at the range :)", "photos": [{"src": "images/CLkbaIdj5oQ_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CLkbaIdj5oQ_1.jpg", "ar": 0.8, "video": false}]}, {"code": "CLkblEpD4IV", "date": "February 21, 2021", "iso": "2021-02-21", "month": "February 2021", "loc": "Madison, Wisconsin", "caption": "Madison kids 🤗", "photos": [{"src": "images/CLkblEpD4IV_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CLkblEpD4IV_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CLkblEpD4IV_2.jpg", "ar": 1.0, "video": false}]}, {"code": "CMLrTzVjqaN", "date": "March 8, 2021", "iso": "2021-03-08", "month": "March 2021", "loc": "Verona, Wisconsin", "caption": "First bike ride of the season ❤️", "photos": [{"src": "images/CMLrTzVjqaN_0.jpg", "ar": 1.006, "video": false}]}, {"code": "CMQ3WeeDjAf", "date": "March 10, 2021", "iso": "2021-03-10", "month": "March 2021", "loc": "Vitense Golfland", "caption": "Lunch at the driving range 🎉", "photos": [{"src": "images/CMQ3WeeDjAf_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CMa4HG2DiXS", "date": "March 14, 2021", "iso": "2021-03-14", "month": "March 2021", "loc": "Madison, Wisconsin", "caption": "Hard days 😉", "photos": [{"src": "images/CMa4HG2DiXS_0.jpg", "ar": 0.866, "video": false}]}, {"code": "CMa4Oq0D5Xy", "date": "March 14, 2021", "iso": "2021-03-14", "month": "March 2021", "loc": "Chicago, Illinois", "caption": "", "photos": [{"src": "images/CMa4Oq0D5Xy_0.jpg", "ar": 1.0121, "video": false}]}, {"code": "CMa4TzAD7q6", "date": "March 14, 2021", "iso": "2021-03-14", "month": "March 2021", "loc": "The Purple Pig", "caption": "", "photos": [{"src": "images/CMa4TzAD7q6_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CMa4bFaDprK", "date": "March 14, 2021", "iso": "2021-03-14", "month": "March 2021", "loc": "", "caption": "", "photos": [{"src": "images/CMa4bFaDprK_0.jpg", "ar": 1.0799, "video": false}, {"src": "images/CMa4bFaDprK_3.jpg", "ar": 1.0787, "video": false}]}, {"code": "CMa4iJhjU_A", "date": "March 14, 2021", "iso": "2021-03-14", "month": "March 2021", "loc": "Millennium Park", "caption": "", "photos": [{"src": "images/CMa4iJhjU_A_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CMa4iJhjU_A_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CMa4iJhjU_A_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CMu5vBnDhp5", "date": "March 22, 2021", "iso": "2021-03-22", "month": "March 2021", "loc": "Madison, Wisconsin", "caption": "Winston fully embraces Wisconsin culture", "photos": [{"src": "images/CMu5vBnDhp5_0.jpg", "ar": 0.932, "video": false}, {"src": "images/CMu5vBnDhp5_1.jpg", "ar": 0.932, "video": false}]}, {"code": "CNASZMFDBUR", "date": "March 29, 2021", "iso": "2021-03-29", "month": "March 2021", "loc": "Madison, Wisconsin", "caption": "Guess who got season passes to the trampoline park :)", "photos": [{"src": "images/CNASZMFDBUR_0.jpg", "ar": 1.1682, "video": false}, {"src": "images/CNASZMFDBUR_1.jpg", "ar": 1.1682, "video": false}, {"src": "images/CNASZMFDBUR_2.jpg", "ar": 1.1688, "video": true}, {"src": "images/CNASZMFDBUR_3.jpg", "ar": 1.1682, "video": false}, {"src": "images/CNASZMFDBUR_4.jpg", "ar": 1.1688, "video": true}]}, {"code": "CNASoDRDYiV", "date": "March 29, 2021", "iso": "2021-03-29", "month": "March 2021", "loc": "", "caption": "Spring break activities", "photos": [{"src": "images/CNASoDRDYiV_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CNASoDRDYiV_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CNASoDRDYiV_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CNASoDRDYiV_3.jpg", "ar": 1.0, "video": false}, {"src": "images/CNASoDRDYiV_4.jpg", "ar": 1.0, "video": false}, {"src": "images/CNASoDRDYiV_5.jpg", "ar": 1.0, "video": false}]}, {"code": "CNAS1CjjCdb", "date": "March 29, 2021", "iso": "2021-03-29", "month": "March 2021", "loc": "Ice Age Trail", "caption": "🚴", "photos": [{"src": "images/CNAS1CjjCdb_0.jpg", "ar": 0.8, "video": true}, {"src": "images/CNAS1CjjCdb_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CNAS1CjjCdb_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CNRFNTxjFHD", "date": "April 4, 2021", "iso": "2021-04-04", "month": "April 2021", "loc": "Madison, Wisconsin", "caption": "", "photos": [{"src": "images/CNRFNTxjFHD_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CNRFNTxjFHD_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CNRFNTxjFHD_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CNi-LH2Df1o", "date": "April 11, 2021", "iso": "2021-04-11", "month": "April 2021", "loc": "Verona, Wisconsin", "caption": "Started the day harvesting worms, making a worm compost bin, and then took a trip to get board games and crafts to end the day 🤗 a game of Sorry got intense lol", "photos": [{"src": "images/CNi-LH2Df1o_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CNi-LH2Df1o_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CNi-LH2Df1o_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CNi-LH2Df1o_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CNi-LH2Df1o_4.jpg", "ar": 0.8, "video": false}]}, {"code": "CNyhFQSjs-p", "date": "April 17, 2021", "iso": "2021-04-17", "month": "April 2021", "loc": "Verona, Wisconsin", "caption": "What people think when we say we moved to Wisconsin", "photos": [{"src": "images/CNyhFQSjs-p_0.jpg", "ar": 1.2626, "video": false}, {"src": "images/CNyhFQSjs-p_1.jpg", "ar": 1.2594, "video": false}, {"src": "images/CNyhFQSjs-p_2.jpg", "ar": 1.2594, "video": false}]}, {"code": "CNyhSxQjeLO", "date": "April 17, 2021", "iso": "2021-04-17", "month": "April 2021", "loc": "Verona, Wisconsin", "caption": "Our local public library is finally open again. Went on a long bike ride today then stopped at the library before reading in our reading nook 😊", "photos": [{"src": "images/CNyhSxQjeLO_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CNyhSxQjeLO_1.jpg", "ar": 0.8, "video": false}]}, {"code": "CN0kIHwjvTf", "date": "April 18, 2021", "iso": "2021-04-18", "month": "April 2021", "loc": "Verona, Wisconsin", "caption": "We love warm weather here :) board games and popsicles", "photos": [{"src": "images/CN0kIHwjvTf_0.jpg", "ar": 1.224, "video": false}]}, {"code": "CN0ulxojtEq", "date": "April 18, 2021", "iso": "2021-04-18", "month": "April 2021", "loc": "", "caption": "Future nerds 🥸", "photos": [{"src": "images/CN0ulxojtEq_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CN0ulxojtEq_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CN0ulxojtEq_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CN0ulxojtEq_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CN2bvrqjjVb", "date": "April 19, 2021", "iso": "2021-04-19", "month": "April 2021", "loc": "Verona, Wisconsin", "caption": "Evening barbecues, bonfires, and s’mores 😊", "photos": [{"src": "images/CN2bvrqjjVb_0.jpg", "ar": 1.2658, "video": false}, {"src": "images/CN2bvrqjjVb_1.jpg", "ar": 1.2626, "video": false}, {"src": "images/CN2bvrqjjVb_2.jpg", "ar": 1.2626, "video": false}]}, {"code": "CN32_7mDHfZ", "date": "April 19, 2021", "iso": "2021-04-19", "month": "April 2021", "loc": "Verona, Wisconsin", "caption": "They’re getting so big 🥲 first day of soccer this season 🥅", "photos": [{"src": "images/CN32_7mDHfZ_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CN32_7mDHfZ_1.jpg", "ar": 0.8, "video": false}]}, {"code": "CN33FLOjx38", "date": "April 19, 2021", "iso": "2021-04-19", "month": "April 2021", "loc": "Verona, Wisconsin", "caption": "Racing the car to soccer practice 🤗 the extent of mom’s laziness knows no bounds. We literally live ON this park where soccer practice is and I chose to drive. No regrets 😋", "photos": [{"src": "images/CN33FLOjx38_0.jpg", "ar": 1.0, "video": true}]}, {"code": "CN-Q8YdjGQS", "date": "April 22, 2021", "iso": "2021-04-22", "month": "April 2021", "loc": "", "caption": "Little gymnast :) 🤸", "photos": [{"src": "images/CN-Q8YdjGQS_0.jpg", "ar": 0.8, "video": true}]}, {"code": "COEoV9MD8ko", "date": "April 24, 2021", "iso": "2021-04-24", "month": "April 2021", "loc": "", "caption": "Winston built a radio :)", "photos": [{"src": "images/COEoV9MD8ko_0.jpg", "ar": 1.1976, "video": false}, {"src": "images/COEoV9MD8ko_1.jpg", "ar": 1.1976, "video": false}]}, {"code": "COEoeyZj77M", "date": "April 24, 2021", "iso": "2021-04-24", "month": "April 2021", "loc": "", "caption": "I love 🍣", "photos": [{"src": "images/COEoeyZj77M_0.jpg", "ar": 0.8, "video": false}, {"src": "images/COEoeyZj77M_1.jpg", "ar": 0.8, "video": false}, {"src": "images/COEoeyZj77M_2.jpg", "ar": 0.8, "video": false}, {"src": "images/COEoeyZj77M_3.jpg", "ar": 0.8, "video": false}, {"src": "images/COEoeyZj77M_4.jpg", "ar": 0.8, "video": false}]}, {"code": "COEoofgjrwJ", "date": "April 24, 2021", "iso": "2021-04-24", "month": "April 2021", "loc": "Madison, Wisconsin", "caption": "Warm weather means long bike rides and pizza buffets", "photos": [{"src": "images/COEoofgjrwJ_0.jpg", "ar": 1.0, "video": false}, {"src": "images/COEoofgjrwJ_1.jpg", "ar": 1.0, "video": false}, {"src": "images/COEoofgjrwJ_2.jpg", "ar": 1.0, "video": false}]}, {"code": "CORXcJsDAOt", "date": "April 29, 2021", "iso": "2021-04-29", "month": "April 2021", "loc": "", "caption": "Time, it never says goodbye. You just look up and it’s gone...", "photos": [{"src": "images/CORXcJsDAOt_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CORXcJsDAOt_1.jpg", "ar": 1.0, "video": true}, {"src": "images/CORXcJsDAOt_2.jpg", "ar": 1.0, "video": true}]}, {"code": "CORXtizjdEY", "date": "April 29, 2021", "iso": "2021-04-29", "month": "April 2021", "loc": "", "caption": "", "photos": [{"src": "images/CORXtizjdEY_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "CORXxRSDKjO", "date": "April 29, 2021", "iso": "2021-04-29", "month": "April 2021", "loc": "", "caption": "", "photos": [{"src": "images/CORXxRSDKjO_0.jpg", "ar": 1.0, "video": false}]}, {"code": "COWfr_8jMX2", "date": "May 1, 2021", "iso": "2021-05-01", "month": "May 2021", "loc": "", "caption": "Messy but fun evening 🤗🤗 bounce house, art, and foam slime with friends. “Thai food” for dinner", "photos": [{"src": "images/COWfr_8jMX2_0.jpg", "ar": 1.0101, "video": false}]}, {"code": "COYM2HXDJtR", "date": "May 2, 2021", "iso": "2021-05-02", "month": "May 2021", "loc": "", "caption": "Mom told us to do this and then we got in trouble 😂", "photos": [{"src": "images/COYM2HXDJtR_0.jpg", "ar": 0.8, "video": false}]}, {"code": "COYM2vyD2Bv", "date": "May 2, 2021", "iso": "2021-05-02", "month": "May 2021", "loc": "", "caption": "Enjoying perfect weather by the Wisconsin River", "photos": [{"src": "images/COYM2vyD2Bv_0.jpg", "ar": 0.8, "video": false}, {"src": "images/COYM2vyD2Bv_1.jpg", "ar": 0.8, "video": true}, {"src": "images/COYM2vyD2Bv_2.jpg", "ar": 0.8, "video": true}, {"src": "images/COYM2vyD2Bv_3.jpg", "ar": 0.8, "video": true}]}, {"code": "COYr6XOjY53", "date": "May 2, 2021", "iso": "2021-05-02", "month": "May 2021", "loc": "Sauk City, Wisconsin", "caption": "Exploring is our element :)", "photos": [{"src": "images/COYr6XOjY53_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/COYr6XOjY53_1.jpg", "ar": 1.328, "video": false}, {"src": "images/COYr6XOjY53_2.jpg", "ar": 1.328, "video": false}, {"src": "images/COYr6XOjY53_3.jpg", "ar": 1.328, "video": false}, {"src": "images/COYr6XOjY53_4.jpg", "ar": 1.3316, "video": false}, {"src": "images/COYr6XOjY53_5.jpg", "ar": 1.3316, "video": false}, {"src": "images/COYr6XOjY53_6.jpg", "ar": 1.328, "video": false}, {"src": "images/COYr6XOjY53_7.jpg", "ar": 1.328, "video": false}, {"src": "images/COYr6XOjY53_8.jpg", "ar": 1.328, "video": false}, {"src": "images/COYr6XOjY53_9.jpg", "ar": 1.328, "video": false}]}, {"code": "COYsmdkjRvW", "date": "May 2, 2021", "iso": "2021-05-02", "month": "May 2021", "loc": "Verona, Wisconsin", "caption": "Library and chill", "photos": [{"src": "images/COYsmdkjRvW_0.jpg", "ar": 1.2804, "video": false}]}, {"code": "COsZ0nejKEk", "date": "May 10, 2021", "iso": "2021-05-10", "month": "May 2021", "loc": "Verona, Wisconsin", "caption": "Happy 7th Birthday party for this beautiful soul 🥳 she said it was her best party yet ❤️", "photos": [{"src": "images/COsZ0nejKEk_0.jpg", "ar": 1.328, "video": false}, {"src": "images/COsZ0nejKEk_1.jpg", "ar": 1.3316, "video": false}, {"src": "images/COsZ0nejKEk_2.jpg", "ar": 1.3316, "video": false}, {"src": "images/COsZ0nejKEk_3.jpg", "ar": 1.3316, "video": false}, {"src": "images/COsZ0nejKEk_4.jpg", "ar": 1.328, "video": false}, {"src": "images/COsZ0nejKEk_5.jpg", "ar": 1.3333, "video": false}, {"src": "images/COsZ0nejKEk_6.jpg", "ar": 1.328, "video": false}, {"src": "images/COsZ0nejKEk_7.jpg", "ar": 1.3316, "video": false}, {"src": "images/COsZ0nejKEk_8.jpg", "ar": 1.3333, "video": false}, {"src": "images/COsZ0nejKEk_9.jpg", "ar": 1.328, "video": false}]}, {"code": "CO84Ce-jQzT", "date": "May 16, 2021", "iso": "2021-05-16", "month": "May 2021", "loc": "", "caption": "Bbq and gardening season", "photos": [{"src": "images/CO84Ce-jQzT_0.jpg", "ar": 1.0225, "video": false}, {"src": "images/CO84Ce-jQzT_1.jpg", "ar": 1.0215, "video": false}]}, {"code": "CO84IW0jkGp", "date": "May 16, 2021", "iso": "2021-05-16", "month": "May 2021", "loc": "", "caption": "Watch us grow", "photos": [{"src": "images/CO84IW0jkGp_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CO84IW0jkGp_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CO84IW0jkGp_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CO84IW0jkGp_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CO84RLAjwWV", "date": "May 16, 2021", "iso": "2021-05-16", "month": "May 2021", "loc": "", "caption": "Fun day with friends", "photos": [{"src": "images/CO84RLAjwWV_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CO84RLAjwWV_1.jpg", "ar": 1.328, "video": false}, {"src": "images/CO84RLAjwWV_2.jpg", "ar": 1.3316, "video": false}, {"src": "images/CO84RLAjwWV_3.jpg", "ar": 1.3316, "video": false}]}, {"code": "CO84hMPj0RK", "date": "May 16, 2021", "iso": "2021-05-16", "month": "May 2021", "loc": "", "caption": "First time paddleboarding!", "photos": [{"src": "images/CO84hMPj0RK_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CO84hMPj0RK_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CO84hMPj0RK_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CO84hMPj0RK_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CO84hMPj0RK_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CO84hMPj0RK_5.jpg", "ar": 0.8, "video": false}]}, {"code": "CO_38nQjFoO", "date": "May 17, 2021", "iso": "2021-05-17", "month": "May 2021", "loc": "Madison, Wisconsin", "caption": "Paddleboarding on a windy Monday 🤗", "photos": [{"src": "images/CO_38nQjFoO_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CO_38nQjFoO_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CO_38nQjFoO_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CPGifmbjNks", "date": "May 20, 2021", "iso": "2021-05-20", "month": "May 2021", "loc": "", "caption": "Mushroom hunting :)", "photos": [{"src": "images/CPGifmbjNks_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CPMRQxijPSg", "date": "May 22, 2021", "iso": "2021-05-22", "month": "May 2021", "loc": "Verona, Wisconsin", "caption": "Friends 🥰 amazingly enough, everyone speaks mandarin haha.", "photos": [{"src": "images/CPMRQxijPSg_0.jpg", "ar": 1.1947, "video": false}]}, {"code": "CPMRWJWDsqS", "date": "May 22, 2021", "iso": "2021-05-22", "month": "May 2021", "loc": "", "caption": "🍉", "photos": [{"src": "images/CPMRWJWDsqS_0.jpg", "ar": 1.2853, "video": false}]}, {"code": "CPMRbGvDMP7", "date": "May 22, 2021", "iso": "2021-05-22", "month": "May 2021", "loc": "", "caption": "This lake is minutes from our house!", "photos": [{"src": "images/CPMRbGvDMP7_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CPMRdJCDCjr", "date": "May 22, 2021", "iso": "2021-05-22", "month": "May 2021", "loc": "", "caption": "", "photos": [{"src": "images/CPMRdJCDCjr_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CPea6L4DDOt", "date": "May 29, 2021", "iso": "2021-05-29", "month": "May 2021", "loc": "", "caption": "🥰", "photos": [{"src": "images/CPea6L4DDOt_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CPea6L4DDOt_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CPea6L4DDOt_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CPgUOqQDAl4", "date": "May 30, 2021", "iso": "2021-05-30", "month": "May 2021", "loc": "Trader Joe's- Madison,WI", "caption": "Winston and Ella started their first “business” selling plants. They’ve made just under $50 so far and got experience talking to their customers. Now, they each got to spend $5 of their money to buy anything they want at Trader Joe’s incorporating math skills and learning to budget 😋", "photos": [{"src": "images/CPgUOqQDAl4_0.jpg", "ar": 1.0989, "video": false}]}, {"code": "CPgVk7wD1qq", "date": "May 30, 2021", "iso": "2021-05-30", "month": "May 2021", "loc": "Verona, Wisconsin", "caption": "Kids new passports came in, the result of a hard earned battle. You need both parents’ permission to renew minor passports. Their father refused to renew it even during the start of the pandemic leaving us essentially stuck in Thailand. I had to petition with the US Embassy and work with their lawyers in DC to have emergency 1 year passports issued to allow us to move back to the US. That year was about to expire and we were automatically granted permission to turn them into new full 5 year passports good until 2026 💪🏻\nNow in Wisconsin there is binding case law stating that unreasonable refusal to renew minor passports result in legal custody given to the asking party. This will hold them over til they turn 18 and no longer need permission for passports. \nThe law is power.", "photos": [{"src": "images/CPgVk7wD1qq_0.jpg", "ar": 0.888, "video": false}]}, {"code": "CPj2TXzjVTy", "date": "May 31, 2021", "iso": "2021-05-31", "month": "May 2021", "loc": "Madison, Wisconsin", "caption": "4 hour, 20 mile bike ride with mom today! Their longest ride ever. 😍", "photos": [{"src": "images/CPj2TXzjVTy_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CPj2TXzjVTy_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CPj2TXzjVTy_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CQHZAYDjyel", "date": "June 14, 2021", "iso": "2021-06-14", "month": "June 2021", "loc": "", "caption": "", "photos": [{"src": "images/CQHZAYDjyel_0.jpg", "ar": 0.909, "video": false}]}, {"code": "CQHZCpiDAcs", "date": "June 14, 2021", "iso": "2021-06-14", "month": "June 2021", "loc": "", "caption": "Dragon tamers", "photos": [{"src": "images/CQHZCpiDAcs_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CQUpt_oDkcq", "date": "June 19, 2021", "iso": "2021-06-19", "month": "June 2021", "loc": "Memorial Union Terrace", "caption": "Perfect Madisonian morning: breakfast at the terrace, toe dip in the lake, Babcock ice cream, walk around the newly reopened farmers market, play at home, yummy dinner and then a new movie before bedtime :)", "photos": [{"src": "images/CQUpt_oDkcq_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CQUpt_oDkcq_1.jpg", "ar": 1.3333, "video": true}]}, {"code": "CRKK9cqDi9T", "date": "July 10, 2021", "iso": "2021-07-10", "month": "July 2021", "loc": "", "caption": "❤️❤️", "photos": [{"src": "images/CRKK9cqDi9T_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CRKK9cqDi9T_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CRKK9cqDi9T_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CRKK9cqDi9T_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CRKK9cqDi9T_4.jpg", "ar": 0.8, "video": false}]}, {"code": "CRh2pLGDkjj", "date": "July 19, 2021", "iso": "2021-07-19", "month": "July 2021", "loc": "Madison, Wisconsin", "caption": "Relaxing afternoon down the Yahara River after their first weekend in CA", "photos": [{"src": "images/CRh2pLGDkjj_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CRh2pLGDkjj_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CRh2pLGDkjj_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CRh2pLGDkjj_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CRh20PaDLaI", "date": "July 19, 2021", "iso": "2021-07-19", "month": "July 2021", "loc": "Memorial Union Terrace", "caption": "Forgot to post these :) should we get a pet snake? 😋", "photos": [{"src": "images/CRh20PaDLaI_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CRh20PaDLaI_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CRh20PaDLaI_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CRh20PaDLaI_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CRh20PaDLaI_4.jpg", "ar": 0.8, "video": true}]}, {"code": "CRnUYU-j2g4", "date": "July 21, 2021", "iso": "2021-07-21", "month": "July 2021", "loc": "", "caption": "BFFs. Happy that no matter what, they always have each other. Also, we’re so glad Costco samples are back", "photos": [{"src": "images/CRnUYU-j2g4_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CRnUYU-j2g4_1.jpg", "ar": 1.0, "video": false}]}, {"code": "CRrvJ4XjDjy", "date": "July 23, 2021", "iso": "2021-07-23", "month": "July 2021", "loc": "", "caption": "The Capital 🏛", "photos": [{"src": "images/CRrvJ4XjDjy_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CRrwnN7De_k", "date": "July 23, 2021", "iso": "2021-07-23", "month": "July 2021", "loc": "", "caption": "👫🏻", "photos": [{"src": "images/CRrwnN7De_k_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CRrwnN7De_k_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CRrwnN7De_k_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CRrwnN7De_k_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CRxgybnDAUp", "date": "July 25, 2021", "iso": "2021-07-25", "month": "July 2021", "loc": "", "caption": "", "photos": [{"src": "images/CRxgybnDAUp_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CSPAgJkL6Xc", "date": "August 6, 2021", "iso": "2021-08-06", "month": "August 2021", "loc": "", "caption": "Mornings ☀️", "photos": [{"src": "images/CSPAgJkL6Xc_0.jpg", "ar": 0.886, "video": false}, {"src": "images/CSPAgJkL6Xc_1.jpg", "ar": 0.886, "video": false}, {"src": "images/CSPAgJkL6Xc_2.jpg", "ar": 0.886, "video": false}]}, {"code": "CSjsoKWLb7t", "date": "August 14, 2021", "iso": "2021-08-14", "month": "August 2021", "loc": "", "caption": "", "photos": [{"src": "images/CSjsoKWLb7t_0.jpg", "ar": 1.005, "video": false}]}, {"code": "CSjs6mBL_Sa", "date": "August 14, 2021", "iso": "2021-08-14", "month": "August 2021", "loc": "", "caption": "When mom lets you draw on her office walls before the plaster goes up 😊", "photos": [{"src": "images/CSjs6mBL_Sa_0.jpg", "ar": 1.1287, "video": false}, {"src": "images/CSjs6mBL_Sa_1.jpg", "ar": 1.1274, "video": false}, {"src": "images/CSjs6mBL_Sa_2.jpg", "ar": 1.1274, "video": false}, {"src": "images/CSjs6mBL_Sa_3.jpg", "ar": 1.1274, "video": false}]}, {"code": "CSxdtsHFgfR", "date": "August 19, 2021", "iso": "2021-08-19", "month": "August 2021", "loc": "Niagara Falls State Park, USA", "caption": "Impromptu trip to Niagara Falls with mom’s childhood friend and her sons", "photos": [{"src": "images/CSxdtsHFgfR_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxdtsHFgfR_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxdtsHFgfR_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxdtsHFgfR_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxdtsHFgfR_4.jpg", "ar": 0.8, "video": false}]}, {"code": "CSxd60VF_Tg", "date": "August 19, 2021", "iso": "2021-08-19", "month": "August 2021", "loc": "", "caption": "Mom likes car camping 🏕", "photos": [{"src": "images/CSxd60VF_Tg_0.jpg", "ar": 1.056, "video": false}, {"src": "images/CSxd60VF_Tg_1.jpg", "ar": 1.056, "video": false}, {"src": "images/CSxd60VF_Tg_2.jpg", "ar": 1.0549, "video": false}, {"src": "images/CSxd60VF_Tg_3.jpg", "ar": 1.0537, "video": false}, {"src": "images/CSxd60VF_Tg_4.jpg", "ar": 1.0537, "video": false}, {"src": "images/CSxd60VF_Tg_5.jpg", "ar": 1.0537, "video": false}, {"src": "images/CSxd60VF_Tg_6.jpg", "ar": 1.0537, "video": false}]}, {"code": "CSxeJW8l29F", "date": "August 19, 2021", "iso": "2021-08-19", "month": "August 2021", "loc": "Albany, New York", "caption": "Stopped in Albany to check out the NY state museum, the Schuyler Mansion, stretch in a park, and eat something in downtown 😊", "photos": [{"src": "images/CSxeJW8l29F_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxeJW8l29F_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxeJW8l29F_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxeJW8l29F_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxeJW8l29F_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxeJW8l29F_5.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxeJW8l29F_6.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxeJW8l29F_7.jpg", "ar": 0.8, "video": false}]}, {"code": "CSxecvbFkzr", "date": "August 19, 2021", "iso": "2021-08-19", "month": "August 2021", "loc": "Acadia National Park", "caption": "Acadia National Park, Maine", "photos": [{"src": "images/CSxecvbFkzr_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CSxecvbFkzr_1.jpg", "ar": 1.3316, "video": false}, {"src": "images/CSxecvbFkzr_2.jpg", "ar": 1.328, "video": false}, {"src": "images/CSxecvbFkzr_3.jpg", "ar": 1.3316, "video": false}, {"src": "images/CSxecvbFkzr_4.jpg", "ar": 1.3316, "video": false}, {"src": "images/CSxecvbFkzr_5.jpg", "ar": 1.3316, "video": false}, {"src": "images/CSxecvbFkzr_6.jpg", "ar": 1.3316, "video": false}]}, {"code": "CSxejpGFg59", "date": "August 19, 2021", "iso": "2021-08-19", "month": "August 2021", "loc": "", "caption": "Maine", "photos": [{"src": "images/CSxejpGFg59_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxejpGFg59_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxejpGFg59_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxejpGFg59_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CSxejpGFg59_4.jpg", "ar": 0.8, "video": false}]}, {"code": "CS0gWidjrSh", "date": "August 20, 2021", "iso": "2021-08-20", "month": "August 2021", "loc": "Cadillac Mountain Summit", "caption": "", "photos": [{"src": "images/CS0gWidjrSh_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gWidjrSh_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gWidjrSh_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gWidjrSh_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gWidjrSh_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gWidjrSh_5.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gWidjrSh_6.jpg", "ar": 0.8, "video": false}]}, {"code": "CS0gghoD4ze", "date": "August 20, 2021", "iso": "2021-08-20", "month": "August 2021", "loc": "Bar Harbor, Maine", "caption": "", "photos": [{"src": "images/CS0gghoD4ze_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gghoD4ze_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gghoD4ze_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gghoD4ze_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gghoD4ze_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gghoD4ze_5.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gghoD4ze_6.jpg", "ar": 0.8, "video": false}, {"src": "images/CS0gghoD4ze_7.jpg", "ar": 0.8, "video": false}]}, {"code": "CS0gql5DeGI", "date": "August 20, 2021", "iso": "2021-08-20", "month": "August 2021", "loc": "", "caption": "", "photos": [{"src": "images/CS0gql5DeGI_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CS0gql5DeGI_1.jpg", "ar": 1.3316, "video": false}, {"src": "images/CS0gql5DeGI_2.jpg", "ar": 1.3316, "video": false}, {"src": "images/CS0gql5DeGI_3.jpg", "ar": 1.3316, "video": false}]}, {"code": "CS3DKdUDWPE", "date": "August 21, 2021", "iso": "2021-08-21", "month": "August 2021", "loc": "", "caption": "Boston", "photos": [{"src": "images/CS3DKdUDWPE_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CS3DKdUDWPE_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CS3DKdUDWPE_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CS3DKdUDWPE_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CS8Mf1PDel-", "date": "August 23, 2021", "iso": "2021-08-23", "month": "August 2021", "loc": "", "caption": "Nantucket Island", "photos": [{"src": "images/CS8Mf1PDel-_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CS8Mf1PDel-_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CS8Mf1PDel-_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CTAO8lpHrGi", "date": "August 25, 2021", "iso": "2021-08-25", "month": "August 2021", "loc": "", "caption": "Paddleboarding at Sugar River Massachusetts", "photos": [{"src": "images/CTAO8lpHrGi_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CTAO8lpHrGi_1.jpg", "ar": 1.328, "video": false}, {"src": "images/CTAO8lpHrGi_2.jpg", "ar": 1.3316, "video": false}]}, {"code": "CTAPFI0HBjS", "date": "August 25, 2021", "iso": "2021-08-25", "month": "August 2021", "loc": "Brewster, Massachusetts", "caption": "A week in Cape Cod ❤️", "photos": [{"src": "images/CTAPFI0HBjS_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CTAPFI0HBjS_1.jpg", "ar": 1.3316, "video": false}, {"src": "images/CTAPFI0HBjS_2.jpg", "ar": 1.328, "video": false}]}, {"code": "CTEB3DbjUfe", "date": "August 26, 2021", "iso": "2021-08-26", "month": "August 2021", "loc": "Manhattan, New York", "caption": "From the beaches of Cape Cod to the streets of New York City 💕", "photos": [{"src": "images/CTEB3DbjUfe_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CTEB3DbjUfe_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CTEB3DbjUfe_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CTEB3DbjUfe_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CTEB3DbjUfe_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CTEB3DbjUfe_5.jpg", "ar": 0.8, "video": false}, {"src": "images/CTEB3DbjUfe_6.jpg", "ar": 0.8, "video": false}, {"src": "images/CTEB3DbjUfe_7.jpg", "ar": 0.8, "video": false}, {"src": "images/CTEB3DbjUfe_8.jpg", "ar": 0.8, "video": false}]}, {"code": "CTNWH5KFA1_", "date": "August 30, 2021", "iso": "2021-08-30", "month": "August 2021", "loc": "Chicago, Illinois", "caption": "For the last leg of our trip we spent a day with great-aunt in Pennsylvania, a night in Ohio, and then finally had yummy Korean bbq, shaved ice, and boba in Chicago before we went home in time for school to start.", "photos": [{"src": "images/CTNWH5KFA1__0.jpg", "ar": 1.1601, "video": false}, {"src": "images/CTNWH5KFA1__1.jpg", "ar": 1.1547, "video": false}, {"src": "images/CTNWH5KFA1__3.jpg", "ar": 1.1547, "video": false}]}, {"code": "CTSlgSZF3jb", "date": "September 1, 2021", "iso": "2021-09-01", "month": "September 2021", "loc": "Verona, Wisconsin", "caption": "Back to school :)", "photos": [{"src": "images/CTSlgSZF3jb_0.jpg", "ar": 0.974, "video": false}]}, {"code": "CTdoFsUDAVu", "date": "September 5, 2021", "iso": "2021-09-05", "month": "September 2021", "loc": "", "caption": "Ramen hungry", "photos": [{"src": "images/CTdoFsUDAVu_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "CTdogUnFPVK", "date": "September 5, 2021", "iso": "2021-09-05", "month": "September 2021", "loc": "", "caption": "He said he misses his chickies :)", "photos": [{"src": "images/CTdogUnFPVK_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CTdogUnFPVK_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CTdogUnFPVK_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CTdogUnFPVK_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CTdogUnFPVK_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CTdogUnFPVK_5.jpg", "ar": 1.0, "video": true}, {"src": "images/CTdogUnFPVK_6.jpg", "ar": 0.8, "video": false}]}, {"code": "CT921LKl26c", "date": "September 18, 2021", "iso": "2021-09-18", "month": "September 2021", "loc": "", "caption": "Mushroom hunting", "photos": [{"src": "images/CT921LKl26c_0.jpg", "ar": 1.2121, "video": false}]}, {"code": "CT927ehFV8m", "date": "September 18, 2021", "iso": "2021-09-18", "month": "September 2021", "loc": "Madison, Wisconsin", "caption": "Movie night at Mallards Stadium 😊", "photos": [{"src": "images/CT927ehFV8m_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CUEBnw6jl_2", "date": "September 20, 2021", "iso": "2021-09-20", "month": "September 2021", "loc": "Ten Pin Alley", "caption": "9th birthday party 🥳", "photos": [{"src": "images/CUEBnw6jl_2_0.jpg", "ar": 0.867, "video": false}, {"src": "images/CUEBnw6jl_2_1.jpg", "ar": 0.867, "video": false}, {"src": "images/CUEBnw6jl_2_2.jpg", "ar": 0.867, "video": false}, {"src": "images/CUEBnw6jl_2_3.jpg", "ar": 0.867, "video": false}, {"src": "images/CUEBnw6jl_2_4.jpg", "ar": 0.867, "video": false}, {"src": "images/CUEBnw6jl_2_5.jpg", "ar": 0.867, "video": false}]}, {"code": "CUEBxj-jhYZ", "date": "September 20, 2021", "iso": "2021-09-20", "month": "September 2021", "loc": "", "caption": "❤️❤️❤️", "photos": [{"src": "images/CUEBxj-jhYZ_0.jpg", "ar": 1.7734, "video": true}]}, {"code": "CUJPgFWjqhI", "date": "September 22, 2021", "iso": "2021-09-22", "month": "September 2021", "loc": "", "caption": "❤️❤️❤️", "photos": [{"src": "images/CUJPgFWjqhI_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CUJPgFWjqhI_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CUJPgFWjqhI_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CULpqUSB04h", "date": "September 23, 2021", "iso": "2021-09-23", "month": "September 2021", "loc": "", "caption": "Baby mermaid got covid :(", "photos": [{"src": "images/CULpqUSB04h_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CULpqUSB04h_1.jpg", "ar": 1.0, "video": false}]}, {"code": "CURIJfqj6Qe", "date": "September 25, 2021", "iso": "2021-09-25", "month": "September 2021", "loc": "Madison, Wisconsin", "caption": "", "photos": [{"src": "images/CURIJfqj6Qe_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CURIS-RjyNc", "date": "September 25, 2021", "iso": "2021-09-25", "month": "September 2021", "loc": "Eplegaarden", "caption": "This year v last year", "photos": [{"src": "images/CURIS-RjyNc_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CURIS-RjyNc_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CURIS-RjyNc_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CUWNrCSDP2R", "date": "September 27, 2021", "iso": "2021-09-27", "month": "September 2021", "loc": "Verona, Wisconsin", "caption": "Setting up baby sister’s gifts to surprise her in the morning 😊 he said he loves making Ella happy ❤️#feelbetter", "photos": [{"src": "images/CUWNrCSDP2R_0.jpg", "ar": 1.0, "video": true}]}, {"code": "CUXWuMorGNx", "date": "September 28, 2021", "iso": "2021-09-28", "month": "September 2021", "loc": "", "caption": "Hope this entertains them for more than a day 😅", "photos": [{"src": "images/CUXWuMorGNx_0.jpg", "ar": 0.844, "video": false}]}, {"code": "CUeK8uvNzkG", "date": "September 30, 2021", "iso": "2021-09-30", "month": "September 2021", "loc": "", "caption": "May all the good in your life keep you safe. Shine bright, little one ✨ just a few more years.", "photos": [{"src": "images/CUeK8uvNzkG_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CUeK8uvNzkG_1.jpg", "ar": 0.8, "video": false}]}, {"code": "CUeMN6ptVjG", "date": "September 30, 2021", "iso": "2021-09-30", "month": "September 2021", "loc": "", "caption": "Weather’s still perfect 💕", "photos": [{"src": "images/CUeMN6ptVjG_0.jpg", "ar": 1.1123, "video": false}]}, {"code": "CUibJvdFarQ", "date": "October 2, 2021", "iso": "2021-10-02", "month": "October 2021", "loc": "", "caption": "❤️❤️❤️", "photos": [{"src": "images/CUibJvdFarQ_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CUibJvdFarQ_1.jpg", "ar": 0.8, "video": false}]}, {"code": "CUnG9okFVeD", "date": "October 4, 2021", "iso": "2021-10-04", "month": "October 2021", "loc": "Madison, Wisconsin", "caption": "🍃", "photos": [{"src": "images/CUnG9okFVeD_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CUnG9okFVeD_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CUnG9okFVeD_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CUnG9okFVeD_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CVIi4SlFDIh", "date": "October 17, 2021", "iso": "2021-10-17", "month": "October 2021", "loc": "", "caption": "Fall 🍁", "photos": [{"src": "images/CVIi4SlFDIh_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CVc5C0OL2h-", "date": "October 25, 2021", "iso": "2021-10-25", "month": "October 2021", "loc": "Chicago, Illinois", "caption": "Chicago 🤩", "photos": [{"src": "images/CVc5C0OL2h-_0.jpg", "ar": 1.2285, "video": false}, {"src": "images/CVc5C0OL2h-_1.jpg", "ar": 1.227, "video": false}, {"src": "images/CVc5C0OL2h-_2.jpg", "ar": 1.227, "video": false}, {"src": "images/CVc5C0OL2h-_3.jpg", "ar": 1.227, "video": false}, {"src": "images/CVc5C0OL2h-_4.jpg", "ar": 1.227, "video": false}, {"src": "images/CVc5C0OL2h-_5.jpg", "ar": 1.227, "video": false}, {"src": "images/CVc5C0OL2h-_6.jpg", "ar": 1.227, "video": false}, {"src": "images/CVc5C0OL2h-_7.jpg", "ar": 1.227, "video": false}]}, {"code": "CVc5JtyLHx3", "date": "October 25, 2021", "iso": "2021-10-25", "month": "October 2021", "loc": "", "caption": "Ella in full Chinese tourist mode :)", "photos": [{"src": "images/CVc5JtyLHx3_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CVc5JtyLHx3_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CVc5JtyLHx3_2.jpg", "ar": 0.805, "video": false}, {"src": "images/CVc5JtyLHx3_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CVc5JtyLHx3_4.jpg", "ar": 0.805, "video": false}]}, {"code": "CVi1-FzPqPY", "date": "October 27, 2021", "iso": "2021-10-27", "month": "October 2021", "loc": "", "caption": "", "photos": [{"src": "images/CVi1-FzPqPY_0.jpg", "ar": 1.0, "video": false}]}, {"code": "CVuM2wzrIwM", "date": "November 1, 2021", "iso": "2021-11-01", "month": "November 2021", "loc": "", "caption": "Friends 💕", "photos": [{"src": "images/CVuM2wzrIwM_0.jpg", "ar": 1.1086, "video": false}, {"src": "images/CVuM2wzrIwM_1.jpg", "ar": 1.1086, "video": false}, {"src": "images/CVuM2wzrIwM_3.jpg", "ar": 1.1086, "video": false}, {"src": "images/CVuM2wzrIwM_4.jpg", "ar": 1.1086, "video": false}]}, {"code": "CVuM9VLLlXZ", "date": "November 1, 2021", "iso": "2021-11-01", "month": "November 2021", "loc": "", "caption": "", "photos": [{"src": "images/CVuM9VLLlXZ_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CVuM9VLLlXZ_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CVuM9VLLlXZ_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CVuM9VLLlXZ_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CVwa8ktjBxs", "date": "November 1, 2021", "iso": "2021-11-01", "month": "November 2021", "loc": "Verona, Wisconsin", "caption": "So excited for our first camper!", "photos": [{"src": "images/CVwa8ktjBxs_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CVwa8ktjBxs_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CVwa8ktjBxs_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CVwa8ktjBxs_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CWDxC9FFZSy", "date": "November 9, 2021", "iso": "2021-11-09", "month": "November 2021", "loc": "Yellowstone Lake State Park", "caption": "So many memories to be made in our new camper 😊", "photos": [{"src": "images/CWDxC9FFZSy_0.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_1.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_2.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_3.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_4.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_5.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_6.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_7.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_8.jpg", "ar": 1.0, "video": false}, {"src": "images/CWDxC9FFZSy_9.jpg", "ar": 1.0, "video": false}]}, {"code": "CWDxf--lYzF", "date": "November 9, 2021", "iso": "2021-11-09", "month": "November 2021", "loc": "", "caption": "❤️❤️❤️", "photos": [{"src": "images/CWDxf--lYzF_0.jpg", "ar": 0.828, "video": false}, {"src": "images/CWDxf--lYzF_1.jpg", "ar": 0.828, "video": false}, {"src": "images/CWDxf--lYzF_2.jpg", "ar": 0.828, "video": false}, {"src": "images/CWDxf--lYzF_3.jpg", "ar": 0.831, "video": false}, {"src": "images/CWDxf--lYzF_4.jpg", "ar": 0.828, "video": false}, {"src": "images/CWDxf--lYzF_5.jpg", "ar": 0.831, "video": false}, {"src": "images/CWDxf--lYzF_6.jpg", "ar": 0.831, "video": false}, {"src": "images/CWDxf--lYzF_7.jpg", "ar": 0.828, "video": false}]}, {"code": "CWizUS5lG3U", "date": "November 21, 2021", "iso": "2021-11-21", "month": "November 2021", "loc": "Madison, Wisconsin", "caption": "Madison Zoo stroll 🥰 kids got super close to a polar bear through a little peek hole they found", "photos": [{"src": "images/CWizUS5lG3U_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CWizUS5lG3U_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CWizUS5lG3U_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CWizUS5lG3U_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CWizeetFPUj", "date": "November 21, 2021", "iso": "2021-11-21", "month": "November 2021", "loc": "", "caption": "Best friends at our new favorite local diner", "photos": [{"src": "images/CWizeetFPUj_0.jpg", "ar": 1.0, "video": true}]}, {"code": "CWyq3CbPkCi", "date": "November 27, 2021", "iso": "2021-11-27", "month": "November 2021", "loc": "Madison, Wisconsin", "caption": "Court 👩‍⚖️", "photos": [{"src": "images/CWyq3CbPkCi_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CWyq3CbPkCi_1.jpg", "ar": 1.328, "video": false}, {"src": "images/CWyq3CbPkCi_2.jpg", "ar": 1.3316, "video": false}, {"src": "images/CWyq3CbPkCi_3.jpg", "ar": 1.328, "video": false}, {"src": "images/CWyq3CbPkCi_4.jpg", "ar": 1.328, "video": false}, {"src": "images/CWyq3CbPkCi_5.jpg", "ar": 1.328, "video": false}, {"src": "images/CWyq3CbPkCi_6.jpg", "ar": 1.3316, "video": false}, {"src": "images/CWyq3CbPkCi_7.jpg", "ar": 1.328, "video": false}, {"src": "images/CWyq3CbPkCi_8.jpg", "ar": 1.3316, "video": false}, {"src": "images/CWyq3CbPkCi_9.jpg", "ar": 1.3316, "video": false}]}, {"code": "CWyq6vlvx5m", "date": "November 27, 2021", "iso": "2021-11-27", "month": "November 2021", "loc": "", "caption": "Winter!", "photos": [{"src": "images/CWyq6vlvx5m_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "CWyrAFiP4y7", "date": "November 27, 2021", "iso": "2021-11-27", "month": "November 2021", "loc": "Verona, Wisconsin", "caption": "Shabu & Sleepover", "photos": [{"src": "images/CWyrAFiP4y7_0.jpg", "ar": 1.25, "video": false}]}, {"code": "CW1m7gYl-Vt", "date": "November 28, 2021", "iso": "2021-11-28", "month": "November 2021", "loc": "Milwaukee Public Museum", "caption": "Not one but three museums this weekend :)", "photos": [{"src": "images/CW1m7gYl-Vt_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CW1m7gYl-Vt_1.jpg", "ar": 0.8, "video": true}, {"src": "images/CW1m7gYl-Vt_2.jpg", "ar": 0.8, "video": true}, {"src": "images/CW1m7gYl-Vt_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CW1m7gYl-Vt_4.jpg", "ar": 0.8, "video": false}]}, {"code": "CW1nDYZlW2D", "date": "November 28, 2021", "iso": "2021-11-28", "month": "November 2021", "loc": "Milwaukee, Wisconsin", "caption": "The Old Milwaukee exhibit, the Milwaukee public market, and discovery world. What a fun city :)", "photos": [{"src": "images/CW1nDYZlW2D_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CW1nDYZlW2D_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CW1nDYZlW2D_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CW1nDYZlW2D_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CW1nDYZlW2D_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CW1nDYZlW2D_5.jpg", "ar": 0.8, "video": false}, {"src": "images/CW1nDYZlW2D_6.jpg", "ar": 0.8, "video": false}]}, {"code": "CXC27ORjM7-", "date": "December 3, 2021", "iso": "2021-12-03", "month": "December 2021", "loc": "Shedd Aquarium", "caption": "Got picked up from school early to go to the Shedd Aquarium and go on our first long road trip in the camper!", "photos": [{"src": "images/CXC27ORjM7-_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CXC27ORjM7-_1.jpg", "ar": 1.328, "video": false}, {"src": "images/CXC27ORjM7-_2.jpg", "ar": 1.328, "video": false}, {"src": "images/CXC27ORjM7-_3.jpg", "ar": 1.3333, "video": true}, {"src": "images/CXC27ORjM7-_4.jpg", "ar": 1.328, "video": false}, {"src": "images/CXC27ORjM7-_5.jpg", "ar": 1.3333, "video": true}, {"src": "images/CXC27ORjM7-_6.jpg", "ar": 1.3316, "video": false}, {"src": "images/CXC27ORjM7-_7.jpg", "ar": 1.3316, "video": false}, {"src": "images/CXC27ORjM7-_8.jpg", "ar": 1.328, "video": false}]}, {"code": "CXC3JBND_Dj", "date": "December 3, 2021", "iso": "2021-12-03", "month": "December 2021", "loc": "", "caption": "The crew ♥️ en route to Indiana", "photos": [{"src": "images/CXC3JBND_Dj_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CXC3JBND_Dj_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CXC3JBND_Dj_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CXC3JBND_Dj_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CXC3JBND_Dj_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CXC3JBND_Dj_5.jpg", "ar": 0.8, "video": false}]}, {"code": "CXEjlJmlVRL", "date": "December 4, 2021", "iso": "2021-12-04", "month": "December 2021", "loc": "Indianapolis, Indiana", "caption": "Welcome to Indianapolis. Our first time on electric scooters :) 🛴", "photos": [{"src": "images/CXEjlJmlVRL_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CXEjlJmlVRL_1.jpg", "ar": 0.8, "video": true}, {"src": "images/CXEjlJmlVRL_2.jpg", "ar": 0.8, "video": true}, {"src": "images/CXEjlJmlVRL_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CXEjlJmlVRL_4.jpg", "ar": 0.8, "video": false}]}, {"code": "CXJho2jlxmO", "date": "December 6, 2021", "iso": "2021-12-06", "month": "December 2021", "loc": "Indianapolis, Indiana", "caption": "Back from Indy 🥰", "photos": [{"src": "images/CXJho2jlxmO_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CXJho2jlxmO_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CXJho2jlxmO_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CXJho2jlxmO_3.jpg", "ar": 0.8, "video": false}]}, {"code": "CXJiAt8Fr7P", "date": "December 6, 2021", "iso": "2021-12-06", "month": "December 2021", "loc": "Indianapolis, Indiana", "caption": "We’ve been on a museum spree the last few weeks:\nChildren’s Museum | Madison, Wisconsin\nPublic Museum | Milwaukee, Wisconsin\nDiscovery World | Milwaukee, WI\nShedd Aquarium | Chicago, IL\nIllinois State Museum | Indianapolis, IN\n♥️♥️♥️", "photos": [{"src": "images/CXJiAt8Fr7P_0.jpg", "ar": 1.2315, "video": false}, {"src": "images/CXJiAt8Fr7P_1.jpg", "ar": 1.23, "video": false}]}, {"code": "CXWOZQRFXU3", "date": "December 11, 2021", "iso": "2021-12-11", "month": "December 2021", "loc": "Verona, Wisconsin", "caption": "Good friends 🥰", "photos": [{"src": "images/CXWOZQRFXU3_0.jpg", "ar": 1.3072, "video": false}]}, {"code": "CXWOdSnlCFR", "date": "December 11, 2021", "iso": "2021-12-11", "month": "December 2021", "loc": "", "caption": "The snow is finally here", "photos": [{"src": "images/CXWOdSnlCFR_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CXWOj48FgYu", "date": "December 11, 2021", "iso": "2021-12-11", "month": "December 2021", "loc": "", "caption": "Missing Thailand ♥️", "photos": [{"src": "images/CXWOj48FgYu_0.jpg", "ar": 1.3245, "video": false}]}, {"code": "CXXJ-W5FRTc", "date": "December 11, 2021", "iso": "2021-12-11", "month": "December 2021", "loc": "", "caption": "♥️♥️♥️", "photos": [{"src": "images/CXXJ-W5FRTc_0.jpg", "ar": 0.986, "video": false}]}, {"code": "CXXmIvvN8Ng", "date": "December 11, 2021", "iso": "2021-12-11", "month": "December 2021", "loc": "", "caption": "Accidentally posted this on my other account 😂 ella was really excited to meet Santa 🎅", "photos": [{"src": "images/CXXmIvvN8Ng_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CXZvSR-FaQT", "date": "December 12, 2021", "iso": "2021-12-12", "month": "December 2021", "loc": "", "caption": "📖", "photos": [{"src": "images/CXZvSR-FaQT_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CXr1pXVtrlY", "date": "December 19, 2021", "iso": "2021-12-19", "month": "December 2021", "loc": "", "caption": "The winter adventure begins 😊 currently in Pittsburg", "photos": [{"src": "images/CXr1pXVtrlY_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "CX19IvfFguQ", "date": "December 23, 2021", "iso": "2021-12-23", "month": "December 2021", "loc": "Christmas Village in Philadelphia", "caption": "❤️❤️", "photos": [{"src": "images/CX19IvfFguQ_0.jpg", "ar": 1.1792, "video": false}]}, {"code": "CX2HMLTFRRi", "date": "December 23, 2021", "iso": "2021-12-23", "month": "December 2021", "loc": "Harleysville, Pennsylvania", "caption": "Home cooking 😊", "photos": [{"src": "images/CX2HMLTFRRi_0.jpg", "ar": 1.2887, "video": false}]}, {"code": "up_dcspy", "date": "December 24, 2021", "iso": "2021-12-24", "month": "December 2021", "loc": "International Spy Museum, Washington, DC", "caption": "Spy Museum", "photos": [{"src": "images/up_dcspy_0.jpg", "ar": 0.75, "video": false}, {"src": "images/up_dcspy_1.jpg", "ar": 0.75, "video": false}]}, {"code": "CX7ZMpTDRiX", "date": "December 25, 2021", "iso": "2021-12-25", "month": "December 2021", "loc": "Jefferson National Forest Virginia", "caption": "Virginia is beautiful :)", "photos": [{"src": "images/CX7ZMpTDRiX_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CX7ZMpTDRiX_1.jpg", "ar": 1.3316, "video": false}]}, {"code": "CX7Zj2AD4Es", "date": "December 25, 2021", "iso": "2021-12-25", "month": "December 2021", "loc": "Cave Mountain Lake, VA", "caption": "We got lost trying to find “Cave Mountain Lake” and ended up on a long but pretty detour on a windy gravel road", "photos": [{"src": "images/CX7Zj2AD4Es_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Zj2AD4Es_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Zj2AD4Es_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Zj2AD4Es_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Zj2AD4Es_4.jpg", "ar": 0.8, "video": false}]}, {"code": "CX7Zo3jjPC5", "date": "December 25, 2021", "iso": "2021-12-25", "month": "December 2021", "loc": "Cave Mountain Lake, Virginia", "caption": "The elusive lake", "photos": [{"src": "images/CX7Zo3jjPC5_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CX7Zo3jjPC5_1.jpg", "ar": 1.3316, "video": false}]}, {"code": "CX7Zw1EjQfl", "date": "December 25, 2021", "iso": "2021-12-25", "month": "December 2021", "loc": "McMillan Farms", "caption": "Ben is our favorite horse of the 3", "photos": [{"src": "images/CX7Zw1EjQfl_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Zw1EjQfl_1.jpg", "ar": 0.8, "video": false}]}, {"code": "CX7Z5q0DJIE", "date": "December 25, 2021", "iso": "2021-12-25", "month": "December 2021", "loc": "McMillan Farms", "caption": "Art time", "photos": [{"src": "images/CX7Z5q0DJIE_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Z5q0DJIE_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Z5q0DJIE_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Z5q0DJIE_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Z5q0DJIE_4.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Z5q0DJIE_5.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7Z5q0DJIE_6.jpg", "ar": 0.8, "video": false}]}, {"code": "CX7Z-GTj1H7", "date": "December 25, 2021", "iso": "2021-12-25", "month": "December 2021", "loc": "McMillan Farms", "caption": "A simple Christmas dinner made in our camper :)", "photos": [{"src": "images/CX7Z-GTj1H7_0.jpg", "ar": 1.2121, "video": false}]}, {"code": "CX7aIBMjf3w", "date": "December 25, 2021", "iso": "2021-12-25", "month": "December 2021", "loc": "McMillan Farms", "caption": "So many stars ❤️", "photos": [{"src": "images/CX7aIBMjf3w_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7aIBMjf3w_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7aIBMjf3w_2.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7aIBMjf3w_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CX7aIBMjf3w_4.jpg", "ar": 0.8, "video": false}]}, {"code": "CX_y61Plkcw", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "McMillan Farms", "caption": "Woke up to this ❤️", "photos": [{"src": "images/CX_y61Plkcw_0.jpg", "ar": 1.2706, "video": false}]}, {"code": "CX_zGqgFGcm", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "McMillan Farms", "caption": "", "photos": [{"src": "images/CX_zGqgFGcm_0.jpg", "ar": 1.3333, "video": false}, {"src": "images/CX_zGqgFGcm_1.jpg", "ar": 1.328, "video": false}]}, {"code": "CX_zKoIF-yo", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "McMillan Farms", "caption": "❤️", "photos": [{"src": "images/CX_zKoIF-yo_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CX_zOC_lrH6", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "", "caption": "", "photos": [{"src": "images/CX_zOC_lrH6_0.jpg", "ar": 0.843, "video": false}]}, {"code": "CX_zTx4FqYM", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "Great Smoky Mountains National Park", "caption": "", "photos": [{"src": "images/CX_zTx4FqYM_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CX_zXAvlV-k", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "Rainbow Falls, Great Smoky Mountains National Park", "caption": "", "photos": [{"src": "images/CX_zXAvlV-k_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CX_zfGyl12W", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "Mountain Mist Farms Wedding Venue", "caption": "Woke up on top of this mountain", "photos": [{"src": "images/CX_zfGyl12W_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "CX_zioYFHzH", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "Mountain Mist Farms Wedding Venue", "caption": "Just us on top of this mountain, home for the night", "photos": [{"src": "images/CX_zioYFHzH_0.jpg", "ar": 0.562, "video": true}]}, {"code": "CX_36pyFmc8", "date": "December 27, 2021", "iso": "2021-12-27", "month": "December 2021", "loc": "Pigeon Forge, Tennessee", "caption": "Back to civilization for a couple of days. There’s not much of a view from where we’re staying, but a ton of amenities like this train that takes us everywhere we need to go on this campsite!", "photos": [{"src": "images/CX_36pyFmc8_0.jpg", "ar": 1.3333, "video": false}]}, {"code": "CYCjVEOl3EQ", "date": "December 28, 2021", "iso": "2021-12-28", "month": "December 2021", "loc": "Pigeon Forge, Tennessee", "caption": "So much fun with @danielle.e.brown 😊", "photos": [{"src": "images/CYCjVEOl3EQ_0.jpg", "ar": 0.82, "video": false}]}, {"code": "CYCjdRaFdmd", "date": "December 28, 2021", "iso": "2021-12-28", "month": "December 2021", "loc": "The Old Mill", "caption": "Ella, Owen, & Winston", "photos": [{"src": "images/CYCjdRaFdmd_0.jpg", "ar": 1.2821, "video": false}]}, {"code": "CYCjqlkFjx1", "date": "December 28, 2021", "iso": "2021-12-28", "month": "December 2021", "loc": "Iron Mountain Metal Craft", "caption": "Forging iron on an anvil ❤️🔪", "photos": [{"src": "images/CYCjqlkFjx1_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CYCjqlkFjx1_1.jpg", "ar": 0.8, "video": true}, {"src": "images/CYCjqlkFjx1_2.jpg", "ar": 0.8, "video": true}, {"src": "images/CYCjqlkFjx1_3.jpg", "ar": 0.8, "video": false}, {"src": "images/CYCjqlkFjx1_4.jpg", "ar": 0.8, "video": true}, {"src": "images/CYCjqlkFjx1_5.jpg", "ar": 0.8, "video": false}]}, {"code": "CYCj1auF-Gx", "date": "December 28, 2021", "iso": "2021-12-28", "month": "December 2021", "loc": "Pigeon Forge, Tennessee", "caption": "They’re so proud of their 🔪", "photos": [{"src": "images/CYCj1auF-Gx_0.jpg", "ar": 1.0823, "video": false}, {"src": "images/CYCj1auF-Gx_1.jpg", "ar": 1.0776, "video": false}, {"src": "images/CYCj1auF-Gx_2.jpg", "ar": 1.0776, "video": false}, {"src": "images/CYCj1auF-Gx_3.jpg", "ar": 1.0811, "video": false}, {"src": "images/CYCj1auF-Gx_4.jpg", "ar": 1.0776, "video": false}, {"src": "images/CYCj1auF-Gx_5.jpg", "ar": 1.0776, "video": false}]}, {"code": "CYEhpH4OjOo", "date": "December 29, 2021", "iso": "2021-12-29", "month": "December 2021", "loc": "Pigeon Forge, Tennessee", "caption": "Rainy day activities 😊", "photos": [{"src": "images/CYEhpH4OjOo_0.jpg", "ar": 0.8, "video": false}]}, {"code": "CYH3zZtlsKN", "date": "December 30, 2021", "iso": "2021-12-30", "month": "December 2021", "loc": "Grain Bin Commodities", "caption": "Another day another farm :) this one has baby calves and donkeys named Jack and Jill. Kids have acres and acres to run around. Summer rolled around in poop 😒", "photos": [{"src": "images/CYH3zZtlsKN_0.jpg", "ar": 1.0965, "video": false}, {"src": "images/CYH3zZtlsKN_1.jpg", "ar": 1.0942, "video": true}, {"src": "images/CYH3zZtlsKN_2.jpg", "ar": 1.0942, "video": true}, {"src": "images/CYH3zZtlsKN_3.jpg", "ar": 1.0905, "video": false}, {"src": "images/CYH3zZtlsKN_4.jpg", "ar": 1.0905, "video": false}]}, {"code": "CYH7TQwlaYg", "date": "December 30, 2021", "iso": "2021-12-30", "month": "December 2021", "loc": "Sweetwater, Tennessee", "caption": "", "photos": [{"src": "images/CYH7TQwlaYg_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CYH7TQwlaYg_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CYH7TQwlaYg_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CYH7bwSF9lW", "date": "December 30, 2021", "iso": "2021-12-30", "month": "December 2021", "loc": "Sweetwater, Tennessee", "caption": "😘", "photos": [{"src": "images/CYH7bwSF9lW_0.jpg", "ar": 0.8, "video": false}, {"src": "images/CYH7bwSF9lW_1.jpg", "ar": 0.8, "video": false}, {"src": "images/CYH7bwSF9lW_2.jpg", "ar": 0.8, "video": false}]}, {"code": "CYH7w2ZFdu9", "date": "December 30, 2021", "iso": "2021-12-30", "month": "December 2021", "loc": "Tennessee", "caption": "", "photos": [{"src": "images/CYH7w2ZFdu9_0.jpg", "ar": 1.3055, "video": false}]}, {"code": "CYK4ngmFP7i", "date": "December 31, 2021", "iso": "2021-12-31", "month": "December 2021", "loc": "Grain Bin Commodities", "caption": "Farm life 🥰", "photos": [{"src": "images/CYK4ngmFP7i_0.jpg", "ar": 0.562, "video": true}]}];
+const META = {"year": 2021, "posts": 161, "photos": 476, "range": "January 3 &ndash; December 31, 2021", "cover": "images/COYr6XOjY53_0.jpg", "topics": ["Settling into Wisconsin &mdash; Madison, Verona, Milwaukee", "The passport battle", "Museums, camper trips, Pigeon Forge and Tennessee", "A first business selling plants; soccer, biking, paddleboarding"], "heroes": ["images/CJm899tD9A1_3.jpg", "images/CMa4Oq0D5Xy_0.jpg", "images/CORXxRSDKjO_0.jpg", "images/CUeMN6ptVjG_0.jpg", "images/CWDxC9FFZSy_6.jpg"], "afterword": [], "routes": [{"iso": "2021-12-23", "html": "<div class=\"hd\"><p class=\"kick\">The route</p><h2>The winter camper trip</h2><p class=\"deck\">Philadelphia to Tennessee, written down from memory</p></div><ul class=\"stops\"><li><span class=\"d\">Dec 23</span><span class=\"p\">Christmas Village, Philadelphia</span></li><li><span class=\"d\">Dec 24</span><span class=\"p\">Harleysville, PA</span></li><li><span class=\"d\">Dec 25</span><span class=\"p\">Washington, DC</span></li><li><span class=\"d\">Dec 26</span><span class=\"p\">Jefferson National Forest, Virginia</span></li><li><span class=\"d\">Dec 27</span><span class=\"p\">Great Smoky Mountains</span></li><li><span class=\"d\">Dec 28&ndash;29</span><span class=\"p\">Pigeon Forge</span></li><li><span class=\"d\">Dec 30</span><span class=\"p\">Sweetwater, Tennessee</span></li></ul>", "cls": "rtb"}]};
+</script>
+<script>
+const P = { w: 11.250000, h: 8.250000, bleed: 0.125000 };
+const M = { top: P.bleed + 0.30, bottom: P.bleed + 0.34,
+            left: P.bleed + 0.30, right: P.bleed + 0.30 };
+const CW = P.w - M.left - M.right;          // live content width
+const CH = P.h - M.top - M.bottom;          // live content height
+const GAP = 0.17;                           // gutter between photos
+const CHUNK = 4;                            // most of one post's photos kept in a single block
+const MAX_PER_ROW = 8;                      // MIN_ROW is the real limit; this is a safety rail
+const MAX_GROUPS_PER_ROW = 5;               // how many separate posts may share a row
+const CAP_GAP = 0.055;                      // photo -> its caption
+const ROW_PAD = 0.24;                       // caption -> next row of photos
+const MONTH_H = 0.30;
+const ROUTE_H = 1.480000;                  // a route band heads its page; photographs take the rest
+const BAND_GAP = 0.20;                      // band -> the first row of photographs beneath it
+const BAND_MAX = 7.400000;               // past this a band stops sharing and takes its own page
+const MIN_ROW = 1.30, MAX_ROW = 4.6;        // bounds on a justified row's photo height
+const ABS_MIN = 0.95;                       // floor for a row that is one unsplittable post
+const MAX_SCALE = 1.045;                    // growth the packer may assume when comparing layouts
+const MAX_FILL_SCALE = 1.32;                // growth allowed to close a page the packer cannot fill
+const MIN_SCALE = 0.86;                     // squeeze allowed to keep a row from spilling to its own page
+const MAX_EXTRA = 0.55;                     // widest a between-row gap may open to absorb slack
+const MAX_ROWS = 6;
+const HERO_EVERY = 9;                       // rhythm: a full-bleed page roughly this often
+
+const book = document.getElementById('book');
+const ruler = document.getElementById('ruler');
+let page = null, y = 0, pageNo = 0, placed = [];
+
+const inch = v => v.toFixed(4) + 'in';
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function addPage(cls) {
+  page = document.createElement('div');
+  page.className = 'page' + (cls ? ' ' + cls : '');
+  book.appendChild(page);
+  pageNo++;
+  y = 0;
+  return page;
+}
+
+function folio() {
+  for (const [cls, txt] of [['n', pageNo], ['t', META.year]]) {
+    const d = document.createElement('div');
+    d.className = 'folio ' + cls;
+    d.textContent = txt;
+    page.appendChild(d);
+  }
+}
+
+/* ---- content model -------------------------------------------------------
+   A group is one post's photos (split into chunks of at most MAX_PER_ROW) kept adjacent so
+   they still read as a single moment. Only the first chunk carries the date and caption. */
+const HEROES = new Set(META.heroes || []);
+
+function groups() {
+  const out = [];
+  let month = null;
+  for (const post of DATA) {
+    const fresh = post.month !== month;
+    month = post.month;
+    let first = true;
+    for (let k = 0; k < post.photos.length; k += CHUNK) {
+      const photos = post.photos.slice(k, k + CHUNK);
+      out.push({
+        post, photos, lead: first,
+        // A picked photo also gets a full-bleed page, but it stays here in the grid so the
+        // post is never broken apart around it.
+        picks: photos.filter(ph => HEROES.has(ph.src)),
+        monthStart: fresh && first ? post.month : null,
+        n: photos.length,
+        sum: photos.reduce((s, p) => s + p.ar, 0),
+      });
+      first = false;
+    }
+  }
+  return out;
+}
+
+const capHTML = (g) => !g.lead ? '' :
+  '<span class="gdate">' + esc(g.post.date) + '</span>' +
+  (g.post.loc ? '<span class="gloc">' + esc(g.post.loc) + '</span>' : '') +
+  (g.post.caption ? '<span class="gtext">' + esc(g.post.caption).replace(/\n/g, '<br>') + '</span>' : '');
+
+/* Caption height depends on the width the group ends up with, and the packer asks for it
+   thousands of times while searching, so measurements are cached per width bucket. */
+const capCache = new Map();
+function capHeight(g, w) {
+  if (!g.lead) return 0;
+  const key = g.post.code + '|' + Math.round(w * 12);
+  let h = capCache.get(key);
+  if (h === undefined) {
+    const d = document.createElement('div');
+    d.className = 'gcap';
+    d.style.width = inch(w);
+    d.innerHTML = capHTML(g);
+    ruler.appendChild(d);
+    h = d.getBoundingClientRect().height / 96;
+    ruler.removeChild(d);
+    capCache.set(key, h);
+  }
+  return h;
+}
+
+/* ---- justified rows ------------------------------------------------------ */
+const heightOf = (n, sum) => (CW - GAP * (n - 1)) / sum;
+
+/* One candidate row: groups i..j-1 justified across the full column width. Returns null when
+   that combination cannot span the column at a sane photo height, so the packer never
+   produces a row sitting centred with dead margins either side. */
+function rowAt(gs, i, j) {
+  let n = 0, sum = 0;
+  for (let k = i; k < j; k++) {
+    if (k > i && gs[k].monthStart) return null;   // a month always opens a row
+    n += gs[k].n; sum += gs[k].sum;
+    if (n > MAX_PER_ROW) return null;
+  }
+  const h = heightOf(n, sum);
+  // MIN_ROW stops a row being padded out with so many photos that none of them read. A single
+  // post that is simply wide is not that case -- its photos cannot be split across rows, so
+  // refusing the row would leave the page with no legal layout at all.
+  if (h > MAX_ROW || h < (j - i > 1 ? MIN_ROW : ABS_MIN)) return null;
+  const cur = gs.slice(i, j);
+  const capH = cur.reduce((m, g) => Math.max(m, capHeight(g, h * g.sum + GAP * (g.n - 1))), 0);
+  return { gs: cur, h, sum, n, capH, full: true, end: j,
+           block: h + (capH ? CAP_GAP + capH : 0) };
+}
+
+/* A group too tall to justify across the column (a lone portrait) has no valid row, so it is
+   placed at MAX_ROW and centred. Only ever reached as a fallback; heroPage catches most. */
+function looseRow(gs, i) {
+  let n = 0, sum = 0, j = i;
+  while (j < gs.length && n + gs[j].n <= MAX_PER_ROW && (j === i || !gs[j].monthStart)) {
+    n += gs[j].n; sum += gs[j].sum; j++;
+    if (heightOf(n, sum) <= MAX_ROW) break;
+  }
+  const h = Math.min(heightOf(n, sum), MAX_ROW);
+  const cur = gs.slice(i, j);
+  const capH = cur.reduce((m, g) => Math.max(m, capHeight(g, h * g.sum + GAP * (g.n - 1))), 0);
+  return { gs: cur, h, sum, n, capH, full: heightOf(n, sum) <= MAX_ROW, end: j,
+           block: h + (capH ? CAP_GAP + capH : 0) };
+}
+
+/* The page is the unit that has to look right, so rather than filling rows greedily until the
+   next one overflows -- which is what left a dead band at the foot of every page -- every way
+   of cutting the upcoming groups into rows is considered and the one putting the most
+   photograph on the page wins.
+
+   What is maximised is photo area, not height used: captions and gutters consume the page
+   without showing a single picture, so a layout that merely reaches the bottom margin can
+   still look empty. Rows that end short are then scaled up to square the page off, so the
+   real objective is min(nat * MAX_SCALE, avail) -- and since avail = budget - block + nat,
+   both terms depend only on (block used, photo height accumulated). Carrying the
+   non-dominated (block, nat) pairs at each cut point therefore finds the true optimum. */
+function packRows(gs, start, budget, minO) {
+  const K = Math.min(gs.length - start, 26);
+  const front = Array.from({ length: K + 1 }, () => []);
+  front[0].push({ block: 0, nat: 0, photos: 0, rows: [] });
+
+  const offer = (j, e) => {
+    const f = front[j];
+    for (const o of f) if (o.block <= e.block + 1e-9 && o.nat >= e.nat - 1e-9) return;
+    for (let k = f.length - 1; k >= 0; k--) {
+      if (e.block <= f[k].block + 1e-9 && e.nat >= f[k].nat - 1e-9) f.splice(k, 1);
+    }
+    f.push(e);
+    if (f.length > 40) { f.sort((a, b) => a.block - b.block); f.length = 40; }
+  };
+
+  for (let o = 0; o < K; o++) {
+    for (const from of front[o]) {
+      if (from.rows.length >= MAX_ROWS) continue;
+      for (let j = o + 1; j <= Math.min(o + MAX_GROUPS_PER_ROW, K); j++) {
+        const r = rowAt(gs, start + o, start + j);
+        if (!r) continue;
+        const rule = from.rows.length && gs[start + o].monthStart ? MONTH_H : 0;
+        const pad = (from.rows.length ? ROW_PAD : 0) + rule;
+        const block = from.block + pad + r.block;
+        const nat = from.nat + r.h;
+        // Photo height can be squeezed a little (the crop is invisible), captions cannot, so
+        // the page fits if the rows still clear the budget at their most compressed.
+        if (block - nat * (1 - MIN_SCALE) > budget + 1e-6) continue;
+        const row = Object.assign({}, r, { pad, rule: rule ? gs[start + o].monthStart : null });
+        offer(j, { block, nat, photos: from.photos + r.n,
+                   rows: from.rows.concat([row]) });
+      }
+    }
+  }
+
+  let pick = null, bestScore = -Infinity;
+  for (let o = Math.max(1, minO || 1); o <= K; o++) {
+    for (const e of front[o]) {
+      const avail = budget - e.block + e.nat;
+      const score = Math.min(e.nat * MAX_SCALE, avail) + 0.004 * e.photos;
+      if (score > bestScore) { bestScore = score; pick = e; }
+    }
+  }
+  if (!pick) return null;
+  const end = start + pick.rows.reduce((s, r) => s + r.gs.length, 0);
+  return { rows: pick.rows, end, height: pick.block };
+}
+
+/* Occasionally a post cannot start any legal row -- a lone portrait is far too tall to justify
+   across the column, and the posts after it cannot be borrowed to shorten it. It gets placed
+   at its natural size and the packer then carries on with the rest of the page, because
+   letting it end the page is exactly what used to leave three inches of white below it. */
+function fillPage(gs, start, budget, minO) {
+  const packed = packRows(gs, start, budget, minO);
+  if (packed) return packed;
+  if (minO) return null;
+  const r = looseRow(gs, start);
+  r.pad = 0; r.rule = null;
+  const rows = [r];
+  let end = r.end, height = r.block;
+  const rest = packRows(gs, r.end, budget - r.block - ROW_PAD);
+  if (rest && rest.rows.length) {
+    rest.rows[0].pad = ROW_PAD;
+    rows.push.apply(rows, rest.rows);
+    end = rest.end;
+    height += ROW_PAD + rest.height;
+  }
+  return { rows, end, height };
+}
+
+/* ---- rendering ----------------------------------------------------------- */
+function groupEl(g, hNat, hBox) {
+  const cell = document.createElement('div');
+  cell.className = 'grp';
+  cell.style.width = inch(hNat * g.sum + GAP * (g.n - 1));
+  const pics = document.createElement('div');
+  pics.className = 'pics';
+  pics.style.height = inch(hBox);
+  for (const ph of g.photos) {
+    const f = document.createElement('figure');
+    f.style.width = inch(hNat * ph.ar);
+    f.innerHTML = '<img src="' + ph.src + '" alt="" loading="eager">' +
+                  (ph.video ? '<span class="vtag"></span>' : '');
+    pics.appendChild(f);
+  }
+  cell.appendChild(pics);
+  const cap = document.createElement('div');
+  cap.className = 'gcap';
+  cap.innerHTML = capHTML(g);
+  cell.appendChild(cap);
+  return cell;
+}
+
+function rowEl(row, scale) {
+  const el = document.createElement('div');
+  el.className = 'row';
+  const w = row.full ? CW : row.h * row.sum + GAP * (row.n - 1);
+  el.style.width = inch(w);
+  el.style.left = inch(M.left + (CW - w) / 2);
+  row.gs.forEach(g => el.appendChild(groupEl(g, row.h, row.h * scale)));
+  return el;
+}
+
+function monthRule(name, top) {
+  const m = document.createElement('div');
+  m.className = 'month';
+  m.style.left = inch(M.left);
+  m.style.width = inch(CW);
+  m.style.top = inch(top);
+  m.textContent = name;
+  return m;
+}
+
+function renderPage(fill, budget, top0) {
+  const rows = fill.rows;
+  const pads = rows.reduce((s, r) => s + r.pad, 0);
+  const caps = rows.reduce((s, r) => s + (r.capH ? CAP_GAP + r.capH : 0), 0);
+  const nat = rows.reduce((s, r) => s + r.h, 0);
+  const avail = budget - pads - caps;
+  // Square the page off: grow the photos a touch (the cover crop hides it), then spend whatever
+  // is still left widening the gaps between rows, and only centre what even that cannot absorb.
+  let scale = nat > 0 && isFinite(nat) ? avail / nat : 1;
+  scale = Math.max(MIN_SCALE, Math.min(scale, MAX_FILL_SCALE));
+  const slack = Math.max(0, avail - nat * scale);
+  const gaps = rows.length - 1;
+  const extra = gaps > 0 ? Math.min(slack / gaps, MAX_EXTRA) : 0;
+  let y = top0 + (slack - extra * gaps) / 2;
+  rows.forEach((r, i) => {
+    y += r.pad + (i ? extra : 0);
+    if (r.rule) { page.appendChild(monthRule(r.rule, y - MONTH_H + 0.06)); }
+    const el = rowEl(r, scale);
+    el.style.top = inch(y);
+    page.appendChild(el);
+    y += r.h * scale + (r.capH ? CAP_GAP + r.capH : 0);
+  });
+}
+
+/* A full-bleed page every so often gives the book a pulse instead of grid after grid. */
+function heroOK(g) {
+  return g && g.lead && g.n === 1 && g.photos[0].ar >= 1.25 && !g.monthStart;
+}
+
+function heroPage(p, photo, why, withCap) {
+  addPage('full');
+  page.dataset.why = why || 'picked';
+  page.innerHTML =
+    '<img class="bleed" src="' + photo.src + '" alt="">' +
+    '<div class="hscrim"></div>' +
+    '<div class="hcap"><span class="gdate">' + esc(p.date) + '</span>' +
+    (p.loc ? '<span class="gloc">' + esc(p.loc) + '</span>' : '') +
+    // The caption prints once. A picked photo still appears in the grid with its post, which
+    // is where the caption belongs, so the feature page carries only date and place.
+    (withCap && p.caption
+      ? '<span class="gtext">' + esc(p.caption).replace(/\n/g, '<br>') + '</span>' : '') +
+    '</div>';
+  folio();
+}
+
+function openerPage() {
+  addPage('full');
+  page.innerHTML =
+    '<img class="bleed" src="' + META.cover + '" alt="">' +
+    '<div class="scrim"></div>' +
+    '<div class="opener"><p class="kick">Winston and Eleanor</p>' +
+    '<p class="yr">' + META.year + '</p>' +
+    '<p class="sub">' + META.posts + ' posts &middot; ' + META.photos + ' photographs</p>' +
+    '<p class="sub">' + META.range + '</p>' +
+    (META.topics && META.topics.length
+      ? '<ul class="topics">' + META.topics.map(t => '<li>' + t + '</li>').join('') + '</ul>'
+      : '') + '</div>';
+}
+
+/* A hand-written route, as a strip across the head of a page. It is measured rather than
+   given a page: seven lines of itinerary cannot carry 11x8in alone, and the trip reads
+   better with its own first photographs underneath it. */
+function routeBand(html, top, cls) {
+  const b = document.createElement('div');
+  b.className = cls || 'rtb';
+  b.style.left = inch(M.left);
+  b.style.width = inch(CW);
+  b.style.top = inch(top);
+  b.innerHTML = html;
+  return b;
+}
+
+/* A route is one fixed size; a post whose photographs the archive lost is however long Cat
+   wrote it. So a band is measured off the ruler before the page commits to carrying it. */
+const bandCache = new Map();
+function bandHeight(b) {
+  let h = bandCache.get(b.html);
+  if (h === undefined) {
+    const d = routeBand(b.html, 0, b.cls);
+    d.style.position = 'static';
+    ruler.appendChild(d);
+    h = d.getBoundingClientRect().height / 96 + BAND_GAP;
+    ruler.removeChild(d);
+    bandCache.set(b.html, h);
+  }
+  return h;
+}
+
+/* A route anchored past the last photograph of the volume still has to print. The 'full'
+   marker keeps the page out of the audit that checks every photograph reached a page. */
+function routePage(b) {
+  addPage('full');
+  page.appendChild(routeBand(b.html, M.top, b.cls));
+  folio();
+}
+
+function layout() {
+  openerPage();
+  const gs = groups();
+  const pending = [];                            // picks waiting for a page of their own
+  const routes = (META.routes || []).slice();    // hand-written itineraries, in date order
+  let i = 0, sinceHero = 0, lastFull = true;     // the opener is itself a full-bleed page
+  while (i < gs.length) {
+    // A route heads the trip it describes, so it takes the top of that trip's first page and
+    // the photographs of the trip fill the rest of it.
+    const band = [];
+    while (routes.length && gs[i].post.iso >= routes[0].iso) band.push(routes.shift());
+    // A band longer than the page can usefully share is given its own page rather than
+    // squeezing the day's photographs into a strip at the foot of the sheet.
+    let bandH = 0;
+    for (const b of band) bandH += bandHeight(b);
+    while (band.length && bandH > BAND_MAX) {
+      routePage(band.shift());
+      bandH = 0;
+      for (const b of band) bandH += bandHeight(b);
+    }
+    // A feature page carries one photograph and no room for a band, so the rhythm waits a page.
+    if (!band.length && !HEROES.size && !lastFull && sinceHero >= HERO_EVERY && heroOK(gs[i])) {
+      heroPage(gs[i].post, gs[i].photos[0], 'rhythm', gs[i].lead);
+      i++; sinceHero = 0; lastFull = true;
+      continue;
+    }
+    addPage();
+    folio();
+    let top = M.top, budget = CH;
+    for (const b of band) {
+      page.appendChild(routeBand(b.html, top, b.cls));
+      const h = bandHeight(b);
+      top += h;
+      budget -= h;
+    }
+    if (gs[i].monthStart) {
+      page.appendChild(monthRule(gs[i].monthStart, top));
+      top += MONTH_H;
+      budget -= MONTH_H;
+    }
+    // A route page has to introduce its trip, so no photo page may straddle the anchor date.
+    // The packer is shown only the groups in front of it; without this a page beginning on
+    // the 19th ran on through the 24th and the route printed in the middle of its own trip.
+    const bnd = routes.length ? gs.findIndex(g => g.post.iso >= routes[0].iso) : -1;
+    const view = bnd > i ? gs.slice(0, bnd) : gs;
+    let fill = fillPage(view, i, budget);
+    // A photo that would be left alone on the next page has nowhere to go: rather than hand it
+    // a full page it never earned, pull it back onto this one, even if this page then carries
+    // less photograph than its best arrangement.
+    if (fill.end < view.length) {
+      const nxt = fillPage(view, fill.end, CH);
+      if (nxt && nxt.rows.length === 1 && !nxt.rows[0].full && nxt.rows[0].n === 1) {
+        const wider = fillPage(view, i, budget, fill.end + 1 - i);
+        if (wider) fill = wider;
+      }
+    }
+    // A single photo that cannot justify across the column would sit marooned in white,
+    // so it takes the page full-bleed instead - unless a route band heads this page, since
+    // going full-bleed drops the page and would take the band down with it.
+    if (!band.length && fill.rows.length === 1 && !fill.rows[0].full && fill.rows[0].n === 1) {
+      const g = fill.rows[0].gs[0];
+      page.remove(); pageNo--;
+      heroPage(g.post, g.photos[0], 'stranded', g.lead);
+      i = fill.end; sinceHero = 0; lastFull = true;
+      continue;
+    }
+    renderPage(fill, budget, top);
+    for (let k = i; k < fill.end; k++) {
+      for (const ph of gs[k].picks) pending.push({ post: gs[k].post, photo: ph });
+    }
+    i = fill.end;
+    sinceHero++;
+    lastFull = false;
+    // At most one feature page per grid page, so two full-bleed pages never sit together -
+    // the year opener followed straight by a feature read as a double.
+    if (pending.length) {
+      const pk = pending.shift();
+      heroPage(pk.post, pk.photo, 'picked', false);
+      lastFull = true;
+    }
+  }
+  while (pending.length) {
+    const pk = pending.shift();
+    heroPage(pk.post, pk.photo, 'picked', false);
+  }
+  // A route anchored past the last post of the volume still has to print somewhere.
+  while (routes.length) routePage(routes.shift());
+  for (const html of (META.afterword || [])) {
+    addPage('aw full');
+    page.innerHTML = html;
+    folio();
+  }
+}
+
+/* Caption heights drive the packing and they are wrong until the fonts are in, which made the
+   same book paginate differently from one run to the next. Waiting on document.fonts.ready is
+   not enough: with no text on the page yet, nothing has requested a font, so it resolves
+   immediately and layout still measures fallback metrics. Each face is therefore requested
+   explicitly and awaited before a single row is packed. */
+const FACES = ['300 16px Inter', '400 16px Inter', '300 16px Fraunces', '400 16px Fraunces'];
+
+function run() {
+  layout();
+  document.body.dataset.pages = document.querySelectorAll('.page').length;
+}
+
+if (document.fonts && document.fonts.load) {
+  Promise.all(FACES.map(f => document.fonts.load(f, 'Aa0')))
+    .then(() => document.fonts.ready)
+    .then(run, run);
+} else {
+  run();
+}
+</script>
+</body></html>
