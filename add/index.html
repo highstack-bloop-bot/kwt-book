@@ -152,7 +152,7 @@ const TOK_KEY = 'kwt_admin_token';
 // thumbnails silently vanished: an old copy pointed <img src> at the public
 // r2.dev bucket after staged/ moved to the private one). The page now checks
 // its own bytes for a newer BUILD and reloads / offers a reload.
-const BUILD = '2026-08-15-03';
+const BUILD = '2026-08-15-04';
 const FULL_MAX = 2400, WEB_MAX = 1000, THUMB_MAX = 420;
 
 const gate = document.getElementById('gate');
@@ -703,6 +703,17 @@ function showUpdateBanner(){
   document.body.appendChild(b);
 }
 
+// Auto-reload at most ONCE per stale build. If the reload comes back on the
+// same old bytes anyway (a CDN edge can keep serving them for a while), fall
+// back to the banner instead of spinning in a reload loop.
+function mayAutoReload(){
+  try {
+    if (sessionStorage.getItem('kwt_stale_reload') === BUILD) return false;
+    sessionStorage.setItem('kwt_stale_reload', BUILD);
+  } catch (e) { return false; }
+  return true;
+}
+
 async function checkForUpdate(){
   try {
     const r = await fetch(location.pathname + '?_=' + Date.now(), { cache: 'no-store' });
@@ -711,7 +722,7 @@ async function checkForUpdate(){
     const m = txt.match(/const BUILD = '([^']*)'/);
     if (!m || m[1] === BUILD) return;
     // Nothing typed yet -> just take the user straight to the new version.
-    if (!userTyped) { location.reload(); return; }
+    if (!userTyped && mayAutoReload()) { location.reload(); return; }
     showUpdateBanner();
   } catch (e) { /* offline / blocked: try again on the next tick */ }
 }
