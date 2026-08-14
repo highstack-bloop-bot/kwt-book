@@ -390,15 +390,65 @@ async function refresh(){
   renderDone(u);
 }
 
-// staged thumbs live at R2 staged/<uid>_t.jpg. The book's finished thumbs
-// live at R2 web/<code>_N.jpg. Both are served from the public r2.dev domain.
-function thumbUrlForStaged(uid){ return R2 + '/staged/' + uid + '_t.jpg'; }
+// The book's FINISHED thumbs live at web/<code>_N.jpg in the public kwt-media
+// bucket, so a plain <img src> to the r2.dev domain still works for those.
 function thumbUrlForFinished(webPath){
   // /web/foo.jpg -> R2/web/foo.jpg
   return R2 + webPath;
 }
 
+// STAGED thumbs (staged/<uid>_t.jpg) live in the PRIVATE bucket - it has no
+// public r2.dev domain and the Worker 401s unauthenticated GETs. An <img src>
+// cannot carry an Authorization header, so each staged thumb is fetched with
+// api() (Bearer token attached) and handed to the img as a blob: URL.
+// Object URLs are revoked on every re-render so refreshes do not leak, and a
+// generation counter drops responses that land after a newer render started.
+let stagedObjectUrls = [];
+let stagedGen = 0;
+const THUMB_CONCURRENCY = 6;
+
+function releaseStagedThumbs(){
+  for (const u of stagedObjectUrls) URL.revokeObjectURL(u);
+  stagedObjectUrls = [];
+}
+
+async function loadStagedThumb(img, gen){
+  const path = img.dataset.thumb;
+  if (!path) return;
+  try {
+    const r = await api(path, { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const blob = await r.blob();
+    if (gen !== stagedGen) return;          // a newer render superseded us
+    const url = URL.createObjectURL(blob);
+    if (gen !== stagedGen) { URL.revokeObjectURL(url); return; }
+    stagedObjectUrls.push(url);
+    img.src = url;
+  } catch (e) {
+    // Never let one bad thumb kill the whole list - leave the placeholder.
+    img.removeAttribute('src');
+    img.alt = 'thumbnail unavailable';
+    img.title = 'thumbnail unavailable';
+  }
+}
+
+// Small worker pool: with ~400 staged rows, firing every fetch at once would
+// stall the browser and hammer the Worker. A handful in flight keeps the page
+// responsive and fills in top-down.
+function loadStagedThumbs(imgs, gen){
+  let i = 0;
+  const next = async () => {
+    while (i < imgs.length && gen === stagedGen) {
+      await loadStagedThumb(imgs[i++], gen);
+    }
+  };
+  const n = Math.min(THUMB_CONCURRENCY, imgs.length);
+  return Promise.all(Array.from({length: n}, next));
+}
+
 function renderDrafts(s){
+  releaseStagedThumbs();
+  const gen = ++stagedGen;
   drafts.innerHTML = '';
   if (!s.staged || !s.staged.length){
     drafts.innerHTML = '<p class="hint">Nothing staged. Upload some photos to start.</p>';
@@ -419,7 +469,7 @@ function renderDrafts(s){
         <div class="grow"></div>
       </div>
       <div class="thumbs">
-        ${group.map(g=>`<div class="th"><img src="${thumbUrlForStaged(g.uid)}"><button data-uid="${g.uid}">&times;</button>${g.taken?`<div class="d">${g.taken}</div>`:''}</div>`).join('')}
+        ${group.map(g=>`<div class="th"><img alt="" data-thumb="${(g.thumb || ('/staged/' + g.uid + '_t.jpg')).replace(/"/g,'&quot;')}"><button data-uid="${g.uid}">&times;</button>${g.taken?`<div class="d">${g.taken}</div>`:''}</div>`).join('')}
       </div>
       <div class="row">
         <div><label>Date</label><input type="date" class="d" value="${date}"></div>
@@ -445,6 +495,9 @@ function renderDrafts(s){
     });
     drafts.appendChild(el);
   }
+  // Fill the thumbs in after the list is in the DOM (authenticated fetch ->
+  // blob: URL), a few at a time.
+  loadStagedThumbs(Array.from(drafts.querySelectorAll('img[data-thumb]')), gen);
 }
 
 function renderDone(u){
