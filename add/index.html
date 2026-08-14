@@ -116,6 +116,7 @@ button.tiny{font-size:12px;padding:7px 14px}
   <form id="gateform">
     <input type="password" id="tokinput" placeholder="admin token" autocomplete="current-password" autofocus>
     <button class="btn" type="submit">Enter</button>
+    <button class="btn ghost" type="button" id="retrybtn" hidden>Retry</button>
     <p class="hint" id="gatemsg"></p>
   </form>
 </div>
@@ -134,6 +135,7 @@ const gate = document.getElementById('gate');
 const gateform = document.getElementById('gateform');
 const gatemsg = document.getElementById('gatemsg');
 const tokinput = document.getElementById('tokinput');
+const retrybtn = document.getElementById('retrybtn');
 const app = document.getElementById('app');
 const drop = document.getElementById('drop');
 const picker = document.getElementById('picker');
@@ -167,27 +169,54 @@ function setToken(t){ localStorage.setItem(TOK_KEY, t); }
 function clearToken(){ localStorage.removeItem(TOK_KEY); }
 function authHeaders(extra){ return Object.assign({'Authorization': 'Bearer ' + getToken()}, extra||{}); }
 
+// Ask the Worker whether a token is genuinely valid.
+//   'ok'          -> 200, session is alive
+//   'invalid'     -> explicit 401, the token really is dead
+//   'unreachable' -> network failure or any other status; PROVES NOTHING, so
+//                    the stored token must be left alone.
+// Only 'invalid' is ever allowed to cost someone their token.
+async function checkToken(t){
+  try {
+    const r = await fetch(API + '/__health', {
+      headers: {'Authorization': 'Bearer ' + t}, cache: 'no-store'
+    });
+    if (r.ok) return 'ok';
+    if (r.status === 401) return 'invalid';
+    return 'unreachable';
+  } catch (e) {
+    return 'unreachable';
+  }
+}
+async function verifyToken(t){ return (await checkToken(t)) === 'ok'; }
+
+// A single 401 on one sub-resource is NOT proof the session is gone. Confirm
+// against /__health before logging anyone out, and share one in-flight check
+// between concurrent 401s so a burst does not fan out into many probes.
+let sessionCheck = null;
+async function confirmSessionDead(){
+  if (!sessionCheck) sessionCheck = checkToken(getToken()).finally(()=>{ sessionCheck = null; });
+  return (await sessionCheck) === 'invalid';
+}
+
 async function api(path, opts){
   opts = opts || {};
   opts.headers = authHeaders(opts.headers || {});
   const r = await fetch(API + path, opts);
   if (r.status === 401) {
-    clearToken();
-    showGate('That token no longer works. Try again.');
+    if (await confirmSessionDead()) {
+      clearToken();
+      showGate('That token no longer works. Try again.');
+    }
     throw new Error('unauthorised');
   }
   return r;
 }
 
-async function verifyToken(t){
-  const r = await fetch(API + '/__health', { headers: {'Authorization': 'Bearer ' + t} });
-  return r.ok;
-}
-
-async function showGate(msg){
+async function showGate(msg, retryable){
   app.hidden = true;
   gate.hidden = false;
   gatemsg.textContent = msg || '';
+  retrybtn.hidden = !retryable;
   tokinput.focus();
 }
 async function showApp(){
@@ -201,10 +230,13 @@ gateform.addEventListener('submit', async (e)=>{
   const t = tokinput.value.trim();
   if (!t) return;
   gatemsg.textContent = 'checking...';
-  const ok = await verifyToken(t);
-  if (ok){ setToken(t); showApp(); }
-  else { gatemsg.textContent = 'wrong token'; tokinput.select(); }
+  const state = await checkToken(t);
+  if (state === 'ok'){ setToken(t); showApp(); }
+  else if (state === 'invalid'){ gatemsg.textContent = 'wrong token'; tokinput.select(); }
+  else { gatemsg.textContent = 'connection failed - retry'; }
 });
+
+retrybtn.addEventListener('click', ()=>{ gatemsg.textContent = 'checking...'; boot(); });
 
 function setStatus(msg, err){ stat.textContent = msg||''; stat.classList.toggle('err', !!err); }
 function setBar(pct){ bar.classList.toggle('on', pct>0 && pct<100); barI.style.width = pct+'%'; }
@@ -416,7 +448,12 @@ async function loadStagedThumb(img, gen){
   const path = img.dataset.thumb;
   if (!path) return;
   try {
-    const r = await api(path, { cache: 'no-store' });
+    // Deliberately a RAW fetch, not api(): a thumbnail must be able to fail on
+    // its own. Routing these through api() meant one 401 out of ~400 thumb
+    // requests could clear the stored token and hide the entire app.
+    const r = await fetch(API + path, {
+      headers: {'Authorization': 'Bearer ' + getToken()}, cache: 'no-store'
+    });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const blob = await r.blob();
     if (gen !== stagedGen) return;          // a newer render superseded us
@@ -529,10 +566,23 @@ function renderDone(u){
 }
 
 // -------- bootstrap: gate if no token, else show app --------
-(async () => {
-  const t = getToken();
-  if (t && await verifyToken(t)) showApp();
-  else { clearToken(); showGate(); }
-})();
+// The stored token is only ever cleared on a CONFIRMED 401. A worker hiccup or
+// an offline laptop shows a retryable message and keeps the token, and nothing
+// is allowed to throw out of here (an uncaught error used to strand the page
+// on the gate with no way back).
+const CONN_FAIL = 'Connection failed - check your network, then retry.';
+async function boot(){
+  try {
+    const t = getToken();
+    if (!t) { showGate(); return; }
+    const state = await checkToken(t);
+    if (state === 'ok') showApp();
+    else if (state === 'invalid') { clearToken(); showGate('That token no longer works. Try again.'); }
+    else showGate(CONN_FAIL, true);
+  } catch (e) {
+    showGate(CONN_FAIL, true);
+  }
+}
+boot();
 </script>
 </body></html>
