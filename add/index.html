@@ -72,6 +72,19 @@ button.tiny{font-size:12px;padding:7px 14px}
 .gate{max-width:340px;margin:16vh auto;padding:0 20px}
 .gate h1{font:300 28px Fraunces,Georgia,serif;margin:0 0 24px;color:var(--ink)}
 .gate button{margin-top:14px}
+/* Per-file upload outcomes. Duplicates get a distinct amber row so they read
+   as "skipped, not a failure" rather than as an error. */
+.results{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.results:empty{display:none}
+.results .r{display:flex;gap:10px;align-items:center;font-size:13px;padding:8px 12px;border-radius:8px;border:1px solid var(--rule);background:#fff}
+.results .r .name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--soft)}
+.results .r .tag{font-size:11px;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;border-radius:12px;flex:none}
+.results .r.ok .tag{background:#eaf3ec;color:var(--good);border:1px solid #cfe3d4}
+.results .r.dup .tag{background:#fbf1e5;color:#8a5a1e;border:1px solid #ebd4b0}
+.results .r.dup{background:#fdf7ee;border-color:#ebd4b0}
+.results .r.fail .tag{background:#fbeae4;color:var(--warn);border:1px solid #eec5b6}
+.results .r.fail{background:#fdf1ec;border-color:#eec5b6}
+.results .r .info{font-size:11.5px;color:var(--muted);letter-spacing:.02em;flex:none}
 </style>
 </head>
 <body><div class="wrap" id="app" hidden>
@@ -88,6 +101,7 @@ button.tiny{font-size:12px;padding:7px 14px}
 </div>
 <div id="bar" class="bar"><i></i></div>
 <div id="status" class="status"></div>
+<div id="results" class="results" aria-live="polite"></div>
 
 <h2>Staged &mdash; not yet added</h2>
 <div id="drafts"></div>
@@ -126,8 +140,27 @@ const picker = document.getElementById('picker');
 const bar = document.getElementById('bar');
 const barI = bar.firstElementChild;
 const stat = document.getElementById('status');
+const results = document.getElementById('results');
 const drafts = document.getElementById('drafts');
 const done = document.getElementById('done');
+
+// Per-file outcome log. Each drop clears the log, then each file appends a
+// row so duplicates and failures stay visible instead of scrolling past in
+// the single-line status bar.
+function clearResults(){ results.innerHTML = ''; }
+function addResult(kind, name, info){
+  const row = document.createElement('div');
+  row.className = 'r ' + kind;
+  const label = kind === 'ok' ? 'uploaded'
+              : kind === 'dup' ? 'duplicate - skipped'
+              : 'failed';
+  row.innerHTML = '<span class="tag"></span><span class="name"></span>'
+                + (info ? '<span class="info"></span>' : '');
+  row.querySelector('.tag').textContent = label;
+  row.querySelector('.name').textContent = name || 'a file';
+  if (info) row.querySelector('.info').textContent = info;
+  results.appendChild(row);
+}
 
 function getToken(){ return localStorage.getItem(TOK_KEY) || ''; }
 function setToken(t){ localStorage.setItem(TOK_KEY, t); }
@@ -272,6 +305,7 @@ async function upload(file, sha){
 
 async function uploadMany(files){
   const total = files.length;
+  clearResults();
   setStatus('hashing '+total+' file'+(total!==1?'s':'')+'...');
   setBar(1);
   // Content-hash EACH file up front (streams the original bytes), then walk
@@ -280,6 +314,9 @@ async function uploadMany(files){
   //       the first is sent; the rest are marked "duplicate - skipped".
   //   (b) cross-batch: the Worker replies 409 if the hash is already staged
   //       or committed - we count that and keep going.
+  // Each outcome (ok / dup / failed) is appended to the results log so the
+  // user sees which specific files were skipped rather than a single line
+  // that vanishes on the next tick.
   const seenInBatch = new Set();
   let ok = 0, dupBatch = 0, dupServer = 0, failed = 0;
   for (let i=0; i<total; i++){
@@ -294,7 +331,7 @@ async function uploadMany(files){
     }
     if (sha && seenInBatch.has(sha)){
       dupBatch += 1;
-      setStatus((f.name||'a file')+' - duplicate in this drop, skipped');
+      addResult('dup', f.name, 'same file already in this drop');
       setBar(Math.round((i+1)*100/total));
       continue;
     }
@@ -303,21 +340,24 @@ async function uploadMany(files){
       const res = await upload(f, sha);
       if (res && res.duplicate){
         dupServer += 1;
-        setStatus((f.name||'a file')+' - duplicate, already uploaded');
+        const where = res.where === 'photos'
+          ? 'already in the book (' + (res.code||'') + ')'
+          : 'already waiting to be added';
+        addResult('dup', f.name, where);
       } else {
         ok += 1;
+        addResult('ok', f.name);
       }
     } catch(e){
       failed += 1;
-      setStatus('one failed: '+(e.message||e), true);
+      addResult('fail', f.name, (e && e.message) ? e.message : String(e));
     }
     setBar(Math.round((i+1)*100/total));
   }
   setBar(0);
   const bits = [];
   if (ok) bits.push('uploaded '+ok);
-  if (dupBatch) bits.push(dupBatch+' duplicate in drop');
-  if (dupServer) bits.push(dupServer+' already in book');
+  if (dupBatch || dupServer) bits.push((dupBatch+dupServer)+' duplicate skipped');
   if (failed) bits.push(failed+' failed');
   setStatus(bits.length ? bits.join(', ') + '.' : 'nothing to do.', failed>0);
   await refresh();
