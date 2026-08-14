@@ -193,6 +193,15 @@ async function readExifFirst(file){
   return { taken, lat, lon };
 }
 
+async function sha256Hex(file){
+  // Hash the ORIGINAL file bytes (before HEIC conversion / resize) so the
+  // same source photo always produces the same fingerprint regardless of
+  // browser rendition. Runs in one shot via crypto.subtle.
+  const buf = await file.arrayBuffer();
+  const dig = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(dig), b=>b.toString(16).padStart(2,'0')).join('');
+}
+
 async function convertIfHeic(file){
   const type = (file.type||'').toLowerCase();
   const name = (file.name||'').toLowerCase();
@@ -239,7 +248,7 @@ async function processOne(file){
   return { meta, full, web, thumb, w: img.naturalWidth, h: img.naturalHeight };
 }
 
-async function upload(file){
+async function upload(file, sha){
   const uid = randomUid();
   const { meta, full, web, thumb, w, h } = await processOne(file);
   const fd = new FormData();
@@ -249,27 +258,68 @@ async function upload(file){
   fd.append('thumb', thumb, uid+'_t.jpg');
   fd.append('w', String(w));
   fd.append('h', String(h));
+  if (sha) fd.append('sha256', sha);
   if (meta.taken) fd.append('taken', meta.taken);
   if (meta.lat != null) fd.append('lat', String(meta.lat));
   if (meta.lon != null) fd.append('lon', String(meta.lon));
   const r = await api('/upload-photo', { method:'POST', body: fd });
+  if (r.status === 409) {
+    return { duplicate: true, ...(await r.json().catch(()=>({}))) };
+  }
   if (!r.ok) throw new Error('upload failed: '+r.status);
   return await r.json();
 }
 
 async function uploadMany(files){
-  setStatus('processing '+files.length+' file'+(files.length!==1?'s':'')+'...');
+  const total = files.length;
+  setStatus('hashing '+total+' file'+(total!==1?'s':'')+'...');
   setBar(1);
-  for (let i=0; i<files.length; i++){
+  // Content-hash EACH file up front (streams the original bytes), then walk
+  // the list uploading. Two dedup layers:
+  //   (a) intra-batch: if the SAME hash appears twice in this drop, only
+  //       the first is sent; the rest are marked "duplicate - skipped".
+  //   (b) cross-batch: the Worker replies 409 if the hash is already staged
+  //       or committed - we count that and keep going.
+  const seenInBatch = new Set();
+  let ok = 0, dupBatch = 0, dupServer = 0, failed = 0;
+  for (let i=0; i<total; i++){
+    const f = files[i];
+    let sha = null;
     try {
-      await upload(files[i]);
+      sha = await sha256Hex(f);
+    } catch (e) {
+      // If hashing fails (very rare), still allow upload so the flow degrades
+      // to the old no-hash behaviour rather than blocking uploads entirely.
+      sha = null;
+    }
+    if (sha && seenInBatch.has(sha)){
+      dupBatch += 1;
+      setStatus((f.name||'a file')+' - duplicate in this drop, skipped');
+      setBar(Math.round((i+1)*100/total));
+      continue;
+    }
+    if (sha) seenInBatch.add(sha);
+    try {
+      const res = await upload(f, sha);
+      if (res && res.duplicate){
+        dupServer += 1;
+        setStatus((f.name||'a file')+' - duplicate, already uploaded');
+      } else {
+        ok += 1;
+      }
     } catch(e){
+      failed += 1;
       setStatus('one failed: '+(e.message||e), true);
     }
-    setBar(Math.round((i+1)*100/files.length));
+    setBar(Math.round((i+1)*100/total));
   }
   setBar(0);
-  setStatus('uploaded '+files.length+', ready to group into posts.');
+  const bits = [];
+  if (ok) bits.push('uploaded '+ok);
+  if (dupBatch) bits.push(dupBatch+' duplicate in drop');
+  if (dupServer) bits.push(dupServer+' already in book');
+  if (failed) bits.push(failed+' failed');
+  setStatus(bits.length ? bits.join(', ') + '.' : 'nothing to do.', failed>0);
   await refresh();
 }
 
