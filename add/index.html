@@ -85,6 +85,23 @@ button.tiny{font-size:12px;padding:7px 14px}
 .results .r.fail .tag{background:#fbeae4;color:var(--warn);border:1px solid #eec5b6}
 .results .r.fail{background:#fdf1ec;border-color:#eec5b6}
 .results .r .info{font-size:11.5px;color:var(--muted);letter-spacing:.02em;flex:none}
+/* A failed section load must be VISIBLE where the missing content would be,
+   not only as a line of status text far above it. */
+.loaderr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#fdf1ec;
+         border:1px solid #eec5b6;color:var(--warn);border-radius:10px;padding:13px 15px;font-size:13.5px}
+.notice{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#fdf7ee;
+        border:1px solid #ebd4b0;color:#8a5a1e;border-radius:10px;padding:11px 15px;
+        font-size:13px;margin-bottom:14px}
+.notice .grow,.loaderr .grow{flex:1}
+/* A thumbnail that failed to load reads as broken rather than as an empty box. */
+.th.bad{background:repeating-linear-gradient(45deg,#f1e8dc,#f1e8dc 6px,#e6dcd0 6px,#e6dcd0 12px)}
+.th.bad::after{content:'!';position:absolute;inset:0;display:flex;align-items:center;
+               justify-content:center;color:var(--warn);font:500 17px Inter,sans-serif}
+#updbanner{position:fixed;left:0;right:0;top:0;z-index:9999;background:var(--ink);color:var(--paper);
+           display:flex;gap:14px;align-items:center;justify-content:center;padding:11px 16px;
+           font-size:14px;box-shadow:0 2px 12px rgba(20,16,12,.18)}
+#updbanner button{font:500 13px Inter,sans-serif;border-radius:20px;padding:7px 16px;border:1px solid var(--paper);
+                  background:var(--paper);color:var(--ink);cursor:pointer}
 </style>
 </head>
 <body><div class="wrap" id="app" hidden>
@@ -129,6 +146,13 @@ button.tiny{font-size:12px;padding:7px 14px}
 const API = 'https://kwt-admin.yukiyabai-receipts.workers.dev';
 const R2  = 'https://pub-5723b7f7e6324143af356234822009fa.r2.dev';
 const TOK_KEY = 'kwt_admin_token';
+// Bump on every deploy. GitHub Pages serves this file with max-age=600 and a
+// tab left open all day never re-fetches it at all, so a browser can happily
+// run hours-old JS against a moved backend (that is exactly how the staged
+// thumbnails silently vanished: an old copy pointed <img src> at the public
+// r2.dev bucket after staged/ moved to the private one). The page now checks
+// its own bytes for a newer BUILD and reloads / offers a reload.
+const BUILD = '2026-08-15-03';
 const FULL_MAX = 2400, WEB_MAX = 1000, THUMB_MAX = 420;
 
 const gate = document.getElementById('gate');
@@ -412,13 +436,56 @@ drop.addEventListener('drop', e=>{
 });
 
 // -------- drafts + committed lists --------
+// Show a failure WHERE the content should have been, with a retry, instead of
+// leaving a bare section heading over nothing.
+function sectionError(el, msg, err, retry){
+  el.innerHTML = '';
+  const box = document.createElement('div');
+  box.className = 'loaderr';
+  box.innerHTML = '<span class="m"></span><span class="grow"></span>'
+                + '<button class="btn tiny ghost" type="button">Retry</button>';
+  const detail = err && err.message ? ' (' + err.message + ')' : '';
+  box.querySelector('.m').textContent = msg + detail;
+  box.querySelector('button').addEventListener('click', ()=>{
+    el.innerHTML = '<p class="hint">loading...</p>';
+    retry();
+  });
+  el.appendChild(box);
+}
+
+// The two lists load INDEPENDENTLY. They used to share one Promise.all, so a
+// single hiccup on /uploads-list.json (the slower call) wiped out the staged
+// drafts as well - heading present, nothing under it.
+async function refreshStaged(){
+  let s;
+  try {
+    s = await api('/staged-list.json',{cache:'no-store'}).then(r=>r.json());
+  } catch(e){
+    sectionError(drafts, 'Could not load the staged photos.', e, refreshStaged);
+    return;
+  }
+  try {
+    renderDrafts(s);
+  } catch(e){
+    sectionError(drafts, 'Could not show the staged photos.', e, refreshStaged);
+  }
+}
+async function refreshDone(){
+  let u;
+  try {
+    u = await api('/uploads-list.json',{cache:'no-store'}).then(r=>r.json());
+  } catch(e){
+    sectionError(done, 'Could not load the added posts.', e, refreshDone);
+    return;
+  }
+  try {
+    renderDone(u);
+  } catch(e){
+    sectionError(done, 'Could not show the added posts.', e, refreshDone);
+  }
+}
 async function refresh(){
-  const [s, u] = await Promise.all([
-    api('/staged-list.json',{cache:'no-store'}).then(r=>r.json()),
-    api('/uploads-list.json',{cache:'no-store'}).then(r=>r.json()),
-  ]);
-  renderDrafts(s);
-  renderDone(u);
+  await Promise.all([refreshStaged(), refreshDone()]);
 }
 
 // The book's FINISHED thumbs live at web/<code>_N.jpg in the public kwt-media
@@ -436,6 +503,7 @@ function thumbUrlForFinished(webPath){
 // generation counter drops responses that land after a newer render started.
 let stagedObjectUrls = [];
 let stagedGen = 0;
+let thumbFails = 0;
 const THUMB_CONCURRENCY = 6;
 
 function releaseStagedThumbs(){
@@ -460,11 +528,16 @@ async function loadStagedThumb(img, gen){
     if (gen !== stagedGen) { URL.revokeObjectURL(url); return; }
     stagedObjectUrls.push(url);
     img.src = url;
+    const cell = img.closest('.th'); if (cell) cell.classList.remove('bad');
   } catch (e) {
-    // Never let one bad thumb kill the whole list - leave the placeholder.
+    // Never let one bad thumb kill the whole list. Mark the cell as BROKEN so
+    // a missing photo is visible instead of looking like an empty placeholder.
+    if (gen !== stagedGen) return;
+    thumbFails += 1;
     img.removeAttribute('src');
     img.alt = 'thumbnail unavailable';
-    img.title = 'thumbnail unavailable';
+    img.title = 'thumbnail unavailable: ' + ((e && e.message) || 'failed');
+    const cell = img.closest('.th'); if (cell) cell.classList.add('bad');
   }
 }
 
@@ -482,19 +555,67 @@ function loadStagedThumbs(imgs, gen){
   return Promise.all(Array.from({length: n}, next));
 }
 
+// If thumbnails fail EN MASSE the drafts still work, but the section looks
+// empty - so say so, out loud, with a retry.
+function reportThumbFails(total, gen){
+  if (gen !== stagedGen || !thumbFails) return;
+  const bar = document.createElement('div');
+  bar.className = 'notice';
+  bar.innerHTML = '<span class="m"></span><span class="grow"></span>'
+                + '<button class="btn tiny ghost" type="button">Retry thumbnails</button>';
+  bar.querySelector('.m').textContent =
+    thumbFails + ' of ' + total + ' thumbnails could not be loaded. '
+    + 'The drafts below are still complete - reload the page if this persists.';
+  bar.querySelector('button').addEventListener('click', ()=>{
+    bar.remove();
+    thumbFails = 0;
+    const bad = Array.from(drafts.querySelectorAll('.th.bad img[data-thumb]'));
+    const g = stagedGen;
+    loadStagedThumbs(bad, g).then(()=>reportThumbFails(bad.length, g)).catch(()=>{});
+  });
+  drafts.insertBefore(bar, drafts.firstChild);
+}
+
 function renderDrafts(s){
   releaseStagedThumbs();
   const gen = ++stagedGen;
+  thumbFails = 0;
   drafts.innerHTML = '';
-  if (!s.staged || !s.staged.length){
+  const rows = (s && Array.isArray(s.staged)) ? s.staged : [];
+  if (!rows.length){
     drafts.innerHTML = '<p class="hint">Nothing staged. Upload some photos to start.</p>';
     return;
   }
+  // A row with a null/odd batch must still land somewhere rather than throwing.
   const byBatch = new Map();
-  for (const r of s.staged){ if (!byBatch.has(r.batch)) byBatch.set(r.batch, []); byBatch.get(r.batch).push(r); }
-  let idx = 0;
+  for (const r of rows){
+    if (!r) continue;
+    const k = (r.batch === undefined || r.batch === null) ? 'ungrouped' : r.batch;
+    if (!byBatch.has(k)) byBatch.set(k, []);
+    byBatch.get(k).push(r);
+  }
+  let idx = 0, broken = 0;
   for (const [b, group] of byBatch){
     idx += 1;
+    // One malformed draft must NOT blank the whole list.
+    try { drafts.appendChild(buildDraft(idx, group)); }
+    catch (err){ broken += 1; console.error('draft ' + idx + ' failed to render', err); }
+  }
+  if (broken){
+    const bar = document.createElement('div');
+    bar.className = 'notice';
+    bar.textContent = broken + ' draft' + (broken !== 1 ? 's' : '')
+      + ' could not be displayed. The photos are still staged - reload to try again.';
+    drafts.insertBefore(bar, drafts.firstChild);
+  }
+  // Fill the thumbs in after the list is in the DOM (authenticated fetch ->
+  // blob: URL), a few at a time.
+  const imgs = Array.from(drafts.querySelectorAll('img[data-thumb]'));
+  loadStagedThumbs(imgs, gen).then(()=>reportThumbFails(imgs.length, gen)).catch(()=>{});
+}
+
+function buildDraft(idx, group){
+  {
     const el = document.createElement('div');
     el.className = 'post';
     const date = group.find(x=>x.taken)?.taken || '';
@@ -529,11 +650,8 @@ function renderDrafts(s){
       });
       if (r.ok) refresh(); else setStatus('commit failed', true);
     });
-    drafts.appendChild(el);
+    return el;
   }
-  // Fill the thumbs in after the list is in the DOM (authenticated fetch ->
-  // blob: URL), a few at a time.
-  loadStagedThumbs(Array.from(drafts.querySelectorAll('img[data-thumb]')), gen);
 }
 
 function renderDone(u){
@@ -544,7 +662,7 @@ function renderDone(u){
   }
   for (const p of u.uploads){
     const el = document.createElement('div'); el.className = 'item';
-    const first = p.photos[0] || '';
+    const first = (p.photos && p.photos[0]) || '';
     el.innerHTML = `
       <img class="pic" src="${first ? thumbUrlForFinished(first) : ''}">
       <div class="meta">
@@ -563,6 +681,43 @@ function renderDone(u){
     done.appendChild(el);
   }
 }
+
+// -------- stale-page guard --------
+// GitHub Pages serves this HTML with max-age=600, and a tab that is simply
+// left open never re-fetches it at all. That means a browser can run old JS
+// against a backend that has moved on - which is how the staged thumbnails
+// went blank when staged/ moved to the private bucket. Re-fetch our own bytes
+// (bypassing cache), compare BUILD, and either reload or offer a reload.
+let userTyped = false;
+document.addEventListener('input', (e)=>{
+  if (drafts.contains(e.target) || done.contains(e.target)) userTyped = true;
+}, true);
+
+function showUpdateBanner(){
+  if (document.getElementById('updbanner')) return;
+  const b = document.createElement('div');
+  b.id = 'updbanner';
+  b.innerHTML = '<span>This page is out of date - reload to get the current version.</span>'
+              + '<button type="button">Reload</button>';
+  b.querySelector('button').addEventListener('click', ()=>location.reload());
+  document.body.appendChild(b);
+}
+
+async function checkForUpdate(){
+  try {
+    const r = await fetch(location.pathname + '?_=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) return;
+    const txt = await r.text();
+    const m = txt.match(/const BUILD = '([^']*)'/);
+    if (!m || m[1] === BUILD) return;
+    // Nothing typed yet -> just take the user straight to the new version.
+    if (!userTyped) { location.reload(); return; }
+    showUpdateBanner();
+  } catch (e) { /* offline / blocked: try again on the next tick */ }
+}
+setTimeout(checkForUpdate, 4000);
+setInterval(checkForUpdate, 5 * 60 * 1000);
+document.addEventListener('visibilitychange', ()=>{ if (!document.hidden) checkForUpdate(); });
 
 // -------- bootstrap: gate if no token, else show app --------
 // The stored token is only ever cleared on a CONFIRMED 401. A worker hiccup or
