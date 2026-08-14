@@ -187,7 +187,6 @@ async function checkToken(t){
     return 'unreachable';
   }
 }
-async function verifyToken(t){ return (await checkToken(t)) === 'ok'; }
 
 // A single 401 on one sub-resource is NOT proof the session is gone. Confirm
 // against /__health before logging anyone out, and share one in-flight check
