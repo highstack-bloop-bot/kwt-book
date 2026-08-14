@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Add to the book &mdash; Winston and Eleanor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf8f4; --ink:#241f1a; --soft:#5a534b; --muted:#948b80;
+  --rule:#e6dfd3; --accent:#a9714a; --page:820px;
+  --good:#4a7c59; --warn:#b4553f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+     font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:var(--page);margin:0 auto;padding:0 22px 120px}
+header.top{padding:54px 0 30px;border-bottom:1px solid var(--rule);margin-bottom:34px}
+.back{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.back:hover{color:var(--accent)}
+h1{font:300 40px/1.15 Fraunces,Georgia,serif;margin:18px 0 10px;letter-spacing:-.01em}
+.lede{color:var(--soft);max-width:52ch;margin:0;font-size:16.5px}
+h2{font:400 15px/1.3 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:44px 0 16px;font-weight:500}
+.drop{border:1.5px dashed var(--rule);border-radius:14px;background:#fff;padding:46px 26px;text-align:center;transition:.18s;cursor:pointer}
+.drop:hover,.drop.over{border-color:var(--accent);background:#fffdfa}
+.drop .big{font:300 25px/1.3 Fraunces,Georgia,serif;margin-bottom:8px}
+.drop .sm{color:var(--muted);font-size:14px}
+.drop input{display:none}
+.bar{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-top:20px;display:none}
+.bar.on{display:block}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.status{text-align:center;color:var(--muted);font-size:13.5px;margin-top:12px;min-height:20px}
+.status.err{color:var(--warn)}
+.post.wants{box-shadow:0 0 0 2px var(--warn);border-radius:10px}
+.post.wants input[type=date]{border-color:var(--warn)}
+.post{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:20px;margin-bottom:18px}
+.post-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.post-head .n{font:400 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper);border:1px solid var(--rule);border-radius:20px;padding:6px 12px}
+.grow{flex:1}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.th{position:relative;width:88px;height:88px;border-radius:8px;overflow:hidden;background:var(--rule)}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.th button{position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;border:0;background:rgba(20,16,12,.72);color:#fff;font-size:12px;line-height:20px;cursor:pointer;padding:0;opacity:0;transition:.15s}
+.th:hover button{opacity:1}
+.th button:hover{background:var(--warn)}
+.th .d{position:absolute;left:0;right:0;bottom:0;background:rgba(20,16,12,.62);color:#fff;font-size:9.5px;text-align:center;padding:2px 3px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+input[type=text],input[type=date],input[type=password],textarea,select{width:100%;font:400 15px/1.55 Inter,sans-serif;color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:9px;padding:10px 12px;outline:none;transition:.15s;font-family:inherit}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);background:#fff}
+textarea{resize:vertical;min-height:74px}
+.row{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.row>div{flex:1;min-width:180px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:5px}
+button.btn{font:500 14px/1 Inter,sans-serif;letter-spacing:.02em;border-radius:24px;padding:13px 26px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;transition:.16s}
+button.btn:hover{background:var(--accent);border-color:var(--accent)}
+button.btn:disabled{opacity:.4;cursor:default;background:var(--muted);border-color:var(--muted)}
+button.ghost{background:transparent;color:var(--soft);border-color:var(--rule)}
+button.ghost:hover{background:transparent;color:var(--warn);border-color:var(--warn)}
+button.tiny{font-size:12px;padding:7px 14px}
+.actions{display:flex;gap:12px;align-items:center;margin-top:26px;flex-wrap:wrap}
+.saved{color:var(--good);font-size:14px}
+.done{border-top:1px solid var(--rule);margin-top:8px}
+.item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:flex-start}
+.item .pic{width:74px;height:74px;border-radius:8px;object-fit:cover;flex:none;background:var(--rule)}
+.item .meta{flex:1;min-width:0}
+.item .dt{font:400 13px/1.4 Inter;color:var(--accent);letter-spacing:.04em}
+.item .cap{margin:3px 0 4px;font:300 17px/1.45 Fraunces,Georgia,serif;color:var(--ink)}
+.item .loc{color:var(--muted);font-size:13px}
+.item button{opacity:.6}
+.item button:hover{opacity:1}
+.gate{max-width:340px;margin:16vh auto;padding:0 20px}
+.gate h1{font:300 28px Fraunces,Georgia,serif;margin:0 0 24px;color:var(--ink)}
+.gate button{margin-top:14px}
+</style>
+</head>
+<body><div class="wrap" id="app" hidden>
+<header class="top">
+  <a href="/kwt-book/" class="back">&larr; Book</a>
+  <h1>Add to the book</h1>
+  <p class="lede">Drop or pick photos below. EXIF (date + place) is read in the browser, HEIC is converted, and images are resized before upload &mdash; the Worker only stores the results.</p>
+</header>
+
+<div id="drop" class="drop">
+  <div class="big">Drop photos here</div>
+  <div class="sm">or tap to choose &nbsp;&middot;&nbsp; JPEG, PNG or HEIC</div>
+  <input type="file" id="picker" accept="image/*,.heic,.heif" multiple>
+</div>
+<div id="bar" class="bar"><i></i></div>
+<div id="status" class="status"></div>
+
+<h2>Staged &mdash; not yet added</h2>
+<div id="drafts"></div>
+
+<h2>Already added</h2>
+<div id="done" class="done"></div>
+</div>
+
+<div class="gate" id="gate">
+  <h1>Add to the book</h1>
+  <p style="color:var(--soft);font-size:14px;margin:0 0 18px">Paste the admin token to unlock uploads.</p>
+  <form id="gateform">
+    <input type="password" id="tokinput" placeholder="admin token" autocomplete="current-password" autofocus>
+    <button class="btn" type="submit">Enter</button>
+    <p class="hint" id="gatemsg"></p>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+<script>
+// This page is served from GitHub Pages; the backend is the Cloudflare Worker
+// at API. Auth token lives in localStorage after the one-time gate prompt.
+const API = 'https://kwt-admin.yukiyabai-receipts.workers.dev';
+const R2  = 'https://pub-5723b7f7e6324143af356234822009fa.r2.dev';
+const TOK_KEY = 'kwt_admin_token';
+const FULL_MAX = 2400, WEB_MAX = 1000, THUMB_MAX = 420;
+
+const gate = document.getElementById('gate');
+const gateform = document.getElementById('gateform');
+const gatemsg = document.getElementById('gatemsg');
+const tokinput = document.getElementById('tokinput');
+const app = document.getElementById('app');
+const drop = document.getElementById('drop');
+const picker = document.getElementById('picker');
+const bar = document.getElementById('bar');
+const barI = bar.firstElementChild;
+const stat = document.getElementById('status');
+const drafts = document.getElementById('drafts');
+const done = document.getElementById('done');
+
+function getToken(){ return localStorage.getItem(TOK_KEY) || ''; }
+function setToken(t){ localStorage.setItem(TOK_KEY, t); }
+function clearToken(){ localStorage.removeItem(TOK_KEY); }
+function authHeaders(extra){ return Object.assign({'Authorization': 'Bearer ' + getToken()}, extra||{}); }
+
+async function api(path, opts){
+  opts = opts || {};
+  opts.headers = authHeaders(opts.headers || {});
+  const r = await fetch(API + path, opts);
+  if (r.status === 401) {
+    clearToken();
+    showGate('That token no longer works. Try again.');
+    throw new Error('unauthorised');
+  }
+  return r;
+}
+
+async function verifyToken(t){
+  const r = await fetch(API + '/__health', { headers: {'Authorization': 'Bearer ' + t} });
+  return r.ok;
+}
+
+async function showGate(msg){
+  app.hidden = true;
+  gate.hidden = false;
+  gatemsg.textContent = msg || '';
+  tokinput.focus();
+}
+async function showApp(){
+  gate.hidden = true;
+  app.hidden = false;
+  refresh().catch(e=>setStatus('load failed: '+e.message, true));
+}
+
+gateform.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const t = tokinput.value.trim();
+  if (!t) return;
+  gatemsg.textContent = 'checking...';
+  const ok = await verifyToken(t);
+  if (ok){ setToken(t); showApp(); }
+  else { gatemsg.textContent = 'wrong token'; tokinput.select(); }
+});
+
+function setStatus(msg, err){ stat.textContent = msg||''; stat.classList.toggle('err', !!err); }
+function setBar(pct){ bar.classList.toggle('on', pct>0 && pct<100); barI.style.width = pct+'%'; }
+function pad2(n){return String(n).padStart(2,'0');}
+function isoFromDate(dt){ return dt.getFullYear()+'-'+pad2(dt.getMonth()+1)+'-'+pad2(dt.getDate()); }
+
+async function readExifFirst(file){
+  // EXIF must be read from the ORIGINAL bytes before HEIC conversion (heic2any strips it).
+  let taken=null, lat=null, lon=null;
+  try{
+    const ex = await exifr.parse(file, { pick: ['DateTimeOriginal','CreateDate','DateTime','GPSLatitude','GPSLongitude'] });
+    if (ex){
+      const dt = ex.DateTimeOriginal || ex.CreateDate || ex.DateTime;
+      if (dt instanceof Date && !isNaN(dt)) taken = isoFromDate(dt);
+      if (typeof ex.GPSLatitude === 'number') lat = ex.GPSLatitude;
+      if (typeof ex.GPSLongitude === 'number') lon = ex.GPSLongitude;
+    }
+  }catch(e){}
+  return { taken, lat, lon };
+}
+
+async function convertIfHeic(file){
+  const type = (file.type||'').toLowerCase();
+  const name = (file.name||'').toLowerCase();
+  if (type.includes('heic') || type.includes('heif') || name.endsWith('.heic') || name.endsWith('.heif')){
+    const blob = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.92 });
+    return new File([blob], name.replace(/\.(heic|heif)$/i,'.jpg'), { type: 'image/jpeg' });
+  }
+  return file;
+}
+
+function loadImg(blob){
+  return new Promise((res, rej)=>{
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = ()=>{ URL.revokeObjectURL(url); res(img); };
+    img.onerror = ()=>{ URL.revokeObjectURL(url); rej(new Error('image load failed')); };
+    img.src = url;
+  });
+}
+
+async function renderTo(img, maxDim, quality){
+  const w = img.naturalWidth, h = img.naturalHeight;
+  const r = Math.max(w,h) > maxDim ? maxDim/Math.max(w,h) : 1;
+  const cw = Math.max(1, Math.round(w*r)), ch = Math.max(1, Math.round(h*r));
+  const canvas = document.createElement('canvas');
+  canvas.width = cw; canvas.height = ch;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, cw, ch);
+  return await new Promise((res)=>canvas.toBlob(res, 'image/jpeg', quality));
+}
+
+function randomUid(){
+  const b = new Uint8Array(8); crypto.getRandomValues(b);
+  return Array.from(b, x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+async function processOne(file){
+  const meta = await readExifFirst(file);
+  const jpeg = await convertIfHeic(file);
+  const img = await loadImg(jpeg);
+  const full  = await renderTo(img, FULL_MAX,  0.88);
+  const web   = await renderTo(img, WEB_MAX,   0.78);
+  const thumb = await renderTo(img, THUMB_MAX, 0.72);
+  return { meta, full, web, thumb, w: img.naturalWidth, h: img.naturalHeight };
+}
+
+async function upload(file){
+  const uid = randomUid();
+  const { meta, full, web, thumb, w, h } = await processOne(file);
+  const fd = new FormData();
+  fd.append('uid', uid);
+  fd.append('full', full, uid+'.jpg');
+  fd.append('web', web, uid+'_w.jpg');
+  fd.append('thumb', thumb, uid+'_t.jpg');
+  fd.append('w', String(w));
+  fd.append('h', String(h));
+  if (meta.taken) fd.append('taken', meta.taken);
+  if (meta.lat != null) fd.append('lat', String(meta.lat));
+  if (meta.lon != null) fd.append('lon', String(meta.lon));
+  const r = await api('/upload-photo', { method:'POST', body: fd });
+  if (!r.ok) throw new Error('upload failed: '+r.status);
+  return await r.json();
+}
+
+async function uploadMany(files){
+  setStatus('processing '+files.length+' file'+(files.length!==1?'s':'')+'...');
+  setBar(1);
+  for (let i=0; i<files.length; i++){
+    try {
+      await upload(files[i]);
+    } catch(e){
+      setStatus('one failed: '+(e.message||e), true);
+    }
+    setBar(Math.round((i+1)*100/files.length));
+  }
+  setBar(0);
+  setStatus('uploaded '+files.length+', ready to group into posts.');
+  await refresh();
+}
+
+// -------- drag/drop wiring --------
+drop.addEventListener('click', ()=>picker.click());
+picker.addEventListener('change', (e)=>{
+  const fs = Array.from(e.target.files||[]); if (fs.length) uploadMany(fs);
+  e.target.value = '';
+});
+['dragenter','dragover'].forEach(evt=>drop.addEventListener(evt, e=>{
+  e.preventDefault(); e.stopPropagation(); drop.classList.add('over');
+}));
+['dragleave','drop'].forEach(evt=>drop.addEventListener(evt, e=>{
+  e.preventDefault(); e.stopPropagation(); drop.classList.remove('over');
+}));
+drop.addEventListener('drop', e=>{
+  const fs = Array.from(e.dataTransfer.files||[]).filter(f=>f.type.startsWith('image/')||/\.(heic|heif|jpe?g|png)$/i.test(f.name));
+  if (fs.length) uploadMany(fs);
+});
+
+// -------- drafts + committed lists --------
+async function refresh(){
+  const [s, u] = await Promise.all([
+    api('/staged-list.json',{cache:'no-store'}).then(r=>r.json()),
+    api('/uploads-list.json',{cache:'no-store'}).then(r=>r.json()),
+  ]);
+  renderDrafts(s);
+  renderDone(u);
+}
+
+// staged thumbs live at R2 staged/<uid>_t.jpg. The book's finished thumbs
+// live at R2 web/<code>_N.jpg. Both are served from the public r2.dev domain.
+function thumbUrlForStaged(uid){ return R2 + '/staged/' + uid + '_t.jpg'; }
+function thumbUrlForFinished(webPath){
+  // /web/foo.jpg -> R2/web/foo.jpg
+  return R2 + webPath;
+}
+
+function renderDrafts(s){
+  drafts.innerHTML = '';
+  if (!s.staged || !s.staged.length){
+    drafts.innerHTML = '<p class="hint">Nothing staged. Upload some photos to start.</p>';
+    return;
+  }
+  const byBatch = new Map();
+  for (const r of s.staged){ if (!byBatch.has(r.batch)) byBatch.set(r.batch, []); byBatch.get(r.batch).push(r); }
+  let idx = 0;
+  for (const [b, group] of byBatch){
+    idx += 1;
+    const el = document.createElement('div');
+    el.className = 'post';
+    const date = group.find(x=>x.taken)?.taken || '';
+    const loc  = group.find(x=>x.place)?.place || '';
+    el.innerHTML = `
+      <div class="post-head">
+        <div class="n">Draft ${idx}</div>
+        <div class="grow"></div>
+      </div>
+      <div class="thumbs">
+        ${group.map(g=>`<div class="th"><img src="${thumbUrlForStaged(g.uid)}"><button data-uid="${g.uid}">&times;</button>${g.taken?`<div class="d">${g.taken}</div>`:''}</div>`).join('')}
+      </div>
+      <div class="row">
+        <div><label>Date</label><input type="date" class="d" value="${date}"></div>
+        <div><label>Place</label><input type="text" class="l" value="${loc.replace(/"/g,'&quot;')}"></div>
+      </div>
+      <div><label>Caption</label><textarea class="c"></textarea></div>
+      <div class="actions">
+        <button class="btn commit">Add as one post</button>
+        <div class="grow"></div>
+        <span class="hint">${group.length} photo${group.length!==1?'s':''}</span>
+      </div>`;
+    el.querySelector('.commit').addEventListener('click', async ()=>{
+      const date = el.querySelector('.d').value;
+      const location = el.querySelector('.l').value;
+      const caption = el.querySelector('.c').value;
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) { el.classList.add('wants'); return; }
+      const uids = group.map(g=>g.uid);
+      const r = await api('/upload-commit', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ posts: [{ date, caption, location, uids }] })
+      });
+      if (r.ok) refresh(); else setStatus('commit failed', true);
+    });
+    drafts.appendChild(el);
+  }
+}
+
+function renderDone(u){
+  done.innerHTML = '';
+  if (!u.uploads || !u.uploads.length){
+    done.innerHTML = '<p class="hint">Nothing added yet.</p>';
+    return;
+  }
+  for (const p of u.uploads){
+    const el = document.createElement('div'); el.className = 'item';
+    const first = p.photos[0] || '';
+    el.innerHTML = `
+      <img class="pic" src="${first ? thumbUrlForFinished(first) : ''}">
+      <div class="meta">
+        <div class="dt">${p.date||''} &nbsp;&middot;&nbsp; ${p.location||''}</div>
+        <div class="cap">${(p.caption||'').replace(/</g,'&lt;')}</div>
+      </div>
+      <button class="btn tiny ghost" data-code="${p.code}">Remove</button>`;
+    el.querySelector('button').addEventListener('click', async ()=>{
+      if (!confirm('Remove this post and its photos?')) return;
+      const r = await api('/upload-update', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ code: p.code, delete: true })
+      });
+      if (r.ok) refresh();
+    });
+    done.appendChild(el);
+  }
+}
+
+// -------- bootstrap: gate if no token, else show app --------
+(async () => {
+  const t = getToken();
+  if (t && await verifyToken(t)) showApp();
+  else { clearToken(); showGate(); }
+})();
+</script>
+</body></html>
