@@ -123,7 +123,8 @@ button.tiny{font-size:12px;padding:7px 14px}
 <h2>Staged &mdash; not yet added</h2>
 <div id="drafts"></div>
 
-<h2>Already added</h2>
+<h2>Already added from here</h2>
+<p class="hint" style="margin:-8px 0 14px">Only posts added through this upload page &mdash; not the whole book. Remove one here to un-publish it.</p>
 <div id="done" class="done"></div>
 </div>
 
@@ -152,7 +153,7 @@ const TOK_KEY = 'kwt_admin_token';
 // thumbnails silently vanished: an old copy pointed <img src> at the public
 // r2.dev bucket after staged/ moved to the private one). The page now checks
 // its own bytes for a newer BUILD and reloads / offers a reload.
-const BUILD = '2026-08-15-04';
+const BUILD = '2026-08-15-05';
 const FULL_MAX = 2400, WEB_MAX = 1000, THUMB_MAX = 420;
 
 const gate = document.getElementById('gate');
@@ -268,16 +269,31 @@ function isoFromDate(dt){ return dt.getFullYear()+'-'+pad2(dt.getMonth()+1)+'-'+
 
 async function readExifFirst(file){
   // EXIF must be read from the ORIGINAL bytes before HEIC conversion (heic2any strips it).
+  // exifr returns GPSLatitude/GPSLongitude as [deg,min,sec] arrays; the decimal-degree
+  // form we want is exposed as `latitude` / `longitude` (only present when GPS + refs
+  // parsed cleanly). Read those, not the DMS tuples - checking `typeof === 'number'`
+  // on the tuples silently dropped every GPS reading and left staged.lat/lon = null
+  // for every upload.
+  // Date: exifr gives a Date parsed as if the camera clock were UTC. Format via
+  // getUTC* so a browser TZ shift does not push the day one back / one forward.
   let taken=null, lat=null, lon=null;
   try{
-    const ex = await exifr.parse(file, { pick: ['DateTimeOriginal','CreateDate','DateTime','GPSLatitude','GPSLongitude'] });
+    // pick MUST include GPSLatitudeRef / GPSLongitudeRef so exifr can apply the
+    // hemisphere sign - drop them and every W/S coordinate silently comes back
+    // with the wrong sign (or unsigned).
+    const ex = await exifr.parse(file, { tiff: true, exif: true, gps: true,
+      pick: ['DateTimeOriginal','CreateDate','DateTime',
+             'GPSLatitude','GPSLatitudeRef','GPSLongitude','GPSLongitudeRef',
+             'latitude','longitude'] });
     if (ex){
       const dt = ex.DateTimeOriginal || ex.CreateDate || ex.DateTime;
-      if (dt instanceof Date && !isNaN(dt)) taken = isoFromDate(dt);
-      if (typeof ex.GPSLatitude === 'number') lat = ex.GPSLatitude;
-      if (typeof ex.GPSLongitude === 'number') lon = ex.GPSLongitude;
+      if (dt instanceof Date && !isNaN(dt)) {
+        taken = dt.getUTCFullYear()+'-'+pad2(dt.getUTCMonth()+1)+'-'+pad2(dt.getUTCDate());
+      }
+      if (typeof ex.latitude  === 'number' && isFinite(ex.latitude))  lat = ex.latitude;
+      if (typeof ex.longitude === 'number' && isFinite(ex.longitude)) lon = ex.longitude;
     }
-  }catch(e){}
+  }catch(e){ /* unreadable EXIF - upload still proceeds without meta */ }
   return { taken, lat, lon };
 }
 
@@ -637,18 +653,69 @@ function buildDraft(idx, group){
         <button class="btn commit">Add as one post</button>
         <div class="grow"></div>
         <span class="hint">${group.length} photo${group.length!==1?'s':''}</span>
-      </div>`;
-    el.querySelector('.commit').addEventListener('click', async ()=>{
+      </div>
+      <div class="results draftmsg" aria-live="polite"></div>`;
+    const commitBtn = el.querySelector('.commit');
+    const msgBox = el.querySelector('.draftmsg');
+    const showDraftError = (text) => {
+      msgBox.innerHTML = '';
+      const row = document.createElement('div');
+      row.className = 'r fail';
+      row.innerHTML = '<span class="tag">error</span><span class="name"></span>';
+      row.querySelector('.name').textContent = text;
+      msgBox.appendChild(row);
+    };
+    commitBtn.addEventListener('click', async ()=>{
+      // A previous attempt's error banner is stale as soon as the user clicks again.
+      msgBox.innerHTML = '';
       const date = el.querySelector('.d').value;
       const location = el.querySelector('.l').value;
       const caption = el.querySelector('.c').value;
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) { el.classList.add('wants'); return; }
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        el.classList.add('wants');
+        showDraftError('Pick a date (YYYY-MM-DD) before adding.');
+        return;
+      }
+      el.classList.remove('wants');
       const uids = group.map(g=>g.uid);
-      const r = await api('/upload-commit', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ posts: [{ date, caption, location, uids }] })
-      });
-      if (r.ok) refresh(); else setStatus('commit failed', true);
+      // Every failure path from here on MUST land in showDraftError. Silent
+      // no-ops (unhandled fetch reject, worker 4xx, network drop) are how the
+      // "click add, nothing happens" bug on draft 31 stayed hidden.
+      commitBtn.disabled = true;
+      const prevLabel = commitBtn.textContent;
+      commitBtn.textContent = 'Adding...';
+      try {
+        let r;
+        try {
+          r = await api('/upload-commit', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({ posts: [{ date, caption, location, uids }] })
+          });
+        } catch (netErr) {
+          // api() throws on 401 (already handled by the gate) and on network fail.
+          const m = (netErr && netErr.message) ? netErr.message : String(netErr);
+          if (m !== 'unauthorised') showDraftError('Network error - could not reach the server. ' + m);
+          return;
+        }
+        if (r.ok) {
+          await refresh();
+          return;
+        }
+        // Non-OK: pull the worker's error message out of the JSON body so the
+        // user sees the ACTUAL reason (e.g. "that upload has expired, please
+        // re-add it") instead of a generic "commit failed".
+        let reason = '';
+        try {
+          const body = await r.json();
+          reason = (body && body.error) ? body.error : '';
+        } catch (parseErr) {
+          try { reason = (await r.text()).slice(0, 200); } catch (_) { reason = ''; }
+        }
+        showDraftError('Could not add (HTTP ' + r.status + ')' + (reason ? ': ' + reason : '') + '.');
+      } finally {
+        commitBtn.disabled = false;
+        commitBtn.textContent = prevLabel;
+      }
     });
     return el;
   }
@@ -672,11 +739,18 @@ function renderDone(u){
       <button class="btn tiny ghost" data-code="${p.code}">Remove</button>`;
     el.querySelector('button').addEventListener('click', async ()=>{
       if (!confirm('Remove this post and its photos?')) return;
-      const r = await api('/upload-update', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ code: p.code, delete: true })
-      });
-      if (r.ok) refresh();
+      try {
+        const r = await api('/upload-update', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ code: p.code, delete: true })
+        });
+        if (r.ok) { refresh(); return; }
+        let reason = '';
+        try { const b = await r.json(); reason = b && b.error ? b.error : ''; } catch(_) {}
+        setStatus('Remove failed (HTTP ' + r.status + ')' + (reason ? ': ' + reason : ''), true);
+      } catch(e) {
+        if (e && e.message !== 'unauthorised') setStatus('Remove failed: ' + (e.message||e), true);
+      }
     });
     done.appendChild(el);
   }
