@@ -153,7 +153,7 @@ const TOK_KEY = 'kwt_admin_token';
 // thumbnails silently vanished: an old copy pointed <img src> at the public
 // r2.dev bucket after staged/ moved to the private one). The page now checks
 // its own bytes for a newer BUILD and reloads / offers a reload.
-const BUILD = '2026-08-15-05';
+const BUILD = '2026-08-15-06';
 const FULL_MAX = 2400, WEB_MAX = 1000, THUMB_MAX = 420;
 
 const gate = document.getElementById('gate');
@@ -266,6 +266,56 @@ function setStatus(msg, err){ stat.textContent = msg||''; stat.classList.toggle(
 function setBar(pct){ bar.classList.toggle('on', pct>0 && pct<100); barI.style.width = pct+'%'; }
 function pad2(n){return String(n).padStart(2,'0');}
 function isoFromDate(dt){ return dt.getFullYear()+'-'+pad2(dt.getMonth()+1)+'-'+pad2(dt.getDate()); }
+
+// Accept any reasonable date shape the user (or EXIF) might hand us and return
+// a strict YYYY-MM-DD, or null if there is no way to make sense of it. Never
+// throws - callers get a value or null, and can then decide whether to nag.
+// Recognised shapes (whitespace tolerant):
+//   YYYY-MM-DD, YYYY/MM/DD, YYYY:MM:DD (EXIF), YYYY.MM.DD
+//   YYYY-MM-DDTHH:MM[:SS][Z|+HH:MM] (ISO datetime, either T or space)
+//   YYYY:MM:DD HH:MM:SS               (EXIF DateTimeOriginal)
+//   DD.MM.YYYY, DD-MM-YYYY, DD/MM/YYYY, MM/DD/YYYY
+//     (day/month ambiguity: if the first part is >12 it must be the day; if
+//      the second is >12 it must be the day; otherwise this is a European
+//      family, so prefer DD/MM/YYYY.)
+//   Bare YYYY-MM or YYYY (padded with -01)
+// Values that reference a real calendar day (Feb 30, month 13, etc.) are
+// rejected as unparseable.
+function parseDateFlexible(raw){
+  if (raw == null) return null;
+  const s = String(raw).trim();
+  if (!s) return null;
+  const build = (y, m, d) => {
+    if (!Number.isFinite(y) || !Number.isFinite(m) || !Number.isFinite(d)) return null;
+    if (m < 1 || m > 12 || d < 1 || d > 31 || y < 1 || y > 9999) return null;
+    // Cross-check against a real Date so Feb 30 / Apr 31 don't slip through.
+    const dt = new Date(Date.UTC(y, m - 1, d));
+    if (dt.getUTCFullYear() !== y || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return null;
+    return y + '-' + pad2(m) + '-' + pad2(d);
+  };
+  // Strip a trailing time portion (T... or space-time) before shape matching.
+  const dateOnly = s.replace(/[T ].*$/, '');
+  // YEAR-first families: YYYY[-/.:]MM[-/.:]DD
+  let m = dateOnly.match(/^(\d{4})[-/.:](\d{1,2})[-/.:](\d{1,2})$/);
+  if (m) return build(+m[1], +m[2], +m[3]);
+  // Bare YYYY-MM
+  m = dateOnly.match(/^(\d{4})[-/.:](\d{1,2})$/);
+  if (m) return build(+m[1], +m[2], 1);
+  // Bare YYYY
+  m = dateOnly.match(/^(\d{4})$/);
+  if (m) return build(+m[1], 1, 1);
+  // DAY-first / US families: A[-/.]B[-/.]YYYY where A and B are 1-2 digits.
+  m = dateOnly.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})$/);
+  if (m) {
+    const a = +m[1], b = +m[2], y = +m[3];
+    let day, mon;
+    if (a > 12) { day = a; mon = b; }        // must be DD/MM/YYYY
+    else if (b > 12) { day = b; mon = a; }   // must be MM/DD/YYYY
+    else { day = a; mon = b; }               // ambiguous -> prefer DD/MM (European)
+    return build(y, mon, day);
+  }
+  return null;
+}
 
 async function readExifFirst(file){
   // EXIF must be read from the ORIGINAL bytes before HEIC conversion (heic2any strips it).
@@ -634,8 +684,23 @@ function buildDraft(idx, group){
   {
     const el = document.createElement('div');
     el.className = 'post';
-    const date = group.find(x=>x.taken)?.taken || '';
+    // The staged photo's `taken` string can arrive in a shape the browser's
+    // <input type="date"> silently refuses to accept (EXIF "YYYY:MM:DD",
+    // "YYYY/MM/DD", trailing time portions from old CSV imports, ...). If we
+    // hand the input a value it can't parse it drops it on the floor and the
+    // input reads back as an empty string - which then failed the strict
+    // YYYY-MM-DD regex on commit with "Pick a date (YYYY-MM-DD) before adding."
+    // for a draft that visibly already had a date. Normalise here.
+    const rawDate = group.find(x=>x.taken)?.taken || '';
+    const date = parseDateFlexible(rawDate) || '';
     const loc  = group.find(x=>x.place)?.place || '';
+    // NOTE: the date INPUT uses class `datein`, NOT `d`. The thumbnail overlay
+    // in .thumbs also uses `.d` (see `<div class="d">${g.taken}</div>` below),
+    // and `el.querySelector('.d')` returned the FIRST match - the div - whose
+    // `.value` is undefined, so every draft with at least one dated photo hit
+    // the "Pick a date..." error even when the user had typed one in. Every
+    // draft with any dated thumb (36 out of 37 live drafts at time of fix) was
+    // hitting this. Do NOT rename the thumb div - it drives .th .d css.
     el.innerHTML = `
       <div class="post-head">
         <div class="n">Draft ${idx}</div>
@@ -645,7 +710,7 @@ function buildDraft(idx, group){
         ${group.map(g=>`<div class="th"><img alt="" data-thumb="${(g.thumb || ('/staged/' + g.uid + '_t.jpg')).replace(/"/g,'&quot;')}"><button data-uid="${g.uid}">&times;</button>${g.taken?`<div class="d">${g.taken}</div>`:''}</div>`).join('')}
       </div>
       <div class="row">
-        <div><label>Date</label><input type="date" class="d" value="${date}"></div>
+        <div><label>Date</label><input type="date" class="datein" value="${date}"></div>
         <div><label>Place</label><input type="text" class="l" value="${loc.replace(/"/g,'&quot;')}"></div>
       </div>
       <div><label>Caption</label><textarea class="c"></textarea></div>
@@ -656,6 +721,7 @@ function buildDraft(idx, group){
       </div>
       <div class="results draftmsg" aria-live="polite"></div>`;
     const commitBtn = el.querySelector('.commit');
+    const dateInput = el.querySelector('input.datein');
     const msgBox = el.querySelector('.draftmsg');
     const showDraftError = (text) => {
       msgBox.innerHTML = '';
@@ -665,19 +731,52 @@ function buildDraft(idx, group){
       row.querySelector('.name').textContent = text;
       msgBox.appendChild(row);
     };
+    // Per-thumb x button: remove that photo FROM THIS DRAFT locally. The
+    // button was rendered before with no click handler at all (silent no-op).
+    // The Worker has no delete-one-staged endpoint, so the photo stays staged
+    // until the draft is committed - the visual removal here only takes it
+    // out of the uids list that the commit will send. A page reload brings
+    // it back if the user changes their mind before committing.
+    for (const rmBtn of el.querySelectorAll('.thumbs .th > button[data-uid]')) {
+      rmBtn.addEventListener('click', () => {
+        const cell = rmBtn.closest('.th');
+        if (cell && cell.parentNode) cell.parentNode.removeChild(cell);
+        const left = el.querySelectorAll('.thumbs .th').length;
+        const hint = el.querySelector('.actions .hint');
+        if (hint) hint.textContent = left + ' photo' + (left !== 1 ? 's' : '');
+        // Nothing left - block the commit rather than send a photoless post.
+        if (!left) {
+          commitBtn.disabled = true;
+          showDraftError('No photos left in this draft. Reload to bring them back.');
+        }
+      });
+    }
     commitBtn.addEventListener('click', async ()=>{
       // A previous attempt's error banner is stale as soon as the user clicks again.
       msgBox.innerHTML = '';
-      const date = el.querySelector('.d').value;
+      // Read whatever the user (or the browser's date picker) has in the input
+      // and run it through the same normaliser used at prefill so pasted
+      // "2017/06/14" or "14.06.2017" survive to reach the Worker as
+      // YYYY-MM-DD. If normalisation succeeds and the user's raw text was in
+      // a different shape, write it back so what they see is what will be sent.
+      const rawTyped = dateInput.value;
+      const date = parseDateFlexible(rawTyped);
       const location = el.querySelector('.l').value;
       const caption = el.querySelector('.c').value;
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      if (!date) {
         el.classList.add('wants');
-        showDraftError('Pick a date (YYYY-MM-DD) before adding.');
+        showDraftError(rawTyped
+          ? 'Couldn\u2019t read date "' + rawTyped + '" \u2014 use YYYY-MM-DD.'
+          : 'Pick a date (YYYY-MM-DD) before adding.');
         return;
       }
+      if (rawTyped !== date) dateInput.value = date;
       el.classList.remove('wants');
-      const uids = group.map(g=>g.uid);
+      // Read uids from the currently-visible thumbs, not the original group,
+      // so per-thumb removals are honoured.
+      const uids = Array.from(el.querySelectorAll('.thumbs .th > button[data-uid]'))
+        .map(b => b.getAttribute('data-uid')).filter(Boolean);
+      if (!uids.length) { showDraftError('No photos left in this draft.'); return; }
       // Every failure path from here on MUST land in showDraftError. Silent
       // no-ops (unhandled fetch reject, worker 4xx, network drop) are how the
       // "click add, nothing happens" bug on draft 31 stayed hidden.
@@ -737,8 +836,14 @@ function renderDone(u){
         <div class="cap">${(p.caption||'').replace(/</g,'&lt;')}</div>
       </div>
       <button class="btn tiny ghost" data-code="${p.code}">Remove</button>`;
-    el.querySelector('button').addEventListener('click', async ()=>{
+    const removeBtn = el.querySelector('button');
+    removeBtn.addEventListener('click', async ()=>{
       if (!confirm('Remove this post and its photos?')) return;
+      // Disable in-flight so a double-click can't fire two delete calls (the
+      // second races the D1 rows away and 404s).
+      removeBtn.disabled = true;
+      const prevLabel = removeBtn.textContent;
+      removeBtn.textContent = 'Removing...';
       try {
         const r = await api('/upload-update', {
           method:'POST', headers:{'Content-Type':'application/json'},
@@ -750,6 +855,9 @@ function renderDone(u){
         setStatus('Remove failed (HTTP ' + r.status + ')' + (reason ? ': ' + reason : ''), true);
       } catch(e) {
         if (e && e.message !== 'unauthorised') setStatus('Remove failed: ' + (e.message||e), true);
+      } finally {
+        removeBtn.disabled = false;
+        removeBtn.textContent = prevLabel;
       }
     });
     done.appendChild(el);
