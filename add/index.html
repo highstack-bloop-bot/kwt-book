@@ -36,6 +36,7 @@ h2{font:400 15px/1.3 Inter,sans-serif;letter-spacing:.12em;text-transform:upperc
 .post.wants input[type=date]{border-color:var(--warn)}
 .post{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:20px;margin-bottom:18px}
 .post-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.post-head .who{font:400 13px/1 Inter;color:var(--soft)}
 .post-head .n{font:400 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper);border:1px solid var(--rule);border-radius:20px;padding:6px 12px}
 .grow{flex:1}
 .thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
@@ -153,7 +154,7 @@ const TOK_KEY = 'kwt_admin_token';
 // thumbnails silently vanished: an old copy pointed <img src> at the public
 // r2.dev bucket after staged/ moved to the private one). The page now checks
 // its own bytes for a newer BUILD and reloads / offers a reload.
-const BUILD = '2026-08-15-07';
+const BUILD = '2026-08-16-01';
 const FULL_MAX = 2400, WEB_MAX = 1000, THUMB_MAX = 420;
 
 const gate = document.getElementById('gate');
@@ -723,16 +724,27 @@ function renderDrafts(s){
     drafts.innerHTML = '<p class="hint">Nothing staged. Upload some photos to start.</p>';
     return;
   }
-  // A row with a null/odd batch must still land somewhere rather than throwing.
-  const byBatch = new Map();
+  // A draft becomes ONE post, so group by what a post actually is: a day in a
+  // place. Grouping by upload batch alone turned a single 102-photo folder drop
+  // into one draft spanning 39 dates and 12 countries. A row with a null/odd
+  // date or place must still land somewhere rather than throwing.
+  const byGroup = new Map();
   for (const r of rows){
     if (!r) continue;
-    const k = (r.batch === undefined || r.batch === null) ? 'ungrouped' : r.batch;
-    if (!byBatch.has(k)) byBatch.set(k, []);
-    byBatch.get(k).push(r);
+    const date = (parseDateFlexible(r.taken || '') || '');
+    const place = (r.place || '');
+    const k = date + '\u0000' + place;
+    if (!byGroup.has(k)) byGroup.set(k, []);
+    byGroup.get(k).push(r);
   }
+  // Undated drafts last, otherwise oldest day first, places alphabetical.
+  const ordered = Array.from(byGroup.entries()).sort((a, b) => {
+    const [da, pa] = a[0].split('\u0000'), [db, pb] = b[0].split('\u0000');
+    if (!da !== !db) return da ? -1 : 1;
+    return da === db ? pa.localeCompare(pb) : da.localeCompare(db);
+  });
   let idx = 0, broken = 0;
-  for (const [b, group] of byBatch){
+  for (const [b, group] of ordered){
     idx += 1;
     // One malformed draft must NOT blank the whole list.
     try { drafts.appendChild(buildDraft(idx, group)); }
@@ -775,6 +787,7 @@ function buildDraft(idx, group){
     el.innerHTML = `
       <div class="post-head">
         <div class="n">Draft ${idx}</div>
+        <div class="who"></div>
         <div class="grow"></div>
       </div>
       <div class="thumbs">
@@ -791,6 +804,7 @@ function buildDraft(idx, group){
         <span class="hint">${group.length} photo${group.length!==1?'s':''}</span>
       </div>
       <div class="results draftmsg" aria-live="polite"></div>`;
+    el.querySelector('.who').textContent = [date || 'no date', loc].filter(Boolean).join(' \u00b7 ');
     const commitBtn = el.querySelector('.commit');
     const dateInput = el.querySelector('input.datein');
     const msgBox = el.querySelector('.draftmsg');
